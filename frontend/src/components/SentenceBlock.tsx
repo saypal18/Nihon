@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import * as wanakana from 'wanakana';
 import { Sentence, ScriptMode } from '../lib/types';
 import { mapHiraganaIndexToOriginal } from '../lib/emielAdapter';
 import { CheckCircle2, AlertTriangle, Volume2 } from 'lucide-react';
@@ -12,6 +13,10 @@ interface SentenceBlockProps {
   isCompleted: boolean;
   hiraganaCursor: number;
   mistakeCount: number;
+  parsedRoman: string;
+  inFlightRoman: string;
+  bufferedMistakes: string;
+  pendingRoman: string;
   scriptMode: ScriptMode;
   showTranslation: boolean;
 }
@@ -22,6 +27,10 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
   isCompleted,
   hiraganaCursor,
   mistakeCount,
+  parsedRoman,
+  inFlightRoman,
+  bufferedMistakes,
+  pendingRoman,
   scriptMode,
   showTranslation,
 }) => {
@@ -63,6 +72,9 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
     activeCharIndex = mapHiraganaIndexToOriginal(hiraganaCursor, sentence.tokens);
   }
 
+  // Fallback full romaji for inactive or completed state
+  const defaultRoman = wanakana.toRomaji(sentence.hiragana);
+
   return (
     <div
       className={`group relative rounded-xl border p-5 transition-all duration-300 ${
@@ -97,41 +109,20 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 flex flex-wrap items-baseline gap-x-[1px] gap-y-1 font-japanese text-2xl sm:text-3xl font-semibold leading-relaxed tracking-wider select-none">
           {displayText.split('').map((char, index) => {
-            let charStatus: 'completed' | 'active' | 'upcoming' = 'upcoming';
-
-            if (isCompleted) {
-              charStatus = 'completed';
-            } else if (isActive) {
-              if (index < activeCharIndex) {
-                charStatus = 'completed';
-              } else if (index === activeCharIndex) {
-                charStatus = 'active';
-              } else {
-                charStatus = 'upcoming';
-              }
-            }
-
-            const hasMistakeOnActive = isActive && charStatus === 'active' && mistakeCount > 0;
+            const isCharCompleted = isCompleted || (isActive && index < activeCharIndex);
 
             return (
               <span
                 key={index}
-                className={`relative inline-block transition-all duration-150 ${
-                  charStatus === 'completed'
-                    ? 'text-emerald-400/90'
-                    : charStatus === 'active'
-                    ? hasMistakeOnActive
-                      ? 'text-red-400 bg-red-500/20 rounded px-1 -mx-0.5 animate-pulse ring-1 ring-red-500/40'
-                      : 'text-white bg-amber-400/15 rounded px-1 -mx-0.5 underline decoration-amber-400 decoration-2 underline-offset-8 shadow-sm ring-1 ring-amber-400/40'
+                className={`transition-colors duration-150 ${
+                  isCharCompleted
+                    ? 'text-emerald-400'
+                    : isActive
+                    ? 'text-slate-300'
                     : 'text-slate-600'
                 }`}
               >
                 {char}
-
-                {/* Blinking Caret Indicator for Active Character */}
-                {isActive && charStatus === 'active' && !hasMistakeOnActive && (
-                  <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                )}
               </span>
             );
           })}
@@ -151,6 +142,33 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
         >
           <Volume2 className="w-5 h-5" />
         </button>
+      </div>
+
+      {/* English / Romaji Track Directly Below Japanese Characters */}
+      <div className="mt-2.5 font-mono text-base sm:text-lg tracking-wider select-none flex items-center flex-wrap gap-y-1 min-h-[1.75rem]">
+        {isActive ? (
+          <>
+            {parsedRoman && (
+              <span className="text-emerald-400 font-semibold">{parsedRoman}</span>
+            )}
+            {inFlightRoman && (
+              <span className="text-amber-400 font-bold underline decoration-amber-400 decoration-2 underline-offset-4">
+                {inFlightRoman}
+              </span>
+            )}
+            {bufferedMistakes && (
+              <span className="text-red-400 bg-red-500/20 px-1 rounded font-bold animate-pulse">
+                {bufferedMistakes}
+              </span>
+            )}
+            {/* Typing caret indicator */}
+            <span className="inline-block w-[2px] h-[1.15em] -mb-0.5 bg-amber-400 animate-pulse mx-0.5" />
+          </>
+        ) : isCompleted ? (
+          <span className="text-emerald-500/60 font-medium">
+            {parsedRoman || defaultRoman}
+          </span>
+        ) : null}
       </div>
 
       {/* Mistake Alert Banner when active sentence has locked typos */}

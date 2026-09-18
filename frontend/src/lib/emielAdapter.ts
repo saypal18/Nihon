@@ -19,6 +19,9 @@ export interface EmielKeyResult {
   finishedRoman: string;
   pendingRoman: string;
   mistakeCount: number;
+  parsedRoman: string;
+  inFlightRoman: string;
+  bufferedMistakes: string;
 }
 
 export class EmielTypingSession {
@@ -47,6 +50,65 @@ export class EmielTypingSession {
   }
 
   /**
+   * Extract uncommitted valid Roman keystrokes currently buffered for pending kana.
+   */
+  getInFlightRoman(): string {
+    const currentKanaIndex = this.automaton.currentNode.kanaIndex;
+    const stack: { romanChar: string; previousKana: number; nextKana: number }[] = [];
+    for (const entry of this.automaton.inputHistory) {
+      if ('back' in entry) {
+        stack.pop();
+      } else if (entry.edge) {
+        stack.push({
+          romanChar:
+            entry.edge.input.romanChar ||
+            (entry.edge.input.kind === 'single' ? entry.edge.input.key.toLowerCase() : ''),
+          previousKana: entry.edge.previous.kanaIndex,
+          nextKana: entry.edge.next.kanaIndex,
+        });
+      }
+    }
+
+    const inFlight: string[] = [];
+    for (let i = stack.length - 1; i >= 0; i--) {
+      const item = stack[i];
+      if (item.previousKana === currentKanaIndex && item.nextKana === currentKanaIndex) {
+        inFlight.unshift(item.romanChar);
+      } else {
+        break;
+      }
+    }
+    return inFlight.join('');
+  }
+
+  getBufferedMistakes(): string {
+    return this.mistakeStack.join('');
+  }
+
+  getRomanState(): {
+    parsedRoman: string;
+    inFlightRoman: string;
+    bufferedMistakes: string;
+    pendingRoman: string;
+  } {
+    const view = this.automaton.currentView();
+    const inFlightRoman = this.getInFlightRoman();
+    const bufferedMistakes = this.getBufferedMistakes();
+    const parsedRoman = view.finishedRoman.slice(
+      0,
+      Math.max(0, view.finishedRoman.length - inFlightRoman.length)
+    );
+    const pendingRoman = view.pendingRoman;
+
+    return {
+      parsedRoman,
+      inFlightRoman,
+      bufferedMistakes,
+      pendingRoman,
+    };
+  }
+
+  /**
    * Process an emiel InputEvent generated from browser keydown.
    */
   processInputEvent(event: InputEvent): EmielKeyResult {
@@ -58,8 +120,11 @@ export class EmielTypingSession {
         finishedWord: view.finishedWord,
         pendingWord: view.pendingWord,
         finishedRoman: view.finishedRoman,
-        pendingRoman: view.pendingRoman,
+        pendingRoman: '',
         mistakeCount: this.mistakeStack.length,
+        parsedRoman: view.finishedRoman,
+        inFlightRoman: '',
+        bufferedMistakes: '',
       };
     }
 
@@ -79,14 +144,18 @@ export class EmielTypingSession {
         this.automaton.back();
       }
       const view = this.automaton.currentView();
+      const roman = this.getRomanState();
       return {
         type: 'BACK',
         finishedKanaLength: view.finishedWord.length,
         finishedWord: view.finishedWord,
         pendingWord: view.pendingWord,
         finishedRoman: view.finishedRoman,
-        pendingRoman: view.pendingRoman,
+        pendingRoman: roman.pendingRoman,
         mistakeCount: this.mistakeStack.length,
+        parsedRoman: roman.parsedRoman,
+        inFlightRoman: roman.inFlightRoman,
+        bufferedMistakes: roman.bufferedMistakes,
       };
     }
 
@@ -96,20 +165,25 @@ export class EmielTypingSession {
       this.totalKeystrokes++;
       this.incorrectKeystrokes++;
       this.kanaErrors[activeChar].errors++;
+      const roman = this.getRomanState();
       return {
         type: 'FAILED',
         finishedKanaLength: viewBefore.finishedWord.length,
         finishedWord: viewBefore.finishedWord,
         pendingWord: viewBefore.pendingWord,
         finishedRoman: viewBefore.finishedRoman,
-        pendingRoman: viewBefore.pendingRoman,
+        pendingRoman: roman.pendingRoman,
         mistakeCount: this.mistakeStack.length,
+        parsedRoman: roman.parsedRoman,
+        inFlightRoman: roman.inFlightRoman,
+        bufferedMistakes: roman.bufferedMistakes,
       };
     }
 
     // Case 2: Process with Emiel Mozc Automaton
     const result = this.automaton.input(event);
     const viewAfter = this.automaton.currentView();
+    const roman = this.getRomanState();
 
     if (result.isSucceeded) {
       this.totalKeystrokes++;
@@ -125,8 +199,11 @@ export class EmielTypingSession {
           finishedWord: viewAfter.finishedWord,
           pendingWord: viewAfter.pendingWord,
           finishedRoman: viewAfter.finishedRoman,
-          pendingRoman: viewAfter.pendingRoman,
+          pendingRoman: '',
           mistakeCount: 0,
+          parsedRoman: viewAfter.finishedRoman,
+          inFlightRoman: '',
+          bufferedMistakes: '',
         };
       }
 
@@ -136,8 +213,11 @@ export class EmielTypingSession {
         finishedWord: viewAfter.finishedWord,
         pendingWord: viewAfter.pendingWord,
         finishedRoman: viewAfter.finishedRoman,
-        pendingRoman: viewAfter.pendingRoman,
+        pendingRoman: roman.pendingRoman,
         mistakeCount: 0,
+        parsedRoman: roman.parsedRoman,
+        inFlightRoman: roman.inFlightRoman,
+        bufferedMistakes: roman.bufferedMistakes,
       };
     } else if (result.isBack) {
       if (this.mistakeStack.length > 0) {
@@ -146,14 +226,18 @@ export class EmielTypingSession {
         this.automaton.back();
       }
       const view = this.automaton.currentView();
+      const romanBack = this.getRomanState();
       return {
         type: 'BACK',
         finishedKanaLength: view.finishedWord.length,
         finishedWord: view.finishedWord,
         pendingWord: view.pendingWord,
         finishedRoman: view.finishedRoman,
-        pendingRoman: view.pendingRoman,
+        pendingRoman: romanBack.pendingRoman,
         mistakeCount: this.mistakeStack.length,
+        parsedRoman: romanBack.parsedRoman,
+        inFlightRoman: romanBack.inFlightRoman,
+        bufferedMistakes: romanBack.bufferedMistakes,
       };
     } else if (result.isFailed) {
       this.totalKeystrokes++;
@@ -161,6 +245,7 @@ export class EmielTypingSession {
       this.kanaErrors[activeChar].attempts++;
       this.kanaErrors[activeChar].errors++;
       this.mistakeStack.push(event.input.key);
+      const romanFailed = this.getRomanState();
 
       return {
         type: 'FAILED',
@@ -168,8 +253,11 @@ export class EmielTypingSession {
         finishedWord: viewAfter.finishedWord,
         pendingWord: viewAfter.pendingWord,
         finishedRoman: viewAfter.finishedRoman,
-        pendingRoman: viewAfter.pendingRoman,
+        pendingRoman: romanFailed.pendingRoman,
         mistakeCount: this.mistakeStack.length,
+        parsedRoman: romanFailed.parsedRoman,
+        inFlightRoman: romanFailed.inFlightRoman,
+        bufferedMistakes: romanFailed.bufferedMistakes,
       };
     }
 
@@ -179,8 +267,11 @@ export class EmielTypingSession {
       finishedWord: viewAfter.finishedWord,
       pendingWord: viewAfter.pendingWord,
       finishedRoman: viewAfter.finishedRoman,
-      pendingRoman: viewAfter.pendingRoman,
+      pendingRoman: roman.pendingRoman,
       mistakeCount: this.mistakeStack.length,
+      parsedRoman: roman.parsedRoman,
+      inFlightRoman: roman.inFlightRoman,
+      bufferedMistakes: roman.bufferedMistakes,
     };
   }
 

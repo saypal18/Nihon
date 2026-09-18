@@ -136,4 +136,53 @@ console.log('Test 5: Mistake buffering and Backspace recovery');
 }
 console.log('✓ Test 5 Passed: Mistake buffering and backspace recovery verified');
 
+// Test 6: In-Flight Roman Buffer and Compound Kana (kya)
+console.log('Test 6: In-Flight Roman Buffer and Compound Kana (kya)');
+{
+  const session = new EmielTypingSession(makeSentence('きゃく'));
+  let res = typeString(session, ['k']);
+  if (res[0].inFlightRoman !== 'k') throw new Error(`Expected inFlight 'k', got '${res[0].inFlightRoman}'`);
+  if (res[0].parsedRoman !== '') throw new Error(`Expected parsedRoman '', got '${res[0].parsedRoman}'`);
+  if (res[0].pendingRoman !== 'yaku') throw new Error(`Expected pendingRoman 'yaku', got '${res[0].pendingRoman}'`);
+  if (res[0].finishedKanaLength !== 0) throw new Error('Expected finishedKanaLength 0');
+
+  res = typeString(session, ['y']);
+  if (res[0].inFlightRoman !== 'ky') throw new Error(`Expected inFlight 'ky', got '${res[0].inFlightRoman}'`);
+  if (res[0].parsedRoman !== '') throw new Error(`Expected parsedRoman '', got '${res[0].parsedRoman}'`);
+  if (res[0].pendingRoman !== 'aku') throw new Error(`Expected pendingRoman 'aku', got '${res[0].pendingRoman}'`);
+  if (res[0].finishedKanaLength !== 0) throw new Error('Expected finishedKanaLength 0');
+
+  // Add mistake
+  res = typeString(session, ['x']);
+  if (res[0].inFlightRoman !== 'ky') throw new Error('Expected inFlight to remain ky');
+  if (res[0].bufferedMistakes !== 'X') throw new Error(`Expected bufferedMistakes 'X', got '${res[0].bufferedMistakes}'`);
+
+  // Clear mistake
+  res = typeString(session, ['Backspace']);
+  if (res[0].bufferedMistakes !== '') throw new Error('Expected mistakes cleared');
+  if (res[0].inFlightRoman !== 'ky') throw new Error('Expected inFlight ky after mistake backspaced');
+
+  // Type 'a' -> should complete 'きゃ' (length 2) and clear inFlightRoman
+  res = typeString(session, ['a']);
+  if (res[0].finishedKanaLength !== 2) throw new Error(`Expected finishedKanaLength 2, got ${res[0].finishedKanaLength}`);
+  if (res[0].parsedRoman !== 'kya') throw new Error(`Expected parsedRoman 'kya', got '${res[0].parsedRoman}'`);
+  if (res[0].pendingRoman !== 'ku') throw new Error(`Expected pendingRoman 'ku', got '${res[0].pendingRoman}'`);
+  if (res[0].inFlightRoman !== '') throw new Error(`Expected inFlight empty, got '${res[0].inFlightRoman}'`);
+
+  // Type 'k'
+  res = typeString(session, ['k']);
+  if (res[0].inFlightRoman !== 'k') throw new Error(`Expected inFlight 'k', got '${res[0].inFlightRoman}'`);
+  if (res[0].parsedRoman !== 'kya') throw new Error(`Expected parsedRoman 'kya', got '${res[0].parsedRoman}'`);
+  if (res[0].pendingRoman !== 'u') throw new Error(`Expected pendingRoman 'u', got '${res[0].pendingRoman}'`);
+
+  // Type 'u' -> should finish whole word
+  res = typeString(session, ['u']);
+  if (res[0].finishedKanaLength !== 3) throw new Error(`Expected finishedKanaLength 3, got ${res[0].finishedKanaLength}`);
+  if (res[0].parsedRoman !== 'kyaku') throw new Error(`Expected parsedRoman 'kyaku', got '${res[0].parsedRoman}'`);
+  if (res[0].pendingRoman !== '') throw new Error(`Expected pendingRoman '', got '${res[0].pendingRoman}'`);
+  if (res[0].inFlightRoman !== '') throw new Error('Expected inFlight empty on completion');
+  if (!session.isComplete) throw new Error('Expected session to be complete');
+}
+console.log('✓ Test 6 Passed: In-flight Roman buffer and compound kana verified');
+
 console.log('=== ALL EMIEL ADAPTER TESTS PASSED! ===');

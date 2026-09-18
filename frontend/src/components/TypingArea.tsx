@@ -28,6 +28,10 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   const [activeSentenceIndex, setActiveSentenceIndex] = useState(0);
   const [hiraganaCursor, setHiraganaCursor] = useState(0);
   const [mistakeCount, setMistakeCount] = useState(0);
+  const [parsedRoman, setParsedRoman] = useState('');
+  const [inFlightRoman, setInFlightRoman] = useState('');
+  const [bufferedMistakes, setBufferedMistakes] = useState('');
+  const [pendingRoman, setPendingRoman] = useState('');
   const [startTime, setStartTime] = useState<number | null>(null);
 
   // Global accumulated stats across all sentences in this passage run
@@ -54,6 +58,11 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
       sessionRef.current = session;
       setHiraganaCursor(0);
       setMistakeCount(0);
+      const roman = session.getRomanState();
+      setParsedRoman(roman.parsedRoman);
+      setInFlightRoman(roman.inFlightRoman);
+      setBufferedMistakes(roman.bufferedMistakes);
+      setPendingRoman(roman.pendingRoman);
     },
     [sentences]
   );
@@ -137,6 +146,10 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
       }
 
       const result = session.processInputEvent(inputEvt);
+      setParsedRoman(result.parsedRoman);
+      setInFlightRoman(result.inFlightRoman);
+      setBufferedMistakes(result.bufferedMistakes);
+      setPendingRoman(result.pendingRoman);
 
       if (
         result.type === 'KEY_SUCCEEDED' ||
@@ -229,6 +242,10 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
                 isCompleted={isCompleted}
                 hiraganaCursor={isActive ? hiraganaCursor : 0}
                 mistakeCount={isActive ? mistakeCount : 0}
+                parsedRoman={isActive ? parsedRoman : ''}
+                inFlightRoman={isActive ? inFlightRoman : ''}
+                bufferedMistakes={isActive ? bufferedMistakes : ''}
+                pendingRoman={isActive ? pendingRoman : ''}
                 scriptMode={scriptMode}
                 showTranslation={showTranslation}
               />
