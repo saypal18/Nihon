@@ -1,0 +1,2137 @@
+﻿Set_ID,JLPT_Level,Kanji,Onyomi,Kunyomi,English_Meaning
+1,Non-JLPT,埼,キ,さき、さい、みさき,cape; spit; promontory
+1,Non-JLPT,岡,コウ,おか,mount; hill; knoll
+1,Non-JLPT,栃,,とち,horse chestnut; (kokuji)
+1,Non-JLPT,茨,シ、ジ,いばら、かや、くさぶき,briar; thorn
+1,Non-JLPT,阜,フ、フウ,,hill; mound; left village radical (no. 170)
+1,Non-JLPT,阪,ハン,さか,heights; slope
+1,Non-JLPT,串,カン、ケン、セン,くし、つらぬ.く,spit; skewer
+1,Non-JLPT,丼,トン、タン、ショウ、セイ,どんぶり,bowl; bowl of food
+1,Non-JLPT,乞,コツ、キツ、キ、キケ、コチ,こ.う,beg; invite; ask
+1,Non-JLPT,侶,リョ、ロ,とも,companion; follower
+2,Non-JLPT,俺,エン,おれ、われ,I; myself
+2,Non-JLPT,傲,ゴウ,おご.る、あなど.る,be proud
+2,Non-JLPT,僅,キン、ゴン,わず.か,a wee bit
+2,Non-JLPT,冥,メイ、ミョウ,くら.い,dark
+2,Non-JLPT,凄,セイ、サイ,さむ.い、すご.い、すさ.まじい,uncanny; weird; threatening; horrible
+2,Non-JLPT,刹,セチ、セツ、サツ,,temple
+2,Non-JLPT,剝,ハク、ホク,へ.ぐ、へず.る、む.く、む.ける、は.がれる、は.ぐ、は.げる、は.がす,come off; peel; fade; discolor
+2,Non-JLPT,勃,ボツ、ホツ,おこ.る、にわかに,suddenness; rise
+2,Non-JLPT,勾,コウ、ク,かぎ、ま.がる,be bent; slope; capture
+2,Non-JLPT,匂,,にお.う、にお.い、にお.わせる,fragrant; stink; glow; insinuate; (kokuji)
+3,Non-JLPT,呪,ジュ、シュ、シュウ、ズ,まじな.う、のろ.い、まじな.い、のろ.う,spell; curse; charm; malediction
+3,Non-JLPT,咽,イン、エン、エツ,むせ.ぶ、むせ.る、のど、の.む,throat; choked; smothered; stuffy
+3,Non-JLPT,哺,ホ,はぐく.む、ふく.む,nurse; suckle
+3,Non-JLPT,唾,ダ、タ,つば、つばき,saliva; sputum
+3,Non-JLPT,喉,コウ,のど,throat; voice
+3,Non-JLPT,喩,ユ,たと.える、さと.す,metaphor; compare
+3,Non-JLPT,嗅,キュウ,か.ぐ,smell; sniff; scent
+3,Non-JLPT,嘲,チョウ、トウ,あざけ.る,ridicule; insult
+3,Non-JLPT,堆,タイ、ツイ,うずたか.い,piled high
+3,Non-JLPT,塞,ソク、サイ,ふさ.ぐ、とりで、み.ちる,close; shut; cover; block; obstruct
+4,Non-JLPT,塡,テン、チン,はま.る、うず.める、は.める、ふさ.ぐ,fill in; fill up; make good
+4,Non-JLPT,妖,ヨウ,あや.しい、なま.めく、わざわ.い,attractive; bewitching; calamity
+4,Non-JLPT,妬,ト、ツ,ねた.む、そね.む、つも.る、ふさ.ぐ,jealous; envy
+4,Non-JLPT,嫉,シツ,そね.む、ねた.む、にく.む,jealous; envy
+4,Non-JLPT,宛,エン,あ.てる、-あて、-づつ、あたか.も,address; just like; fortunately
+4,Non-JLPT,尻,コウ,しり,buttocks; hips; butt; rear
+4,Non-JLPT,崖,ガイ、ゲ、ギ,がけ、きし、はて,cliff; bluff; precipice
+4,Non-JLPT,巾,キン、フク,おお.い、ちきり、きれ,towel; hanging scroll; width; cloth radical (no. 50)
+4,Non-JLPT,弄,ロウ、ル,いじく.る、ろう.する、いじ.る、ひねく.る、たわむ.れる、もてあそ.ぶ,play with; tamper; trifle with
+4,Non-JLPT,彙,イ,はりねずみ,same kind; collect; classify; category; hedgehog
+5,Non-JLPT,怨,エン、オン、ウン,うら.む、うらみ、うら.めしい,grudge; show resentment; be jealous
+5,Non-JLPT,恣,シ,ほしいまま,selfish; arbitrary
+5,Non-JLPT,惧,ク、グ,おそ.れる,fear; be afraid of; dread
+5,Non-JLPT,慄,リツ,ふる.える、おそ.れる、おのの.く,fear
+5,Non-JLPT,憬,ケイ,あこが.れる,yearn for; aspire to; admire
+5,Non-JLPT,戚,ソク、セキ,いた.む、うれ.える、みうち,grieve; relatives
+5,Non-JLPT,戴,タイ,いただ.く,be crowned with; live under (a ruler); receive
+5,Non-JLPT,拉,ラツ、ラ、ロウ,らっ.する、ひし.ぐ、くだ.く,Latin; kidnap; crush
+5,Non-JLPT,拭,ショク、シキ,ぬぐ.う、ふ.く,wipe; mop; swab
+5,Non-JLPT,拶,サツ,せま.る,be imminent; draw close
+6,Non-JLPT,挨,アイ,ひら.く,approach; draw near; push open
+6,Non-JLPT,挫,ザ、サ,くじ.く、くじ.ける,crush; break; sprain; discourage
+6,Non-JLPT,捉,ソク、サク,とら.える,catch; capture
+6,Non-JLPT,捗,チョク、ホ,はかど.る,make progress
+6,Non-JLPT,捻,ネン、ジョウ,ね.じる、ねじ.る、ひね.くる、ひね.る,twirl; twist; play with
+6,Non-JLPT,摯,シ,いた.る、つか.む、にえ,gift; seriousness
+6,Non-JLPT,斑,ハン,ふ、まだら,spot; blemish; speck; patches
+6,Non-JLPT,斬,ザン、サン、セン、ゼン,き.る,beheading; kill; murder
+6,Non-JLPT,昧,マイ、バイ,くら.い、むさぼ.る,dark; foolish
+6,Non-JLPT,曖,アイ,くら.い,dark; not clear
+7,Non-JLPT,曽,ソウ、ソ、ゾウ,かつ、かつて、すなわち,formerly; once; before; ever; never; ex-
+7,Non-JLPT,枕,チン、シン,まくら,pillow
+7,Non-JLPT,柵,サク、サン,しがら.む、しがらみ、とりで、やらい,stockade; fence; weir; entwine around
+7,Non-JLPT,柿,シ,かき,persimmon
+7,Non-JLPT,桁,コウ,けた,beam; girder; spar; unit or column (accounting)
+7,Non-JLPT,梗,コウ、キョウ,ふさぐ、やまにれ、おおむね,for the most part; close up; flower stem
+7,Non-JLPT,椅,イ,,chair
+7,Non-JLPT,楷,カイ,,square character style; correctness
+7,Non-JLPT,毀,キ,こぼ.つ、こわ.す、こぼ.れる、こわ.れる、そし.る、やぶ.る,break; destroy; censure; be chipped; be scratched; be broken; be ruined
+7,Non-JLPT,氾,ハン,ひろ.がる,spread out; wide
+8,Non-JLPT,汎,ハン、ブ、フウ、ホウ、ホン,ただよ.う、ひろ.い,pan-
+8,Non-JLPT,沃,ヨウ、ヨク、オク,そそ.ぐ,fertility
+8,Non-JLPT,淫,イン,ひた.す、ほしいまま、みだ.ら、みだ.れる、みだり,lewdness; licentiousness
+8,Non-JLPT,溺,デキ、ジョウ、ニョウ,いばり、おぼ.れる,drown; indulge
+8,Non-JLPT,潰,カイ、エ,つぶ.す、つぶ.れる、つい.える,crush; smash; break; dissipate
+8,Non-JLPT,煎,セン,せん.じる、い.る、に.る,broil; parch; roast; boil
+8,Non-JLPT,爪,ソウ,つめ、つま-,claw; nail; talon
+8,Non-JLPT,牙,ガ、ゲ,きば、は,tusk; fang; tusk radical (no. 92)
+8,Non-JLPT,狙,ソ、ショ,ねら.う、ねら.い,aim at; sight; shadow; stalk
+8,Non-JLPT,玩,ガン,もちあそ.ぶ、もてあそ.ぶ,play; take pleasure in; trifle with; make sport of
+9,Non-JLPT,璧,ヘキ,たま,sphere; ball
+9,Non-JLPT,瓦,ガ,かわら、ぐらむ,tile; gram
+9,Non-JLPT,畏,イ,おそ.れる、かしこま.る、かしこ、かしこ.し,fear; majestic; graciously; be apprehensive
+9,Non-JLPT,畿,キ,みやこ,capital; suburbs of capital
+9,Non-JLPT,痕,コン,あと,mark; foot print
+9,Non-JLPT,痩,ソウ、チュウ、シュウ、シュ,や.せる,get thin
+9,Non-JLPT,瘍,ヨウ,かさ,swelling; boil; tumor
+9,Non-JLPT,稽,ケイ,かんが.える、とど.める,think; consider
+9,Non-JLPT,窟,クツ、コツ,いわや、いはや、あな,cavern
+9,Non-JLPT,箋,セン,ふだ,paper; label; letter; composition
+10,Non-JLPT,箸,チョ、チャク,はし,chopsticks
+10,Non-JLPT,籠,ロウ、ル,かご、こ.める、こも.る、こ.む,basket; devote oneself; seclude oneself; cage; coop; implied
+10,Non-JLPT,綻,タン,ほころ.びる,be rent; ripped; unravel; run; begin to open; smile
+10,Non-JLPT,緻,チ,こまか.い,fine (i.e. not coarse)
+10,Non-JLPT,罵,バ,ののし.る,abuse; insult
+10,Non-JLPT,羞,シュウ,はじ.る、すすめ.る、は.ずかしい,feel ashamed
+10,Non-JLPT,羨,セン、エン,うらや.む、あまり,envious; be jealous; covet
+10,Non-JLPT,肘,チュウ,ひじ,elbow; arm
+10,Non-JLPT,股,コ,また、もも,thigh; crotch
+10,Non-JLPT,脇,キョウ,わき、わけ,armpit; the other way; another place; flank; supporting role
+11,Non-JLPT,脊,セキ,せ、せい,stature; height; spine
+11,Non-JLPT,腎,ジン,,kidney
+11,Non-JLPT,腫,シュ、ショウ,は.れる、は.れ、は.らす、はれもの,tumor; swelling
+11,Non-JLPT,腺,セン,,gland; (kokuji)
+11,Non-JLPT,膝,シツ,ひざ,knee; lap
+11,Non-JLPT,膳,ゼン、セン,かしわ、すす.める、そな.える,small low table; tray
+11,Non-JLPT,臆,オク、ヨク,むね、おくする,timidity; heart; mind; fear; cowardly
+11,Non-JLPT,臼,キュウ、グ,うす、うすづ.く,mortar
+11,Non-JLPT,舷,ゲン,ふなばた、ふなべり,gunwale
+11,Non-JLPT,芯,シン,,wick
+12,Non-JLPT,苛,カ,いじ.める、さいな.む、いらだ.つ、からい、こまかい,torment; scold; chastise
+12,Non-JLPT,萎,イ,な、しお.れる、しな.びる、しぼ.む、な.える,wither; droop; lame
+12,Non-JLPT,葛,カツ、カチ,つづら、くず,arrowroot; kudzu
+12,Non-JLPT,蓋,ガイ、カイ、コウ,ふた、けだ.し、おお.う、かさ、かこう,cover; lid; flap
+12,Non-JLPT,蔑,ベツ,ないがしろ、なみ.する、くらい、さげす.む,ignore; despise; neglect; ridicule
+12,Non-JLPT,蔽,ヘイ、ヘツ、フツ,おお.う、おお.い,cover; shade; mantle; capsize; be ruined
+12,Non-JLPT,蜂,ホウ,はち,bee; wasp; hornet
+12,Non-JLPT,蜜,ミツ、ビツ,,honey; nectar; molasses
+12,Non-JLPT,袖,シュウ,そで,sleeve; wing (building); extension; give cold shoulder
+12,Non-JLPT,裾,キョ、コ,すそ,cuff; hem; foot of mountain
+13,Non-JLPT,訃,フ,しらせ,obituary
+13,Non-JLPT,詣,ケイ、ゲイ,けい.する、まい.る、いた.る、もう.でる,visit a temple; arrive; attain
+13,Non-JLPT,詮,セン,せん.ずる、かい、あき.らか,discussion; methods called for; selection; result
+13,Non-JLPT,誰,スイ,だれ、たれ、た,who; someone; somebody
+13,Non-JLPT,諦,テイ、タイ,あきら.める、つまびらか、まこと,truth; clarity; abandon; give up
+13,Non-JLPT,諧,カイ,かな.う、やわ.らぐ,harmony
+13,Non-JLPT,謎,メイ、ベイ,なぞ,riddle; puzzle; enigma; hint; tip
+13,Non-JLPT,貌,ボウ、バク,かたち、かたどる,form; appearance; countenance
+13,Non-JLPT,貪,タン、ドン、トン,むさぼ.る,covet; indulge in
+13,Non-JLPT,貼,テン、チョウ,は.る、つ.く,stick; paste; apply
+14,Non-JLPT,賂,ロ,まいな.い、まいな.う,bribe
+14,Non-JLPT,賭,ト,か.ける、かけ,gamble; wager; bet
+14,Non-JLPT,踪,ソウ、ショウ,あと,remains; clue; footprint
+14,Non-JLPT,蹴,シュク、シュウ,け.る,kick
+14,Non-JLPT,辣,ラツ,から.い,pungent; spicy; harsh; cruel; severe
+14,Non-JLPT,遜,ソン,したが.う、へりくだ.る、ゆず.る,humble; modest
+14,Non-JLPT,遡,ソ、サク,さかのぼ.る,go upstream; retrace the past
+14,Non-JLPT,酎,チュウ、チュ,かも.す,sake
+14,Non-JLPT,醒,セイ,さ.ます、さ.める,awake; be disillusioned; sober up
+14,Non-JLPT,釜,フ,かま,kettle; cauldron; iron pot
+15,Non-JLPT,錮,コ,ふさ.ぐ,confinement; to tie
+15,Non-JLPT,鍋,カ,なべ,pot; pan; kettle
+15,Non-JLPT,鍵,ケン,かぎ,key
+15,Non-JLPT,闇,アン、オン,やみ、くら.い,get dark; gloom; disorder
+15,Non-JLPT,隙,ゲキ、キャク、ケキ,すき、す.く、す.かす、ひま,crevice; fissure; discord; opportunity; leisure
+15,Non-JLPT,韓,カン,から、いげた,Korea
+15,Non-JLPT,頃,ケイ、キョウ,ころ、ごろ、しばら.く,time; about; toward
+15,Non-JLPT,頓,トン、トツ,にわか.に、とん.と、つまず.く、とみ.に、ぬかずく,suddenly; immediately; in a hurry; arrange; stay in place; bow; kowtow
+15,Non-JLPT,頰,キョウ,ほお、ほほ,cheeks; jaw
+15,Non-JLPT,顎,ガク,あご、あぎと,jaw; chin; gill
+16,Non-JLPT,餅,ヘイ、ヒョウ,もち、もちい,mochi rice cake
+16,Non-JLPT,餌,ジ、ニ,え、えば、えさ、もち,food; bait; prey; tempting profit
+16,Non-JLPT,骸,ガイ、カイ,むくろ,bone; body; corpse
+16,Non-JLPT,鬱,ウツ,うっ.する、ふさ.ぐ、しげ.る,gloom; depression; melancholy; luxuriant
+16,Non-JLPT,麓,ロク,ふもと,foot of a mountain
+16,Non-JLPT,麺,メン、ベン,むぎこ,noodles; wheat flour
+16,Non-JLPT,𠮟,シツ、シチ、カ,しか.る,scold; reprove
+16,N4,一,イチ、イツ,ひと-、ひと.つ,one; one radical (no.1)
+16,N4,七,シチ,なな、なな.つ、なの,seven
+16,N4,三,サン、ゾウ,み、み.つ、みっ.つ,three
+17,N4,上,ジョウ、ショウ、シャン,うえ、-うえ、うわ-、かみ、あ.げる、-あ.げる、あ.がる、-あ.がる、あ.がり、-あ.がり、のぼ.る、のぼ.り、のぼ.せる、のぼ.す、たてまつ.る,above; up
+17,N4,下,カ、ゲ,した、しも、もと、さ.げる、さ.がる、くだ.る、くだ.り、くだ.す、-くだ.す、くだ.さる、お.ろす、お.りる,below; down; descend; give; low; inferior
+17,N4,中,チュウ,なか、うち、あた.る,in; inside; middle; mean; center
+17,N4,九,キュウ、ク,ここの、ここの.つ,nine
+17,N4,二,ニ、ジ,ふた、ふた.つ、ふたたび,two; two radical (no. 7)
+17,N4,五,ゴ,いつ、いつ.つ,five
+17,N4,人,ジン、ニン,ひと、-り、-と,person
+17,N4,休,キュウ,やす.む、やす.まる、やす.める,rest; day off; retire; sleep
+17,N4,先,セン,さき、ま.ず,before; ahead; previous; future; precedence
+17,N4,入,ニュウ、ジュ,い.る、-い.る、-い.り、い.れる、-い.れ、はい.る,enter; insert
+18,N4,八,ハチ、ハツ,や、や.つ、やっ.つ、よう,eight; eight radical (no. 12)
+18,N4,六,ロク、リク,む、む.つ、むっ.つ、むい,six
+18,N4,円,エン,まる.い、まる、まど、まど.か、まろ.やか,circle; yen; round
+18,N4,出,シュツ、スイ,で.る、-で、だ.す、-だ.す、い.でる、い.だす,exit; leave; go out; come out; put out; protrude
+18,N4,十,ジュウ、ジッ、ジュッ,とお、と、そ,ten
+18,N4,千,セン,ち,thousand
+18,N4,口,コウ、ク,くち,mouth
+18,N4,右,ウ、ユウ,みぎ,right
+18,N4,名,メイ、ミョウ,な、-な,name; noted; distinguished; reputation
+18,N4,四,シ,よ、よ.つ、よっ.つ、よん,four
+19,N4,土,ド、ト,つち,soil; earth; ground; Turkey
+19,N4,大,ダイ、タイ,おお-、おお.きい、-おお.いに,large; big
+19,N4,天,テン,あまつ、あめ、あま-,heavens; sky; imperial
+19,N4,女,ジョ、ニョ、ニョウ,おんな、め,woman; female
+19,N4,子,シ、ス、ツ,こ、-こ、ね,child; sign of the rat; 11PM-1AM; first sign of Chinese zodiac
+19,N4,学,ガク,まな.ぶ,study; learning; science
+19,N4,小,ショウ,ちい.さい、こ-、お-、さ-,little; small
+19,N4,山,サン、セン,やま,mountain
+19,N4,川,セン,かわ,stream; river; river or three-stroke river radical (no. 47)
+19,N4,左,サ、シャ,ひだり,left
+20,N4,年,ネン,とし,year; counter for years
+20,N4,手,シュ、ズ,て、て-、-て、た-,hand
+20,N4,日,ニチ、ジツ,ひ、-び、-か,day; sun; Japan; counter for days
+20,N4,月,ゲツ、ガツ,つき,month; moon
+20,N4,木,ボク、モク,き、こ-,tree; wood
+20,N4,本,ホン,もと,book; present; main; origin; true; real; counter for long cylindrical things
+20,N4,校,コウ、キョウ,,exam; school; printing; proof; correction
+20,N4,気,キ、ケ,いき、き,spirit; mind; air; atmosphere; mood
+20,N4,水,スイ,みず、みず-,water
+20,N4,火,カ,ひ、-び、ほ-,fire
+21,N4,生,セイ、ショウ,い.きる、い.かす、い.ける、う.まれる、うま.れる、う.まれ、うまれ、う.む、お.う、は.える、は.やす、き、なま、なま-、な.る、な.す、む.す、-う,life; genuine; birth
+21,N4,男,ダン、ナン,おとこ、お,male
+21,N4,白,ハク、ビャク,しろ、しら-、しろ.い,white
+21,N4,百,ヒャク、ビャク,もも,hundred
+21,N4,目,モク、ボク,め、-め、ま-,eye; class; look; insight; experience; care; favor
+21,N4,空,クウ,そら、あ.く、あ.き、あ.ける、から、す.く、す.かす、むな.しい,empty; sky; void; vacant; vacuum
+21,N4,立,リツ、リュウ、リットル,た.つ、-た.つ、た.ち-、た.てる、-た.てる、た.て-、たて-、-た.て、-だ.て、-だ.てる,stand up; rise; set up; erect
+21,N4,耳,ジ,みみ,ear
+21,N4,花,カ、ケ,はな,flower
+21,N4,見,ケン,み.る、み.える、み.せる,see; hopes; chances; idea; opinion; look at; visible
+22,N4,足,ソク,あし、た.りる、た.る、た.す,leg; foot; be sufficient; counter for pairs of footwear
+22,N4,車,シャ,くるま,car
+22,N4,金,キン、コン、ゴン,かね、かな-、-がね,gold
+22,N4,雨,ウ,あめ、あま-、-さめ,rain
+22,N4,万,マン、バン,よろず,"ten thousand; 10,000"
+22,N4,今,コン、キン,いま,now
+22,N4,会,カイ、エ,あ.う、あ.わせる、あつ.まる,meeting; meet; party; association; interview; join
+22,N4,何,カ,なに、なん、なに-、なん-,what
+22,N4,分,ブン、フン、ブ,わ.ける、わ.け、わ.かれる、わ.かる、わ.かつ,part; minute of time; segment; share; degree; one's lot; duty; understand; know; rate; 1%; chances; shaku/100
+22,N4,前,ゼン,まえ、-まえ,in front; before
+23,N4,北,ホク,きた,north
+23,N4,午,ゴ,うま,noon; sign of the horse; 11AM-1PM; seventh sign of Chinese zodiac
+23,N4,半,ハン,なか.ば,half; middle; odd number; semi-; part-
+23,N4,南,ナン、ナ,みなみ,south
+23,N4,友,ユウ,とも,friend
+23,N4,古,コ,ふる.い、ふる-、-ふる.す,old
+23,N4,国,コク,くに,country
+23,N4,外,ガイ、ゲ,そと、ほか、はず.す、はず.れる、と-,outside
+23,N4,多,タ,おお.い、まさ.に、まさ.る,many; frequent; much
+23,N4,少,ショウ,すく.ない、すこ.し,few; little
+24,N4,店,テン,みせ、たな,store; shop
+24,N4,後,ゴ、コウ,のち、うし.ろ、うしろ、あと、おく.れる,behind; back; later
+24,N4,新,シン,あたら.しい、あら.た、あら-、にい-,new
+24,N4,時,ジ,とき、-どき,time; hour
+24,N4,書,ショ,か.く、-が.き、-がき,write
+24,N4,来,ライ、タイ,く.る、きた.る、きた.す、き.たす、き.たる、き、こ,come; due; next; cause; become
+24,N4,東,トウ,ひがし,east
+24,N4,母,ボ,はは、も,mother
+24,N4,毎,マイ,ごと、-ごと.に,every
+24,N4,父,フ,ちち,father
+25,N4,社,シャ,やしろ,company; firm; office; association; shrine
+25,N4,聞,ブン、モン,き.く、き.こえる,hear; ask; listen
+25,N4,行,コウ、ギョウ、アン,い.く、ゆ.く、-ゆ.き、-ゆき、-い.き、-いき、おこな.う、おこ.なう,going; journey; carry out; conduct; act; line; row; bank
+25,N4,西,セイ、サイ、ス,にし,west; Spain
+25,N4,言,ゲン、ゴン,い.う、こと,say; word
+25,N4,話,ワ,はな.す、はなし,tale; talk
+25,N4,語,ゴ,かた.る、かた.らう,word; speech; language
+25,N4,読,ドク、トク、トウ,よ.む、-よ.み,read
+25,N4,買,バイ,か.う,buy
+25,N4,週,シュウ,,week
+26,N4,道,ドウ、トウ,みち、いう,road-way; street; district; journey; course; moral; teachings
+26,N4,長,チョウ,なが.い、おさ,long; leader; superior; senior
+26,N4,間,カン、ケン,あいだ、ま、あい,interval; space
+26,N4,電,デン,,electricity
+26,N4,食,ショク、ジキ,く.う、く.らう、た.べる、は.む,eat; food
+26,N4,高,コウ,たか.い、たか、-だか、たか.まる、たか.める,tall; high; expensive
+26,N4,魚,ギョ,うお、さかな、-ざかな,fish
+26,N4,安,アン,やす.い、やす.まる、やす、やす.らか,relax; cheap; low; quiet; rested; contented; peaceful
+26,N4,飲,イン、オン,の.む、-の.み,drink; smoke; take
+26,N4,駅,エキ,,station
+27,N3,力,リョク、リキ、リイ,ちから,power; strength; strong; strain; bear up; exert
+27,N3,夕,セキ,ゆう,evening
+27,N3,字,ジ,あざ、あざな、-な,character; letter; word; section of village
+27,N3,文,ブン、モン,ふみ、あや,sentence; literature; style; art; decoration; figures; plan; literary radical (no. 67)
+27,N3,早,ソウ、サッ,はや.い、はや、はや-、はや.まる、はや.める、さ-,early; fast
+27,N3,村,ソン,むら,village; town
+27,N3,林,リン,はやし,grove; forest
+27,N3,森,シン,もり,forest; woods
+27,N3,正,セイ、ショウ,ただ.しい、ただ.す、まさ、まさ.に,correct; justice; righteous; 10**40
+27,N3,犬,ケン,いぬ、いぬ-,dog
+28,N3,田,デン,た,rice field; rice paddy
+28,N3,町,チョウ,まち,town; village; block; street
+28,N3,赤,セキ、シャク,あか、あか-、あか.い、あか.らむ、あか.らめる,red
+28,N3,青,セイ、ショウ,あお、あお-、あお.い,blue; green
+28,N3,音,オン、イン、-ノン,おと、ね,sound; noise
+28,N3,京,キョウ、ケイ、キン,みやこ,capital; 10**16
+28,N3,体,タイ、テイ,からだ、かたち,body; substance; object; reality; counter for images
+28,N3,作,サク、サ,つく.る、つく.り、-づく.り,make; production; prepare; build
+28,N3,元,ゲン、ガン,もと,beginning; former time; origin
+28,N3,兄,ケイ、キョウ,あに,elder brother; big brother
+29,N3,光,コウ,ひか.る、ひかり,ray; light
+29,N3,冬,トウ,ふゆ,winter
+29,N3,切,セツ、サイ,き.る、-き.る、き.り、-き.り、-ぎ.り、き.れる、-き.れる、き.れ、-き.れ、-ぎ.れ,cut; cutoff; be sharp
+29,N3,台,ダイ、タイ,うてな、われ、つかさ,pedestal; a stand; counter for machines and vehicles
+29,N3,合,ゴウ、ガッ、カッ,あ.う、-あ.う、あ.い、あい-、-あ.い、-あい、あ.わす、あ.わせる、-あ.わせる,fit; suit; join; 0.1
+29,N3,同,ドウ,おな.じ,same; agree; equal
+29,N3,回,カイ、エ,まわ.る、-まわ.る、-まわ.り、まわ.す、-まわ.す、まわ.し-、-まわ.し、もとお.る、か.える,-times; round; game; revolve; counter for occurrences
+29,N3,図,ズ、ト,え、はか.る,map; drawing; plan; extraordinary; audacious
+29,N3,地,チ、ジ,,ground; earth
+29,N3,場,ジョウ、チョウ,ば,location; place
+30,N3,声,セイ、ショウ,こえ、こわ-,voice
+30,N3,売,バイ,う.る、う.れる,sell
+30,N3,夏,カ、ガ、ゲ,なつ,summer
+30,N3,夜,ヤ,よ、よる,night; evening
+30,N3,太,タイ、タ,ふと.い、ふと.る,plump; thick; big around
+30,N3,妹,マイ,いもうと,younger sister
+30,N3,姉,シ,あね、はは,elder sister
+30,N3,室,シツ,むろ,room; apartment; chamber; greenhouse; cellar
+30,N3,家,カ、ケ,いえ、や、うち,house; home; family; professional; expert; performer
+30,N3,工,コウ、ク、グ,,craft; construction; katakana e radical (no. 48)
+31,N3,市,シ,いち,market; city; town
+31,N3,帰,キ,かえ.る、かえ.す、おく.る、とつ.ぐ,homecoming; arrive at; lead to; result in
+31,N3,広,コウ,ひろ.い、ひろ.まる、ひろ.める、ひろ.がる、ひろ.げる,wide; broad; spacious
+31,N3,引,イン,ひ.く、ひ.ける,pull; tug; jerk; admit; install; quote; refer to
+31,N3,弟,テイ、ダイ、デ,おとうと,younger brother; faithful service to elders
+31,N3,弱,ジャク,よわ.い、よわ.る、よわ.まる、よわ.める,weak; frail
+31,N3,強,キョウ、ゴウ,つよ.い、つよ.まる、つよ.める、し.いる、こわ.い,strong
+31,N3,心,シン,こころ、-ごころ,heart; mind; spirit; heart radical (no. 61)
+31,N3,思,シ,おも.う、おもえら.く、おぼ.す,think
+31,N3,教,キョウ,おし.える、おそ.わる,teach; faith; doctrine
+32,N3,方,ホウ,かた、-かた、-がた,direction; person; alternative
+32,N3,明,メイ、ミョウ、ミン,あ.かり、あか.るい、あか.るむ、あか.らむ、あき.らか、あ.ける、-あ.け、あ.く、あ.くる、あ.かす,bright; light
+32,N3,春,シュン,はる,springtime; spring (season)
+32,N3,昼,チュウ,ひる,daytime; noon
+32,N3,曜,ヨウ,,weekday
+32,N3,朝,チョウ,あさ,morning; dynasty; regime; epoch; period; (North) Korea
+32,N3,楽,ガク、ラク、ゴウ,たの.しい、たの.しむ、この.む,music; comfort; ease
+32,N3,歌,カ,うた、うた.う,song; sing
+32,N3,止,シ,と.まる、-ど.まり、と.める、-と.める、-ど.め、とど.める、とど.め、とど.まる、や.める、や.む、-や.む、よ.す、-さ.す、-さ.し,stop; halt
+32,N3,歩,ホ、ブ、フ,ある.く、あゆ.む,walk; counter for steps
+33,N3,池,チ,いけ,pond; cistern; pool; reservoir
+33,N3,海,カイ,うみ,sea; ocean
+33,N3,牛,ギュウ,うし,cow
+33,N3,理,リ,ことわり,logic; arrangement; reason; justice; truth
+33,N3,用,ヨウ,もち.いる,utilize; business; service; use; employ
+33,N3,画,ガ、カク、エ、カイ,えが.く、かく.する、かぎ.る、はかりごと、はか.る,brush-stroke; picture
+33,N3,知,チ,し.る、し.らせる,know; wisdom
+33,N3,秋,シュウ,あき、とき,autumn
+33,N3,答,トウ,こた.える、こた.え,solution; answer
+33,N3,紙,シ,かみ,paper
+34,N3,考,コウ,かんが.える、かんが.え,consider; think over
+34,N3,肉,ニク,しし,meat
+34,N3,自,ジ、シ,みずか.ら、おの.ずから、おの.ずと,oneself
+34,N3,色,ショク、シキ,いろ,color
+34,N3,茶,チャ、サ,,tea
+34,N3,親,シン,おや、おや-、した.しい、した.しむ,parent; intimacy; relative; familiarity; dealer (cards)
+34,N3,計,ケイ,はか.る、はか.らう,plot; plan; scheme; measure
+34,N3,走,ソウ,はし.る,run
+34,N3,近,キン、コン,ちか.い,near; early; akin; tantamount
+34,N3,通,ツウ、ツ,とお.る、とお.り、-とお.り、-どお.り、とお.す、とお.し、-どお.し、かよ.う,"traffic; pass through; avenue; commute; counter for letters, notes, documents, etc."
+35,N3,遠,エン、オン,とお.い,distant; far
+35,N3,野,ヤ、ショ,の、の-,plains; field; rustic; civilian life
+35,N3,門,モン,かど、と,gate; counter for cannons
+35,N3,頭,トウ、ズ、ト,あたま、かしら、-がしら、かぶり,head; counter for large animals
+35,N3,顔,ガン,かお,face; expression
+35,N3,風,フウ、フ,かぜ、かざ-,wind; air; style; manner
+35,N3,首,シュ,くび,neck; counter for songs and poems
+35,N3,鳥,チョウ,とり,bird; chicken
+35,N3,黒,コク,くろ、くろ.ずむ、くろ.い,black
+35,N3,世,セイ、セ、ソウ,よ,generation; world; society; public
+36,N3,主,シュ、ス、シュウ,ぬし、おも、あるじ,lord; chief; master; main thing; principal
+36,N3,乗,ジョウ、ショウ,の.る、-の.り、の.せる,ride; power; multiplication; record; counter for vehicles; board; mount; join
+36,N3,事,ジ、ズ,こと、つか.う、つか.える,matter; thing; fact; business; reason; possibly
+36,N3,仕,シ、ジ,つか.える,attend; doing; official; serve
+36,N3,代,ダイ、タイ,か.わる、かわ.る、かわ.り、か.わり、-がわ.り、-が.わり、か.える、よ、しろ,"substitute; change; convert; replace; period; age; counter for decades of ages, eras, etc.; generation; charge; rate; fee"
+36,N3,住,ジュウ、ヂュウ、チュウ,す.む、す.まう、-ず.まい,dwell; reside; live; inhabit
+36,N3,使,シ,つか.う、つか.い、-つか.い、-づか.い,use; send on a mission; order; messenger; envoy; ambassador; cause
+36,N3,写,シャ、ジャ,うつ.す、うつ.る、うつ-、うつ.し,copy; be photographed; describe
+36,N3,勉,ベン,つと.める,exertion; endeavour; encourage; strive; make effort; diligent
+36,N3,動,ドウ,うご.く、うご.かす,move; motion; change; confusion; shift; shake
+37,N3,区,ク、オウ、コウ,,ward; district
+37,N3,医,イ,い.やす、い.する、くすし,doctor; medicine
+37,N3,去,キョ、コ,さ.る、-さ.る,gone; past; quit; leave; elapse; eliminate; divorce
+37,N3,味,ミ,あじ、あじ.わう,flavor; taste
+37,N3,品,ヒン、ホン,しな,goods; refinement; dignity; article; counter for meal courses
+37,N3,員,イン,,employee; member; number; the one in charge
+37,N3,問,モン,と.う、と.い、とん,question; ask; problem
+37,N3,始,シ,はじ.める、-はじ.める、はじ.まる,commence; begin
+37,N3,寒,カン,さむ.い,cold
+37,N3,屋,オク,や,roof; house; shop; dealer; seller
+38,N3,度,ド、ト、タク,たび、-た.い,degrees; occurrence; time; counter for occurrences; consider; attitude
+38,N3,待,タイ,ま.つ、-ま.ち,wait; depend on
+38,N3,急,キュウ,いそ.ぐ、いそ.ぎ、せ.く,hurry; emergency; sudden; steep
+38,N3,悪,アク、オ,わる.い、わる-、あ.し、にく.い、-にく.い、ああ、いずくに、いずくんぞ、にく.む,bad; vice; rascal; false; evil; wrong
+38,N3,意,イ,,idea; mind; heart; taste; thought; desire; care; liking
+38,N3,所,ショ,ところ、-ところ、どころ、とこ,place; extent
+38,N3,持,ジ,も.つ、-も.ち、も.てる,hold; have
+38,N3,旅,リョ,たび,trip; travel
+38,N3,族,ゾク,,tribe; family
+38,N3,暑,ショ,あつ.い,sultry; hot; summer heat
+39,N3,暗,アン,くら.い、くら.む、くれ.る,darkness; disappear; shade; informal; grow dark; be blinded
+39,N3,有,ユウ、ウ,あ.る,possess; have; exist; happen; occur; approx
+39,N3,服,フク,,clothing; admit; obey; discharge
+39,N3,業,ギョウ、ゴウ,わざ,business; vocation; arts; performance
+39,N3,死,シ,し.ぬ、し.に-,death; die
+39,N3,注,チュウ,そそ.ぐ、さ.す、つ.ぐ,pour; irrigate; shed (tears); flow into; concentrate on; notes; comment; annotate
+39,N3,洋,ヨウ,,ocean; sea; foreign; Western style
+39,N3,漢,カン,,Sino-; China
+39,N3,物,ブツ、モツ,もの、もの-,thing; object; matter
+39,N3,界,カイ,,world; boundary
+40,N3,病,ビョウ、ヘイ,や.む、-や.み、やまい,ill; sick
+40,N3,発,ハツ、ホツ,た.つ、あば.く、おこ.る、つか.わす、はな.つ,departure; discharge; publish; emit; start from; disclose; counter for gunshots
+40,N3,県,ケン,か.ける,prefecture
+40,N3,真,シン,ま、ま-、まこと,true; reality; Buddhist sect
+40,N3,着,チャク、ジャク,き.る、き.せる、つ.く、つ.ける,don; arrive; wear; counter for suits of clothing
+40,N3,短,タン,みじか.い,short; brevity; fault; defect; weak point
+40,N3,研,ケン,と.ぐ,polish; study of; sharpen
+40,N3,究,キュウ、ク,きわ.める,research; study
+40,N3,終,シュウ,お.わる、-お.わる、おわ.る、お.える、つい、つい.に,end; finish
+40,N3,習,シュウ、ジュ,なら.う、なら.い,learn
+41,N3,者,シャ,もの,someone; person
+41,N3,薬,ヤク,くすり,medicine; chemical; enamel; gunpowder; benefit
+41,N3,起,キ,お.きる、お.こる、お.こす、おこ.す、た.つ,rouse; wake up; get up
+41,N3,転,テン,ころ.がる、ころ.げる、ころ.がす、ころ.ぶ、まろ.ぶ、うたた、うつ.る、くる.めく,revolve; turn around; change
+41,N3,軽,ケイ、キョウ、キン,かる.い、かろ.やか、かろ.んじる,lightly; trifling; unimportant
+41,N3,送,ソウ,おく.る,escort; send
+41,N3,進,シン,すす.む、すす.める,advance; proceed; progress; promote
+41,N3,運,ウン,はこ.ぶ,carry; luck; destiny; fate; lot; transport; progress; advance
+41,N3,都,ト、ツ,みやこ,metropolis; capital; all; everything
+41,N3,重,ジュウ、チョウ,え、おも.い、おも.り、おも.なう、かさ.ねる、かさ.なる、おも,heavy; important; esteem; respect; heap up; pile up; nest of boxes; -fold
+42,N3,銀,ギン,しろがね,silver
+42,N3,開,カイ,ひら.く、ひら.き、-びら.き、ひら.ける、あ.く、あ.ける,open; unfold; unseal
+42,N3,院,イン,,Inst.; institution; temple; mansion; school
+42,N3,集,シュウ,あつ.まる、あつ.める、つど.う,gather; meet; congregate; swarm; flock
+42,N3,題,ダイ,,topic; subject
+42,N3,館,カン,やかた、たて,building; mansion; large building; palace
+42,N3,不,フ、ブ,,negative; non-; bad; ugly; clumsy
+42,N3,以,イ,もっ.て,by means of; because; in view of; compared with
+42,N3,低,テイ,ひく.い、ひく.める、ひく.まる,lower; short; humble
+42,N3,便,ベン、ビン,たよ.り,convenience; facility; excrement; feces; letter; chance
+43,N3,借,シャク,か.りる,borrow; rent
+43,N3,働,ドウ,はたら.く,work; (kokuji)
+43,N3,別,ベツ,わか.れる、わ.ける,separate; branch off; diverge; fork; another; extra; specially
+43,N3,好,コウ,この.む、す.く、よ.い、い.い,fond; pleasing; like something
+43,N3,建,ケン、コン,た.てる、た.て、-だ.て、た.つ,build
+43,N3,料,リョウ,,fee; materials
+43,N3,民,ミン,たみ,people; nation; subjects
+43,N3,特,トク,,special
+43,N3,産,サン,う.む、う.まれる、うぶ-、む.す,products; bear; give birth; yield; childbirth; native; property
+43,N3,英,エイ,はなぶさ,England; English; hero; outstanding; calyx
+44,N3,菜,サイ,な,vegetable; side dish; greens
+44,N3,試,シ,こころ.みる、ため.す,test; try; attempt; experiment; ordeal
+44,N3,説,セツ、ゼイ,と.く,opinion; theory; explanation; rumor
+44,N3,飯,ハン,めし,meal; boiled rice
+44,N3,験,ケン、ゲン,あかし、しるし、ため.す、ためし,verification; effect; testing
+44,N3,堂,ドウ,,public chamber; hall
+44,N3,貸,タイ,か.す、か.し-、かし-,lend
+44,N3,質,シツ、シチ、チ,たち、ただ.す、もと、わりふ,substance; quality; matter; temperament
+44,N3,映,エイ,うつ.る、うつ.す、は.える、-ば.え,reflect; reflection; projection
+44,N3,洗,セン,あら.う,wash; inquire into; probe
+45,N3,私,シ,わたくし、わたし,private; I; me
+45,N2,玉,ギョク,たま、たま-、-だま,jewel; ball
+45,N2,王,オウ、-ノウ,,king; rule; magnate
+45,N2,石,セキ、シャク、コク,いし,stone
+45,N2,竹,チク,たけ,bamboo
+45,N2,糸,シ,いと,thread
+45,N2,草,ソウ,くさ、くさ-、-ぐさ,grass; weeds; herbs; pasture; write; draft
+45,N2,虫,チュウ、キ,むし,insect; bug; temper
+45,N2,貝,バイ,かい,shellfish
+45,N2,丸,ガン,まる、まる.める、まる.い,round; full (month); perfection; -ship; pills; make round; roll up; curl up; seduce; explain away
+46,N2,交,コウ,まじ.わる、まじ.える、ま.じる、まじ.る、ま.ざる、ま.ぜる、-か.う、か.わす、かわ.す、こもごも,mingle; mixing; association; coming & going
+46,N2,公,コウ、ク,おおやけ,public; prince; official; governmental
+46,N2,内,ナイ、ダイ,うち,inside; within; between; among; house; home
+46,N2,原,ゲン,はら,meadow; original; primitive; field; plain; prairie; tundra; wilderness
+46,N2,園,エン,その,park; garden; yard; farm
+46,N2,寺,ジ,てら,Buddhist temple
+46,N2,岩,ガン,いわ,boulder; rock; cliff
+46,N2,当,トウ,あ.たる、あ.たり、あ.てる、あ.て、まさ.に、まさ.にべし,hit; right; appropriate; himself
+46,N2,形,ケイ、ギョウ,かた、-がた、かたち、なり,shape; form; style
+46,N2,戸,コ,と,door; counter for houses; door radical (no. 63)
+47,N2,才,サイ,,genius; years old; cubic shaku
+47,N2,数,スウ、ス、サク、ソク、シュ,かず、かぞ.える、しばしば、せ.める、わずらわ.しい,number; strength; fate; law; figures
+47,N2,星,セイ、ショウ,ほし、-ぼし,star; spot; dot; mark
+47,N2,晴,セイ,は.れる、は.れ、は.れ-、-ば.れ、は.らす,clear up
+47,N2,毛,モウ,け,fur; hair; feather; down
+47,N2,活,カツ,い.きる、い.かす、い.ける,lively; resuscitation; being helped; living
+47,N2,点,テン,つ.ける、つ.く、た.てる、さ.す、とぼ.す、とも.す、ぼち,spot; point; mark; speck; decimal point
+47,N2,番,バン,つが.い,turn; number in a series
+47,N2,直,チョク、ジキ、ジカ,ただ.ちに、なお.す、-なお.す、なお.る、なお.き、す.ぐ,straightaway; honesty; frankness; fix; repair
+47,N2,科,カ,,department; course; section
+48,N2,算,サン,そろ,calculate; divining; number; abacus; probability
+48,N2,米,ベイ、マイ、メエトル,こめ、よね,rice; USA; metre
+48,N2,細,サイ,ほそ.い、ほそ.る、こま.か、こま.かい,dainty; get thin; taper; slender; narrow; detailed; precise
+48,N2,組,ソ,く.む、くみ、-ぐみ,association; braid; plait; construct; assemble; unite; cooperate; grapple
+48,N2,絵,カイ、エ,,picture; drawing; painting; sketch
+48,N2,線,セン,すじ,line; track
+48,N2,羽,ウ,は、わ、はね,"feathers; counter for birds, rabbits"
+48,N2,船,セン,ふね、ふな-,ship; boat
+48,N2,角,カク,かど、つの,angle; corner; square; horn; antlers
+48,N2,記,キ,しる.す,scribe; account; narrative
+49,N2,谷,コク,たに、きわ.まる,valley
+49,N2,雪,セツ,ゆき,snow
+49,N2,雲,ウン,くも、-ぐも,cloud
+49,N2,馬,バ、メ、マ、ボ、モ,うま、ま,horse
+49,N2,鳴,メイ,な.く、な.る、な.らす,chirp; cry; bark; sound; ring; echo; honk
+49,N2,麦,バク,むぎ,barley; wheat
+49,N2,黄,コウ、オウ,き、こ-,yellow
+49,N2,両,リョウ,てる、ふたつ,"both; old Japanese coin; counter for carriages (e.g., in a train); two"
+49,N2,予,ヨ、シャ,あらかじ.め,beforehand; previous; myself; I
+49,N2,他,タ,ほか,other; another; the others
+50,N2,係,ケイ,かか.る、かかり、-がかり、かか.わる,person in charge; connection; duty; concern oneself
+50,N2,倍,バイ,,double; twice; times; fold
+50,N2,全,ゼン,まった.く、すべ.て,whole; entire; all; complete; fulfill
+50,N2,具,グ,そな.える、つぶさ.に,"tool; utensil; means; possess; ingredients; counter for armor, suits, sets of furniture"
+50,N2,列,レツ、レ,,file; row; rank; tier; column
+50,N2,助,ジョ,たす.ける、たす.かる、す.ける、すけ,help; rescue; assist
+50,N2,勝,ショウ,か.つ、-が.ち、まさ.る、すぐ.れる、かつ,victory; win; prevail; excel
+50,N2,化,カ、ケ,ば.ける、ば.かす、ふ.ける、け.する,change; take the form of; influence; enchant; delude; -ization
+50,N2,反,ハン、ホン、タン、ホ,そ.る、そ.らす、かえ.す、かえ.る、-かえ.る,anti-
+50,N2,取,シュ,と.る、と.り、と.り-、とり、-ど.り,take; fetch; take up
+51,N2,受,ジュ,う.ける、-う.け、う.かる,accept; undergo; answer (phone); take; get; catch; receive
+51,N2,号,ゴウ,さけ.ぶ、よびな,nickname; number; item; title; pseudonym; name; call
+51,N2,向,コウ,む.く、む.い、-む.き、む.ける、-む.け、む.かう、む.かい、む.こう、む.こう-、むこ、むか.い,yonder; facing; beyond; confront; defy; tend toward; approach
+51,N2,君,クン,きみ、-ぎみ,mister; you; ruler; male name suffix
+51,N2,命,メイ、ミョウ,いのち,fate; command; decree; destiny; life; appoint
+51,N2,和,ワ、オ、カ,やわ.らぐ、やわ.らげる、なご.む、なご.やか、あ.える,harmony; Japanese style; peace; soften; Japan
+51,N2,商,ショウ,あきな.う,make a deal; selling; dealing in; merchant
+51,N2,坂,ハン,さか,slope; incline; hill
+51,N2,央,オウ,,center; middle
+51,N2,委,イ,ゆだ.ねる,committee; entrust to; leave to; devote; discard
+52,N2,守,シュ、ス,まも.る、まも.り、もり、-もり、かみ,guard; protect; defend; obey
+52,N2,定,テイ、ジョウ,さだ.める、さだ.まる、さだ.か,determine; fix; establish; decide
+52,N2,実,ジツ、シツ,み、みの.る、まこと、みの、みち.る,reality; truth; seed; fruit; nut
+52,N2,客,キャク、カク,,guest; visitor; customer; client
+52,N2,宿,シュク,やど、やど.る、やど.す,inn; lodging; relay station; dwell; lodge; be pregnant; home; dwelling
+52,N2,対,タイ、ツイ,あいて、こた.える、そろ.い、つれあ.い、なら.ぶ、むか.う,vis-a-vis; opposite; even; equal; versus; anti-; compare
+52,N2,局,キョク,つぼね,bureau; board; office; affair; conclusion; court lady; lady-in-waiting; her apartment
+52,N2,岸,ガン,きし,beach
+52,N2,島,トウ,しま,island
+52,N2,州,シュウ、ス,す,state; province
+53,N2,平,ヘイ、ビョウ、ヒョウ,たい.ら、たい.らげる、ひら,even; flat; peace
+53,N2,幸,コウ,さいわ.い、さち、しあわ.せ,happiness; blessing; fortune
+53,N2,庫,コ、ク,くら,warehouse; storehouse
+53,N2,庭,テイ,にわ,courtyard; garden; yard
+53,N2,式,シキ,,style; ceremony; rite; function; method; system; form; expression
+53,N2,役,ヤク、エキ,,duty; war; campaign; drafted labor; office; service; role
+53,N2,息,ソク,いき,breath; respiration; son; interest (on money); rest; coming to an end
+53,N2,悲,ヒ,かな.しい、かな.しむ,grieve; sad; deplore; regret
+53,N2,想,ソウ、ソ,おも.う,idea; thought; conception; think
+53,N2,感,カン,,emotion; feeling; sensation
+54,N2,打,ダ、ダース,う.つ、う.ち-、ぶ.つ,strike; hit; knock; pound; dozen
+54,N2,投,トウ,な.げる、-な.げ,throw; discard; abandon; launch into; join; invest in; hurl; give up; sell at a loss
+54,N2,拾,シュウ、ジュウ,ひろ.う,pick up; gather; find; go on foot; ten
+54,N2,指,シ,ゆび、さ.す、-さ.し,finger; point to; indicate; put into; play (chess); measure (ruler)
+54,N2,放,ホウ,はな.す、-っぱな.し、はな.つ、はな.れる、こ.く、ほう.る,set free; release; fire; shoot; emit; banish; liberate
+54,N2,整,セイ,ととの.える、ととの.う,organize; arranging; tune; tone; meter; key (music)
+54,N2,昔,セキ、シャク,むかし,once upon a time; antiquity; old times
+54,N2,曲,キョク,ま.がる、ま.げる、くま,bend; music; melody; composition; pleasure; injustice; fault; curve; crooked; perverse; lean
+54,N2,期,キ、ゴ,,period; time; date; term
+54,N2,板,ハン、バン,いた,plank; board; plate; stage
+55,N2,柱,チュウ,はしら,pillar; post; cylinder; support
+55,N2,根,コン,ね、-ね,root; radical; head (pimple)
+55,N2,植,ショク,う.える、う.わる,plant
+55,N2,様,ヨウ、ショウ,さま、さん,Esq.; way; manner; situation; polite suffix
+55,N2,横,オウ,よこ,sideways; side; horizontal; width; woof; unreasonable; perverse
+55,N2,橋,キョウ,はし,bridge
+55,N2,次,ジ、シ,つ.ぐ、つぎ,next; order; sequence
+55,N2,歯,シ,よわい、は、よわ.い、よわい.する,tooth; cog
+55,N2,氷,ヒョウ,こおり、ひ、こお.る,icicle; ice; hail; freeze; congeal
+55,N2,決,ケツ,き.める、-ぎ.め、き.まる、さ.く,decide; fix; agree upon; appoint
+56,N2,油,ユ、ユウ,あぶら,oil; fat
+56,N2,波,ハ,なみ,waves; billows; Poland
+56,N2,泳,エイ,およ.ぐ,swim
+56,N2,流,リュウ、ル,なが.れる、なが.れ、なが.す、-なが.す,current; a sink; flow; forfeit
+56,N2,消,ショウ,き.える、け.す,extinguish; blow out; turn off; neutralize; cancel
+56,N2,深,シン,ふか.い、-ぶか.い、ふか.まる、ふか.める、み-,deep; heighten; intensify; strengthen
+56,N2,温,オン,あたた.か、あたた.かい、あたた.まる、あたた.める、ぬく,warm
+56,N2,港,コウ,みなと,harbor
+56,N2,湖,コ,みずうみ,lake
+56,N2,湯,トウ,ゆ,hot water; bath; hot spring
+57,N2,炭,タン,すみ,charcoal; coal
+57,N2,球,キュウ,たま,ball; sphere
+57,N2,由,ユ、ユウ、ユイ,よし、よ.る,wherefore; a reason
+57,N2,申,シン,もう.す、もう.し-、さる,have the honor to; sign of the monkey; 3-5PM; ninth sign of Chinese zodiac
+57,N2,畑,,はた、はたけ、-ばたけ,farm; field; garden; one's specialty; (kokuji)
+57,N2,登,トウ、ト、ドウ、ショウ、チョウ,のぼ.る、あ.がる,ascend; climb up
+57,N2,皮,ヒ,かわ,pelt; skin; hide; leather; skin radical (no. 107)
+57,N2,皿,ベイ,さら,dish; a helping; plate
+57,N2,相,ソウ、ショウ,あい-,inter-; mutual; together; each other; minister of state; councillor; aspect; phase; physiognomy
+57,N2,礼,レイ、ライ,,salute; bow; ceremony; thanks; remuneration
+58,N2,神,シン、ジン,かみ、かん-、こう-,gods; mind; soul
+58,N2,祭,サイ,まつ.る、まつ.り、まつり,ritual; offer prayers; celebrate; deify; enshrine; worship
+58,N2,福,フク,,blessing; fortune; luck; wealth
+58,N2,秒,ビョウ,,second (1/60 minute)
+58,N2,章,ショウ,,badge; chapter; composition; poem; design
+58,N2,童,ドウ,わらべ,juvenile; child
+58,N2,第,ダイ、テイ,,No.; residence
+58,N2,筆,ヒツ,ふで,writing brush; writing; painting brush; handwriting
+58,N2,等,トウ,ひと.しい、など、-ら,etc.; and so forth; class (first); quality; equal; similar
+58,N2,箱,ソウ,はこ,box; chest; case; bin; railway car
+59,N2,級,キュウ,,class; rank; grade
+59,N2,緑,リョク、ロク,みどり,green
+59,N2,練,レン,ね.る、ね.り,practice; gloss; train; drill; polish; refine
+59,N2,美,ビ、ミ,うつく.しい,beauty; beautiful
+59,N2,育,イク,そだ.つ、そだ.ち、そだ.てる、はぐく.む,bring up; grow up; raise; rear
+59,N2,苦,ク,くる.しい、-ぐる.しい、くる.しむ、くる.しめる、にが.い、にが.る,suffering; trial; worry; hardship; feel bitter; scowl
+59,N2,荷,カ,に,baggage; shoulder-pole load; bear (a burden); shoulder (a gun); load; cargo; freight
+59,N2,落,ラク,お.ちる、お.ち、お.とす,fall; drop; come down; village; hamlet
+59,N2,葉,ヨウ,は,leaf; plane; lobe; needle; blade; spear; counter for flat things; fragment; piece
+59,N2,血,ケツ,ち,blood
+60,N2,表,ヒョウ,おもて、-おもて、あらわ.す、あらわ.れる、あら.わす,surface; table; chart; diagram
+60,N2,調,チョウ,しら.べる、しら.べ、ととの.う、ととの.える,tune; tone; meter; key (music); writing style; prepare; exorcise; investigate; harmonize; mediate
+60,N2,談,ダン,,discuss; talk
+60,N2,負,フ,ま.ける、ま.かす、お.う,defeat; negative; -; minus; bear; owe; assume a responsibility
+60,N2,路,ロ、ル,-じ、みち,path; route; road; distance
+60,N2,身,シン,み,somebody; person; one's station in life
+60,N2,農,ノウ,,agriculture; farmers
+60,N2,返,ヘン,かえ.す、-かえ.す、かえ.る、-かえ.る,return; answer; fade; repay
+60,N2,追,ツイ,お.う,chase; drive away; follow; pursue; meanwhile
+60,N2,速,ソク,はや.い、はや-、はや.める、すみ.やか,quick; fast
+61,N2,遊,ユウ、ユ,あそ.ぶ、あそ.ばす,play
+61,N2,部,ブ,-べ,section; bureau; dept; class; copy; part; portion; counter for copies of a newspaper or magazine
+61,N2,配,ハイ,くば.る,distribute; spouse; exile; rationing
+61,N2,酒,シュ,さけ、さか-,sake; alcohol
+61,N2,鉄,テツ,くろがね,iron
+61,N2,陽,ヨウ,ひ,sunshine; yang principle; positive; male; heaven; daytime
+61,N2,階,カイ,きざはし,storey; stair; counter for storeys of a building
+61,N2,面,メン、ベン,おも、おもて、つら,mask; face; features; surface
+61,N2,鼻,ビ,はな,nose; snout
+61,N2,争,ソウ,あらそ.う、いか.でか,contend; dispute; argue
+62,N2,付,フ,つ.ける、-つ.ける、-づ.ける、つ.け、つ.け-、-つ.け、-づ.け、-づけ、つ.く、-づ.く、つ.き、-つ.き、-つき、-づ.き、-づき,adhere; attach; refer to; append
+62,N2,令,レイ,,orders; laws; command; decree; good
+62,N2,仲,チュウ,なか,go-between; relationship
+62,N2,伝,デン、テン,つた.わる、つた.える、つた.う、つだ.う、-づた.い、つて,transmit; go along; walk along; follow; report; communicate; legend; tradition
+62,N2,位,イ,くらい、ぐらい,rank; grade; throne; crown; about; some
+62,N2,例,レイ,たと.える,example; custom; usage; precedent
+62,N2,信,シン,,faith; truth; fidelity; trust
+62,N2,候,コウ,そうろう,climate; season; weather; wait for; expect
+62,N2,健,ケン,すこ.やか,healthy; health; strength; persistence
+62,N2,側,ソク,かわ、がわ、そば,side; lean; oppose; regret
+63,N2,億,オク,,hundred million; 10**8
+63,N2,兆,チョウ,きざ.す、きざ.し,portent; 10**12; trillion; sign; omen; symptoms
+63,N2,児,ジ、ニ、ゲイ,こ、-こ、-っこ,newborn babe; child; young of animals
+63,N2,共,キョウ,とも、とも.に、-ども,together; both; neither; all; and; alike; with
+63,N2,兵,ヘイ、ヒョウ,つわもの,soldier; private; troops; army; warfare; strategy; tactics
+63,N2,冷,レイ,つめ.たい、ひ.える、ひ.や、ひ.ややか、ひ.やす、ひ.やかす、さ.める、さ.ます,"cool; cold (beer, person); chill"
+63,N2,初,ショ,はじ.め、はじ.めて、はつ、はつ-、うい-、-そ.める、-ぞ.め,first time; beginning
+63,N2,利,リ,き.く,profit; advantage; benefit
+63,N2,刷,サツ,す.る、-ず.り、-ずり、は.く,printing; print; brush
+63,N2,副,フク,,vice-; assistant; aide; duplicate; copy
+64,N2,加,カ,くわ.える、くわ.わる,add; addition; increase; join; include; Canada
+64,N2,努,ド,つと.める,toil; diligent; as much as possible
+64,N2,労,ロウ,ろう.する、いたわ.る、いた.ずき、ねぎら、つか.れる、ねぎら.う,labor; thank for; reward for; toil; trouble
+64,N2,勇,ユウ,いさ.む,courage; cheer up; be in high spirits; bravery; heroism
+64,N2,包,ホウ,つつ.む、くる.む,wrap; pack up; cover; conceal
+64,N2,卒,ソツ、シュツ,そっ.する、お.える、お.わる、ついに、にわか,graduate; soldier; private; die
+64,N2,協,キョウ,,co-; cooperation
+64,N2,単,タン,ひとえ,simple; one; single; merely
+64,N2,印,イン,しるし、-じるし、しる.す,stamp; seal; mark; imprint; symbol; emblem; trademark; evidence; souvenir; India
+64,N2,参,サン、シン,まい.る、まい-、まじわる、みつ,nonplussed; three (in documents); going; coming; visiting; visit; be defeated; die; be madly in love; participate; take part in
+65,N2,司,シ,つかさど.る,director; official; govt office; rule; administer
+65,N2,各,カク,おのおの,each; every; either
+65,N2,周,シュウ,まわ.り,circumference; circuit; lap
+65,N2,器,キ,うつわ,utensil; vessel; receptacle; implement; instrument; ability; container; tool; set
+65,N2,固,コ,かた.める、かた.まる、かた.まり、かた.い,harden; set; clot; curdle
+65,N2,城,ジョウ、セイ,しろ,castle
+65,N2,塩,エン,しお,salt
+65,N2,変,ヘン,か.わる、か.わり、か.える,unusual; change; strange
+65,N2,夫,フ、フウ、ブ,おっと、それ,husband; man
+65,N2,失,シツ,うしな.う、う.せる,lose; error; fault; disadvantage; loss
+66,N2,季,キ,,seasons
+66,N2,孫,ソン,まご,grandchild; descendants
+66,N2,完,カン,,perfect; completion; end
+66,N2,官,カン,,bureaucrat; the government; organ
+66,N2,害,ガイ,,harm; injury
+66,N2,富,フ、フウ,と.む、とみ,wealth; enrich; abundant
+66,N2,察,サツ,,guess; presume; surmise; judge; understand
+66,N2,差,サ,さ.す、さ.し,distinction; difference; variation; discrepancy; margin; balance
+66,N2,希,キ、ケ,まれ、こいねが.う,hope; beg; request; pray; beseech; Greece; dilute (acid); rare; few; phenomenal
+66,N2,席,セキ,むしろ,seat; mat; occasion; place
+67,N2,帯,タイ,お.びる、おび,sash; belt; obi; zone; region
+67,N2,底,テイ,そこ,bottom; sole; depth; bottom price; base; kind; sort
+67,N2,府,フ,,borough; urban prefecture; govt office; representative body; storehouse
+67,N2,康,コウ,,ease; peace
+67,N2,徒,ト,いたずら、あだ,on foot; junior; emptiness; vanity; futility; uselessness; ephemeral thing; gang; set; party; people
+67,N2,必,ヒツ,かなら.ず,invariably; certain; inevitable
+67,N2,念,ネン,,wish; sense; idea; thought; feeling; desire; attention
+67,N2,愛,アイ,いと.しい、かな.しい、め.でる、お.しむ、まな,love; affection; favourite
+67,N2,成,セイ、ジョウ,な.る、な.す、-な.す,turn into; become; get; grow; elapse; reach
+67,N2,戦,セン,いくさ、たたか.う、おのの.く、そよ.ぐ、わなな.く,war; battle; match
+68,N2,折,セツ、シャク,お.る、おり、お.り、-お.り、お.れる,fold; break; fracture; bend; yield; submit
+68,N2,改,カイ,あらた.める、あらた.まる,reformation; change; modify; mend; renew; examine; inspect; search
+68,N2,敗,ハイ,やぶ.れる,failure; defeat; reversal
+68,N2,散,サン,ち.る、ち.らす、-ち.らす、ち.らかす、ち.らかる、ち.らばる、ばら、ばら.ける,scatter; disperse; spend; squander
+68,N2,昨,サク,,yesterday; previous
+68,N2,景,ケイ,,scenery; view
+68,N2,最,サイ、シュ,もっと.も、つま,utmost; most; extreme
+68,N2,望,ボウ、モウ,のぞ.む、もち,ambition; full moon; hope; desire; aspire to; expect
+68,N2,未,ミ、ビ,いま.だ、ま.だ、ひつじ,un-; not yet; hitherto; still; even now; sign of the ram; 1-3PM; eighth sign of Chinese zodiac
+68,N2,末,マツ、バツ,すえ、うら、うれ,end; close; tip; powder; posterity
+69,N2,札,サツ,ふだ,tag; paper money; counter for bonds; placard; bid
+69,N2,材,ザイ,,lumber; log; timber; wood; materials; ingredients; talent
+69,N2,束,ソク,たば、たば.ねる、つか、つか.ねる,bundle; sheaf; ream; tie in bundles; govern; manage; control
+69,N2,果,カ,は.たす、はた.す、-は.たす、は.てる、-は.てる、は.て,fruit; reward; carry out; achieve; complete; end; finish; succeed
+69,N2,栄,エイ、ヨウ,さか.える、は.え、-ば.え、は.える、え,flourish; prosperity; honor; glory; splendor
+69,N2,案,アン,つくえ,plan; suggestion; draft; ponder; fear; proposition; idea; expectation; worry; table; bench
+69,N2,械,カイ,かせ,contraption; fetter; machine; instrument
+69,N2,極,キョク、ゴク,きわ.める、きわ.まる、きわ.まり、きわ.み、き.める、-ぎ.め、き.まる,extreme; pole; extremely; very; highly; most; end; settlement; conclusion; highest rank
+69,N2,標,ヒョウ,しるべ、しるし,signpost; seal; mark; stamp; imprint; symbol; emblem; trademark; evidence; souvenir; target
+69,N2,機,キ,はた,loom; mechanism; machine; airplane; opportunity; potency; efficacy; occasion
+70,N2,欠,ケツ、ケン,か.ける、か.く,lack; gap; fail; yawning radical (no. 76)
+70,N2,残,ザン、サン,のこ.る、のこ.す、そこな.う、のこ.り,remainder; leftover; balance
+70,N2,求,キュウ、グ,もと.める,request; want; wish for; require; demand
+70,N2,治,ジ、チ,おさ.める、おさ.まる、なお.る、なお.す,reign; be at peace; calm down; subdue; quell; govt; cure; heal; rule; conserve
+70,N2,法,ホウ、ハッ、ホッ、フラン,のり,method; law; rule; principle; model; system
+70,N2,泣,キュウ,な.く,cry; weep; moan
+70,N2,浅,セン,あさ.い,shallow; superficial; frivolous; wretched; shameful
+70,N2,浴,ヨク,あ.びる、あ.びせる,bathe; be favored with; bask in
+70,N2,清,セイ、ショウ、シン,きよ.い、きよ.まる、きよ.める,pure; purify; cleanse; exorcise; Manchu dynasty
+70,N2,満,マン、バン,み.ちる、み.つ、み.たす,full; fullness; enough; satisfy
+71,N2,漁,ギョ、リョウ,あさ.る,fishing; fishery
+71,N2,灯,トウ,ひ、ほ-、ともしび、とも.す、あかり,lamp; a light; light; counter for lights
+71,N2,無,ム、ブ,な.い,nothingness; none; ain't; nothing; nil; not
+71,N2,然,ゼン、ネン,しか、しか.り、しか.し、さ,sort of thing; so; if so; in that case; well
+71,N2,焼,ショウ,や.く、や.き、や.き-、-や.き、や.ける,bake; burning
+71,N2,照,ショウ,て.る、て.らす、て.れる,illuminate; shine; compare; bashful
+71,N2,熱,ネツ,あつ.い,heat; temperature; fever; mania; passion
+71,N2,的,テキ,まと,bull's eye; mark; target; object; adjective ending
+71,N2,省,セイ、ショウ,かえり.みる、はぶ.く,government ministry; conserve; omit
+71,N2,祝,シュク、シュウ,いわ.う,celebrate; congratulate
+72,N2,種,シュ,たね、-ぐさ,species; kind; class; variety; seed
+72,N2,積,セキ,つ.む、-づ.み、つ.もる、つ.もり,volume; product (x*y); acreage; contents; pile up; stack; load; amass
+72,N2,競,キョウ、ケイ,きそ.う、せ.る、くら.べる,emulate; compete with; bid; sell at auction; bout; contest; race
+72,N2,笑,ショウ,わら.う、え.む,laugh
+72,N2,管,カン,くだ,pipe; tube; wind instrument; drunken talk; control; jurisdiction
+72,N2,節,セツ、セチ,ふし、-ぶし、のっと,node; season; period; occasion; verse; clause; stanza; honor; joint; knuckle; knob; knot; tune; melody
+72,N2,約,ヤク,つづ.まる、つづ.める、つづま.やか,promise; approximately; shrink
+72,N2,結,ケツ、ケチ,むす.ぶ、ゆ.う、ゆ.わえる,tie; bind; contract; join; organize; do up hair; fasten
+72,N2,給,キュウ,たま.う、たも.う、-たま.え,salary; wage; gift; allow; grant; bestow on
+72,N2,続,ゾク、ショク、コウ、キョウ,つづ.く、つづ.ける、つぐ.ない,continue; series; sequel
+73,N2,置,チ,お.く、-お.き,placement; put; set; deposit; leave behind; keep; employ; pawn
+73,N2,群,グン,む.れる、む.れ、むら、むら.がる,flock; group; crowd; herd; swarm; cluster
+73,N2,老,ロウ,お.いる、ふ.ける,old man; old age; grow old
+73,N2,臣,シン、ジン,,retainer; subject
+73,N2,良,リョウ,よ.い、-よ.い、い.い、-い.い,good; pleasing; skilled
+73,N2,芸,ゲイ、ウン,う.える、のり、わざ,technique; art; craft; performance; acting; trick; stunt
+73,N2,衣,イ、エ,ころも、きぬ、-ぎ,garment; clothes; dressing
+73,N2,要,ヨウ,い.る、かなめ,need; main point; essence; pivot; key to
+73,N2,覚,カク,おぼ.える、さ.ます、さ.める、さと.る,memorize; learn; remember; awake; sober up
+73,N2,観,カン,み.る、しめ.す,outlook; look; appearance; condition; view
+74,N2,訓,クン、キン,おし.える、よ.む、くん.ずる,instruction; Japanese character reading; explanation; read
+74,N2,課,カ,,chapter; lesson; section; department; division; counter for chapters (of a book)
+74,N2,議,ギ,,deliberation; consultation; debate; consideration
+74,N2,貨,カ,たから,freight; goods; property
+74,N2,軍,グン,いくさ,army; force; troops; war; battle
+74,N2,輪,リン,わ,wheel; ring; circle; link; loop; counter for wheels and flowers
+74,N2,辞,ジ,や.める、いな.む,resign; word; term; expression
+74,N2,辺,ヘン,あた.り、ほと.り、-べ,environs; boundary; border; vicinity
+74,N2,連,レン,つら.なる、つら.ねる、つ.れる、-づ.れ,take along; lead; join; connect; party; gang; clique
+74,N2,達,タツ、ダ,-たち,accomplished; reach; arrive; attain
+75,N2,選,セン,えら.ぶ、え.る、よ.る,elect; select; choose; prefer
+75,N2,量,リョウ,はか.る,quantity; measure; weight; amount; consider; estimate; surmise
+75,N2,録,ロク,しる.す、と.る,record
+75,N2,関,カン,せき、-ぜき、かか.わる、からくり、かんぬき,connection; barrier; gateway; involve; concerning
+75,N2,陸,リク、ロク,おか,land; six
+75,N2,静,セイ、ジョウ,しず-、しず.か、しず.まる、しず.める,quiet
+75,N2,順,ジュン,,obey; order; turn; right; docility; occasion
+75,N2,願,ガン,ねが.う、-ねがい,petition; request; vow; wish; hope
+75,N2,類,ルイ,たぐ.い,sort; kind; variety; class; genus
+75,N2,飛,ヒ,と.ぶ、と.ばす、-と.ばす,fly; skip (pages); scatter
+76,N2,香,コウ、キョウ,か、かお.り、かお.る,incense; smell; perfume
+76,N2,久,キュウ、ク,ひさ.しい,long time; old story
+76,N2,仏,ブツ、フツ,ほとけ,Buddha; the dead; France
+76,N2,仮,カ、ケ,かり、かり-,sham; temporary; interim; assumed (name); informal
+76,N2,件,ケン,くだん,affair; case; matter; item
+76,N2,任,ニン,まか.せる、まか.す,responsibility; duty; term; entrust to; appoint
+76,N2,似,ジ,に.る、ひ.る,becoming; resemble; counterfeit; imitate; suitable
+76,N2,余,ヨ,あま.る、あま.り、あま.す、あんま.り,too much; myself; surplus; other; remainder
+76,N2,価,カ、ケ,あたい,value; price
+76,N2,保,ホ、ホウ,たも.つ,protect; guarantee; keep; preserve; sustain; support
+77,N2,修,シュウ、シュ,おさ.める、おさ.まる,discipline; conduct oneself well; study; master
+77,N2,個,コ、カ,,individual; counter for articles
+77,N2,停,テイ,と.める、と.まる,halt; stopping
+77,N2,備,ビ,そな.える、そな.わる、つぶさ.に,equip; provision; preparation
+77,N2,像,ゾウ,,statue; picture; image; figure; portrait
+77,N2,再,サイ、サ,ふたた.び,again; twice; second time
+77,N2,刊,カン,,publish; carve; engrave
+77,N2,判,ハン、バン,わか.る,judgement; judgment; signature; stamp; seal
+77,N2,制,セイ,,system; law; rule
+77,N2,則,ソク,のっと.る、のり、すなわち,rule; law; follow; based on; model after
+78,N2,効,コウ,き.く、ききめ、なら.う,merit; efficacy; efficiency; benefit
+78,N2,務,ム,つと.める,task; duties
+78,N2,勢,セイ、ゼイ,いきお.い、はずみ,forces; energy; military strength
+78,N2,厚,コウ,あつ.い、あか,thick; heavy; rich; kind; cordial; brazen; shameless
+78,N2,可,カ、コク,-べ.き、-べ.し,can; passable; approval
+78,N2,史,シ,,history; chronicle
+78,N2,告,コク,つ.げる,revelation; tell; inform; announce
+78,N2,喜,キ,よろこ.ぶ、よろこ.ばす,rejoice; take pleasure in
+78,N2,営,エイ,いとな.む、いとな.み,camp; perform; build; conduct (business)
+78,N2,因,イン,よ.る、ちな.む,cause; factor; be associated with; depend on; be limited to
+79,N2,団,ダン、トン,かたまり、まる.い,group; association
+79,N2,囲,イ,かこ.む、かこ.う、かこ.い,surround; besiege; store; paling; enclosure; encircle; preserve; keep
+79,N2,圧,アツ、エン、オウ,お.す、へ.す、おさ.える、お.さえる,pressure; push; overwhelm; oppress; dominate
+79,N2,在,ザイ,あ.る,exist; outskirts; suburbs; located in
+79,N2,均,キン,なら.す,level; average
+79,N2,型,ケイ,かた、-がた,mould; type; model
+79,N2,基,キ,もと、もとい,fundamentals; radical (chem); counter for machines; foundation
+79,N2,報,ホウ,むく.いる,report; news; reward; retribution
+79,N2,境,キョウ、ケイ,さかい,boundary; border; region
+79,N2,増,ゾウ,ま.す、ま.し、ふ.える、ふ.やす,increase; add; augment; gain; promote
+80,N2,夢,ム、ボウ,ゆめ、ゆめ.みる、くら.い,dream; vision; illusion
+80,N2,妻,サイ,つま,wife; spouse
+80,N2,婦,フ,よめ,lady; woman; wife; bride
+80,N2,容,ヨウ,い.れる,contain; form; looks
+80,N2,寄,キ,よ.る、-よ.り、よ.せる,draw near; stop in; bring near; gather; collect; send; forward
+80,N2,導,ドウ,みちび.く,guidance; leading; conduct; usher
+80,N2,居,キョ、コ,い.る、-い、お.る,reside; to be; exist; live with
+80,N2,布,フ、ホ,ぬの、し.く、きれ,linen; cloth; spread; distribute
+80,N2,師,シ,いくさ,expert; teacher; master; model; exemplar; army (incl. counter); war
+80,N2,常,ジョウ,つね、とこ-,usual; ordinary; normal; common; regular; continually; always; long-lasting
+81,N2,張,チョウ,は.る、-は.り、-ば.り,counter for bows & stringed instruments; stretch; spread; put up (tent)
+81,N2,得,トク,え.る、う.る,gain; get; find; earn; acquire; can; may; able to; profit; advantage; benefit
+81,N2,復,フク,また,restore; return to; revert; resume
+81,N2,志,シ,シリング、こころざ.す、こころざし,intention; plan; resolve; aspire; motive; hopes; shilling
+81,N2,応,オウ、ヨウ、-ノウ,あた.る、まさに、こた.える,apply; answer; yes; OK; reply; accept
+81,N2,快,カイ,こころよ.い,cheerful; pleasant; agreeable; comfortable
+81,N2,性,セイ、ショウ,さが,sex; gender; nature
+81,N2,情,ジョウ、セイ,なさ.け,feelings; emotion; passion; sympathy; circumstances; facts
+81,N2,慣,カン,な.れる、な.らす,accustomed; get used to; become experienced
+81,N2,技,ギ,わざ,skill; art; craft; ability; feat; performance; vocation; arts
+82,N2,招,ショウ,まね.く,beckon; invite; summon; engage
+82,N2,授,ジュ,さず.ける、さず.かる,impart; instruct; grant; confer
+82,N2,採,サイ,と.る,pick; take; fetch; take up
+82,N2,接,セツ、ショウ,つ.ぐ,touch; contact; adjoin; piece together
+82,N2,損,ソン,そこ.なう、そこな.う、-そこ.なう、そこ.ねる、-そこ.ねる,damage; loss; disadvantage; hurt; injure
+82,N2,支,シ,ささ.える、つか.える、か.う,branch; support; sustain; branch radical (no. 65)
+82,N2,政,セイ、ショウ,まつりごと、まん,politics; government
+82,N2,故,コ,ゆえ、ふる.い、もと,happenstance; especially; intentionally; reason; cause; circumstances; the late; therefore; consequently
+82,N2,救,キュウ,すく.う,salvation; save; help; rescue; reclaim
+82,N2,断,ダン,た.つ、ことわ.る、さだ.める,severance; decline; refuse; apologize; warn; dismiss; prohibit; decision; judgement; cutting
+83,N2,旧,キュウ,ふる.い、もと,old times; old things; old friend; former; ex-
+83,N2,易,エキ、イ,やさ.しい、やす.い,easy; ready to; simple; fortune-telling; divination
+83,N2,暴,ボウ、バク,あば.く、あば.れる,outburst; rave; fret; force; violence; cruelty; outrage
+83,N2,条,ジョウ、チョウ、デキ,えだ、すじ,"article; clause; counter for articles, clauses, paragraphs, etc.; twig; item; stripe; streak"
+83,N2,枝,シ,えだ,bough; branch; twig; limb; counter for branches
+83,N2,査,サ,,investigate
+83,N2,格,カク、コウ、キャク、ゴウ,,"status; rank; capacity; character; case (law, grammar)"
+83,N2,検,ケン,しら.べる,examination; investigate
+83,N2,構,コウ,かま.える、かま.う,posture; stance; appearance; build; set up
+83,N2,武,ブ、ム,たけ、たけ.し,warrior; military; chivalry; arms
+84,N2,歴,レキ、レッキ,,curriculum; continuation; passage of time
+84,N2,殺,サツ、サイ、セツ,ころ.す、-ごろ.し、そ.ぐ、あや.める,kill; murder; butcher; slice off; split; diminish; reduce; spoil
+84,N2,毒,ドク,,poison; virus; venom; germ; harm; injury; spite
+84,N2,比,ヒ,くら.べる,compare; race; ratio; Philippines
+84,N2,永,エイ,なが.い,eternity; long; lengthy
+84,N2,河,カ,かわ,river
+84,N2,液,エキ,,fluid; liquid; juice; sap; secretion
+84,N2,混,コン,ま.じる、-ま.じり、ま.ざる、ま.ぜる、こ.む,mix; blend; confuse
+84,N2,減,ゲン,へ.る、へ.らす,dwindle; decrease; reduce; decline; curtail; get hungry
+84,N2,測,ソク,はか.る,fathom; plan; scheme; measure
+85,N2,準,ジュン,じゅん.じる、じゅん.ずる、なぞら.える、のり、ひと.しい、みずもり,semi-; correspond to; proportionate to; conform; imitate
+85,N2,演,エン,,performance; act; play; render; stage
+85,N2,燃,ネン,も.える、も.やす、も.す,burn; blaze; glow
+85,N2,版,ハン,,printing block; printing plate; edition; impression; label
+85,N2,犯,ハン、ボン,おか.す,crime; sin; offense
+85,N2,状,ジョウ,,status quo; conditions; circumstances; form; appearance
+85,N2,独,ドク、トク,ひと.り,single; alone; spontaneously; Germany
+85,N2,率,ソツ、リツ、シュツ,ひき.いる,ratio; rate; proportion; %; factor; lead; spearhead; command
+85,N2,現,ゲン,あらわ.れる、あらわ.す、うつつ、うつ.つ,present; existing; actual
+85,N2,留,リュウ、ル,と.める、と.まる、とど.める、とど.まる、るうぶる,detain; fasten; halt; stop
+86,N2,略,リャク,ほぼ、はぶ.く、おか.す、おさ.める、はかりごと、はか.る,abbreviation; omission; outline; shorten; capture; plunder
+86,N2,破,ハ,やぶ.る、やぶ.れる、わ.れる,rend; rip; tear; break; destroy; defeat; frustrate
+86,N2,確,カク、コウ,たし.か、たし.かめる,assurance; firm; tight; hard; solid; confirm; clear; evident
+86,N2,示,ジ、シ,しめ.す,show; indicate; point out; express; display
+86,N2,祖,ソ,,ancestor; pioneer; founder
+86,N2,禁,キン,,prohibition; ban; forbid
+86,N2,移,イ,うつ.る、うつ.す,"shift; move; change; drift; catch (cold, fire); pass into"
+86,N2,程,テイ,ほど、-ほど,extent; degree; law; formula; distance; limits; amount
+86,N2,税,ゼイ,,tax; duty
+86,N2,築,チク,きず.く,fabricate; build; construct
+87,N2,粉,フン,デシメートル、こ、こな,flour; powder; dust
+87,N2,精,セイ、ショウ,しら.げる、くわ.しい,refined; ghost; fairy; energy; vitality; semen; excellence; purity; skill
+87,N2,経,ケイ、キョウ、キン,へ.る、た.つ、たていと、はか.る、のり,sutra; longitude; pass thru; expire; warp
+87,N2,絶,ゼツ,た.える、た.やす、た.つ,discontinue; sever; cut off; abstain; interrupt; suppress; be beyond; without match; peerless; unparalleled
+87,N2,綿,メン,わた,cotton
+87,N2,総,ソウ,す.べて、すべ.て、ふさ,general; whole; all; full; total
+87,N2,編,ヘン,あ.む、-あ.み,compilation; knit; plait; braid; twist; editing; completed poem; part of a book
+87,N2,績,セキ,,exploits; achievements; unreeling cocoons
+87,N2,罪,ザイ,つみ,guilt; sin; crime; fault; blame; offense
+87,N2,耕,コウ,たがや.す,till; plow; cultivate
+88,N2,職,ショク、ソク,,post; employment; work
+88,N2,能,ノウ,よ.く、あた.う,ability; talent; skill; capacity
+88,N2,航,コウ,,navigate; sail; cruise; fly
+88,N2,術,ジュツ,すべ,art; technique; skill; means; trick; resources; magic
+88,N2,製,セイ,,made in...; manufacture
+88,N2,複,フク,,duplicate; double; compound; multiple
+88,N2,規,キ,,standard; measure
+88,N2,解,カイ、ゲ,と.く、と.かす、と.ける、ほど.く、ほぐ.す、わか.る、さと.る,unravel; notes; key; explanation; understanding; untie; undo; solve; answer; cancel; absolve; explain; minute
+88,N2,設,セツ,もう.ける,establishment; provision; prepare
+88,N2,許,キョ,ゆる.す、もと,permit; approve
+89,N2,評,ヒョウ,,evaluate; criticism; comment
+89,N2,講,コウ,,lecture; club; association
+89,N2,識,シキ,し.る、しる.す,discriminating; know; write
+89,N2,豊,ホウ、ブ,ゆた.か、とよ,bountiful; excellent; rich
+89,N2,象,ショウ、ゾウ,かたど.る,elephant; pattern after; imitate; image; shape; sign (of the times)
+89,N2,財,ザイ、サイ、ゾク,たから,property; money; wealth; assets
+89,N2,貧,ヒン、ビン,まず.しい,poverty; poor
+89,N2,責,セキ,せ.める,blame; condemn; censure
+89,N2,貯,チョ,た.める、たくわ.える,savings; store; lay in; keep; wear mustache
+89,N2,費,ヒ,つい.やす、つい.える,expense; cost; spend; consume; waste
+90,N2,貿,ボウ,,trade; exchange
+90,N2,資,シ,,assets; resources; capital; funds; data; be conducive to; contribute to
+90,N2,賛,サン,たす.ける、たた.える,approve; praise; title or inscription on picture; assist; agree with
+90,N2,賞,ショウ,ほ.める,prize; reward; praise
+90,N2,輸,ユ、シュ,,transport; send; be inferior
+90,N2,述,ジュツ,の.べる,mention; state; speak; relate
+90,N2,迷,メイ,まよ.う,astray; be perplexed; in doubt; lost; err; illusion
+90,N2,逆,ギャク、ゲキ,さか、さか.さ、さか.らう,inverted; reverse; opposite; wicked
+90,N2,造,ゾウ,つく.る、つく.り、-づく.り,create; make; structure; physique
+90,N2,過,カ,す.ぎる、す.ごす、あやま.ち、あやま.つ、よぎ.る、よ.ぎる,overdo; exceed; go beyond; error
+91,N2,適,テキ,かな.う,suitable; occasional; rare; qualified; capable
+91,N2,鉱,コウ,あらがね,mineral; ore
+91,N2,銅,ドウ,あかがね,copper
+91,N2,防,ボウ,ふせ.ぐ,ward off; defend; protect; resist
+91,N2,限,ゲン,かぎ.る、かぎ.り、-かぎ.り,limit; restrict; to best of ability
+91,N2,険,ケン,けわ.しい,precipitous; inaccessible place; impregnable position; steep place; sharp eyes
+91,N2,際,サイ,きわ、-ぎわ,occasion; side; edge; verge; dangerous; adventurous; indecent; time; when
+91,N2,雑,ザツ、ゾウ,まじ.える、まじ.る,miscellaneous
+91,N2,非,ヒ,あら.ず,un-; mistake; negative; injustice; non-
+91,N2,領,リョウ,えり,jurisdiction; dominion; territory; fief; reign
+92,N2,額,ガク,ひたい,forehead; tablet; plaque; framed picture; sum; amount; volume
+92,N2,並,ヘイ、ホウ,な.み、なみ、なら.べる、なら.ぶ、なら.びに,row; and; besides; as well as; line up; rank with; rival; equal
+92,N2,乱,ラン、ロン,みだ.れる、みだ.る、みだ.す、みだ、おさ.める、わた.る,riot; war; disorder; disturb
+92,N2,乳,ニュウ,ちち、ち,milk; breasts
+92,N2,亡,ボウ、モウ,な.い、な.き-、ほろ.びる、ほろ.ぶ、ほろ.ぼす,deceased; the late; dying; perish
+92,N2,供,キョウ、ク、クウ、グ,そな.える、とも、-ども,submit; offer; present; serve (meal); accompany
+92,N2,値,チ,ね、あたい,price; cost; value
+92,N2,優,ユウ、ウ,やさ.しい、すぐ.れる、まさ.る,tenderness; excel; surpass; actor; superiority; gentleness
+92,N2,党,トウ,なかま、むら,party; faction; clique
+92,N2,冊,サツ、サク,ふみ,tome; counter for books; volume
+93,N2,処,ショ,ところ、-こ、お.る,dispose; manage; deal with; sentence; condemn; act; behave; place
+93,N2,券,ケン,,ticket
+93,N2,刻,コク,きざ.む、きざ.み,engrave; cut fine; chop; hash; mince; time; carving
+93,N2,割,カツ,わ.る、わり、わ.り、わ.れる、さ.く,proportion; comparatively; divide; cut; separate; split
+93,N2,劇,ゲキ,,drama; play
+93,N2,勤,キン、ゴン,つと.める、-づと.め、つと.まる、いそ.しむ,diligence; become employed; serve
+93,N2,危,キ,あぶ.ない、あや.うい、あや.ぶむ,dangerous; fear; uneasy
+93,N2,卵,ラン,たまご,egg; ovum; spawn; roe
+93,N2,収,シュウ,おさ.める、おさ.まる,income; obtain; reap; pay; supply; store
+93,N2,否,ヒ,いな、いや,negate; no; noes; refuse; decline; deny
+94,N2,吸,キュウ,す.う,suck; imbibe; inhale; sip
+94,N2,呼,コ,よ.ぶ,call; call out to; invite
+94,N2,善,ゼン,よ.い、い.い、よ.く、よし.とする,virtuous; good; goodness
+94,N2,困,コン,こま.る,quandary; become distressed; annoyed
+94,N2,域,イキ,,range; region; limits; stage; level
+94,N2,存,ソン、ゾン,ながら.える、あ.る、たも.つ、と.う,exist; suppose; be aware of; believe; feel
+94,N2,宅,タク,,home; house; residence; our house; my husband
+94,N2,宇,ウ,,eaves; roof; house; heaven
+94,N2,宙,チュウ,,mid-air; air; space; sky; memorization; interval of time
+94,N2,宝,ホウ,たから,treasure; wealth; valuables
+95,N2,専,セン,もっぱ.ら,specialty; exclusive; mainly; solely
+95,N2,将,ショウ、ソウ,まさ.に、はた、まさ、ひきい.る、もって,leader; commander; general; admiral; or; and again; soon; from now on; just about
+95,N2,尊,ソン,たっと.い、とうと.い、たっと.ぶ、とうと.ぶ,revered; valuable; precious; noble; exalted
+95,N2,届,カイ,とど.ける、-とど.け、とど.く,deliver; reach; arrive; report; notify; forward
+95,N2,展,テン,,unfold; expand
+95,N2,層,ソウ,,stratum; social class; layer; story; floor
+95,N2,巻,カン、ケン,ま.く、まき、ま.き,scroll; volume; book; part; roll up; wind up; tie; coil; counter for texts (or book scrolls)
+95,N2,干,カン,ほ.す、ほ.し-、-ぼ.し、ひ.る,dry; parch; ebb; recede; interfere; intercede
+95,N2,幼,ヨウ,おさな.い,infancy; childhood
+95,N2,庁,チョウ、テイ,やくしょ,government office
+96,N2,座,ザ,すわ.る,squat; seat; cushion; gathering; sit
+96,N2,延,エン,の.びる、の.べる、の.べ、の.ばす,prolong; stretching
+96,N2,律,リツ、リチ、レツ,,rhythm; law; regulation; gauge; control
+96,N2,忘,ボウ,わす.れる,forget
+96,N2,批,ヒ,,criticism; strike
+96,N2,承,ショウ、ジョウ,うけたまわ.る、う.ける,acquiesce; hear; listen to; be informed; receive
+96,N2,担,タン,かつ.ぐ、にな.う,shouldering; carry; raise; bear
+96,N2,拝,ハイ,おが.む、おろが.む,worship; adore; pray to
+96,N2,拡,カク、コウ,ひろ.がる、ひろ.げる、ひろ.める,broaden; extend; expand; enlarge
+96,N2,捨,シャ,す.てる,discard; throw away; abandon; resign; reject; sacrifice
+97,N2,探,タン,さぐ.る、さが.す,grope; search; look for
+97,N2,操,ソウ、サン,みさお、あやつ.る,maneuver; manipulate; operate; steer; chastity; virginity; fidelity
+97,N2,敬,ケイ、キョウ,うやま.う,awe; respect; honor; revere
+97,N2,晩,バン,,nightfall; night
+97,N2,暖,ダン、ノン,あたた.か、あたた.かい、あたた.まる、あたた.める,warmth
+97,N2,暮,ボ,く.れる、く.らす,evening; twilight; season's end; livelihood; make a living; spend time
+97,N2,机,キ,つくえ,desk; table
+97,N2,枚,マイ、バイ,,sheet of...; counter for flat thin objects or sheets
+97,N2,棒,ボウ,,rod; stick; cane; pole; club; line
+97,N2,権,ケン、ゴン,おもり、かり、はか.る,authority; power; rights
+98,N2,欲,ヨク,ほっ.する、ほ.しい,longing; covetousness; greed; passion; desire; craving
+98,N2,段,ダン、タン,,grade; steps; stairs
+98,N2,泉,セン,いずみ,spring; fountain
+98,N2,済,サイ、セイ,す.む、-ず.み、-ずみ、す.まない、す.ます、-す.ます、すく.う、な.す、わたし、わた.る,"settle (debt, etc.); relieve (burden); finish; come to an end; excusable; need not"
+98,N2,灰,カイ,はい,ashes; puckery juice; cremate
+98,N2,片,ヘン,かた-、かた,one-sided; leaf; sheet; right-side kata radical (no. 91)
+98,N2,異,イ,こと、こと.なる、け,uncommon; different; queerness; strangeness; wonderful; curious; unusual
+98,N2,疑,ギ,うたが.う,doubt; distrust; be suspicious; question
+98,N2,痛,ツウ,いた.い、いた.む、いた.ましい、いた.める,pain; hurt; damage; bruise
+98,N2,看,カン,み.る,watch over; see
+99,N2,砂,サ、シャ,すな,sand
+99,N2,窓,ソウ、ス,まど、てんまど、けむだし,window; pane
+99,N2,簡,カン、ケン,えら.ぶ、ふだ,simplicity; brevity
+99,N2,紅,コウ、ク,べに、くれない、あか.い,crimson; deep red
+99,N2,純,ジュン,,genuine; purity; innocence; net (profit)
+99,N2,署,ショ,,signature; govt office; police station
+99,N2,翌,ヨク,,the following; next
+99,N2,胃,イ,,stomach; paunch; crop; craw
+99,N2,背,ハイ,せ、せい、そむ.く、そむ.ける,stature; height; back; behind; disobey; defy; go back on; rebel
+99,N2,胸,キョウ,むね、むな-,bosom; breast; chest; heart; feelings
+100,N2,脳,ノウ、ドウ,のうずる,brain; memory
+100,N2,腹,フク,はら,abdomen; belly; stomach
+100,N2,臓,ゾウ,はらわた,entrails; viscera; bowels
+100,N2,若,ジャク、ニャク、ニャ,わか.い、わか-、も.しくわ、も.し、も.しくは、ごと.し,young; if; perhaps; possibly; low number; immature
+100,N2,著,チョ、チャク,あらわ.す、いちじる.しい,renowned; publish; write; remarkable; phenomenal; put on; don; wear; arrival; finish (race); counter for suits of clothing; literary work
+100,N2,蒸,ジョウ、セイ,む.す、む.れる、む.らす,steam; heat; sultry; foment; get musty
+100,N2,蔵,ゾウ、ソウ,くら、おさ.める、かく.れる,storehouse; hide; own; have; possess
+100,N2,装,ソウ、ショウ,よそお.う、よそお.い,attire; dress; pretend; disguise; profess
+100,N2,裏,リ,うら,back; amidst; in; reverse; inside; palm; sole; rear; lining; wrong side
+100,N2,補,ホ,おぎな.う,supplement; supply; make good; offset; compensate; assistant; learner
+101,N2,訪,ホウ,おとず.れる、たず.ねる、と.う,call on; visit; look up; offer sympathy
+101,N2,詞,シ,ことば,part of speech; words; poetry
+101,N2,誌,シ,,document; records
+101,N2,認,ニン,みと.める、したた.める,acknowledge; witness; discern; recognize; appreciate; believe
+101,N2,誤,ゴ,あやま.る、-あやま.る,mistake; err; do wrong; mislead
+101,N2,論,ロン,あげつら.う,argument; discourse
+101,N2,諸,ショ,もろ,various; many; several; together
+101,N2,警,ケイ,いまし.める,admonish; commandment
+101,N2,賃,チン,,fare; fee; hire; rent; wages; charge
+101,N2,退,タイ,しりぞ.く、しりぞ.ける、ひ.く、の.く、の.ける、ど.く,retreat; withdraw; retire; resign; repel; expel; reject
+102,N2,郵,ユウ,,mail; stagecoach stop
+102,N2,針,シン,はり,needle; pin; staple; stinger
+102,N2,閉,ヘイ,と.じる、と.ざす、し.める、し.まる、た.てる,closed; shut
+102,N2,降,コウ、ゴ,お.りる、お.ろす、ふ.る、ふ.り、くだ.る、くだ.す,descend; precipitate; fall; surrender
+102,N2,除,ジョ、ジ,のぞ.く、-よ.け,exclude; division (x/3); remove; abolish; cancel; except
+102,N2,難,ナン,かた.い、-がた.い、むずか.しい、むづか.しい、むつか.しい、-にく.い,difficult; impossible; trouble; accident; defect
+102,N2,革,カク,かわ,leather; skin; reform; become serious
+102,N2,頂,チョウ,いただ.く、いただき,place on the head; receive; top of head; top; summit; peak
+102,N2,預,ヨ,あず.ける、あず.かる,deposit; custody; leave with; entrust to
+102,N2,骨,コツ,ほね,skeleton; bone; remains; frame
+103,N2,与,ヨ,あた.える、あずか.る、くみ.する、ともに,bestow; participate in; give; award; impart; provide; cause; gift; godsend
+103,N2,乾,カン、ケン,かわ.く、かわ.かす、ほ.す、ひ.る、いぬい,drought; dry; desiccate; drink up; heaven; emperor
+103,N2,了,リョウ,,complete; finish
+103,N2,互,ゴ,たが.い、かたみ.に,mutually; reciprocally; together
+103,N2,介,カイ,,jammed in; shellfish; mediate; concern oneself with
+103,N2,伸,シン,の.びる、の.ばす、の.べる、の.す,expand; stretch; extend; lengthen; increase
+103,N2,伺,シ,うかが.う,pay respects; visit; ask; inquire; question; implore
+103,N2,依,イ、エ,よ.る,reliant; depend on; consequently; therefore; due to
+103,N2,倒,トウ,たお.れる、-だお.れ、たお.す、さかさま、さかさ、さかしま,overthrow; fall; collapse; drop; break down
+103,N2,偉,イ,えら.い,admirable; greatness; remarkable; conceited; famous; excellent
+104,N2,偶,グウ,たま,accidentally; even number; couple; man & wife; same kind
+104,N2,傾,ケイ,かたむ.く、かたむ.ける、かたぶ.く、かた.げる、かし.げる,lean; incline; tilt; trend; wane; sink; ruin; bias
+104,N2,凍,トウ,こお.る、こご.える、こご.る、い.てる、し.みる,frozen; congeal; refrigerate
+104,N2,到,トウ,いた.る,arrival; proceed; reach; attain; result in
+104,N2,刺,シ,さ.す、さ.さる、さ.し、さし、とげ,thorn; pierce; stab; prick; sting; calling card
+104,N2,募,ボ,つの.る,recruit; campaign; gather (contributions); enlist; grow violent
+104,N2,匹,ヒツ,ひき,equal; head; counter for small animals; roll of cloth
+104,N2,占,セン,し.める、うらな.う,fortune-telling; divining; forecasting; occupy; hold; have; get; take
+104,N2,双,ソウ,ふた、たぐい、ならぶ、ふたつ,pair; set; comparison; counter for pairs
+104,N2,叫,キョウ,さけ.ぶ,shout; exclaim; yell
+105,N2,召,ショウ,め.す,seduce; call; send for; wear; put on; ride in; buy; eat; drink; catch (cold)
+105,N2,含,ガン,ふく.む、ふく.める,contain; include; hold in the mouth; bear in mind; understand; cherish
+105,N2,吹,スイ,ふ.く,blow; breathe; puff; emit; smoke
+105,N2,咲,ショウ,さ.く、-ざき,blossom; bloom
+105,N2,喫,キツ,の.む,consume; eat; drink; smoke; receive (a blow)
+105,N2,坊,ボウ、ボッ,,boy; priest's residence; priest
+105,N2,埋,マイ,う.める、う.まる、う.もれる、うず.める、うず.まる、い.ける,bury; be filled up; embedded
+105,N2,塔,トウ,,pagoda; tower; steeple
+105,N2,塗,ト,ぬ.る、ぬ.り、まみ.れる,paint; plaster; daub; smear; coating
+105,N2,壁,ヘキ,かべ,wall; lining (stomach); fence
+106,N2,奥,オウ,おく、おく.まる、くま,heart; interior
+106,N2,姓,セイ、ショウ,,surname
+106,N2,娘,ジョウ,むすめ、こ,daughter; girl
+106,N2,婚,コン,,marriage
+106,N2,寝,シン,ね.る、ね.かす、い.ぬ、みたまや、や.める,lie down; sleep; rest; bed; remain unsold
+106,N2,封,フウ、ホウ,,seal; closing
+106,N2,巨,キョ,,gigantic; big; large; great
+106,N2,帽,ボウ、モウ,ずきん、おお.う,cap; headgear
+106,N2,幅,フク,はば,hanging scroll; width
+106,N2,床,ショウ,とこ、ゆか,bed; counter for beds; floor; padding; tatami
+107,N2,彼,ヒ,かれ、かの、か.の,he; that; the
+107,N2,御,ギョ、ゴ,おん-、お-、み-,honorable; manipulate; govern
+107,N2,忙,ボウ、モウ,いそが.しい、せわ.しい、おそ.れる、うれえるさま,busy; occupied; restless
+107,N2,怒,ド、ヌ,いか.る、おこ.る,angry; be offended
+107,N2,怖,フ、ホ,こわ.い、こわ.がる、お.じる、おそ.れる,dreadful; be frightened; fearful
+107,N2,恋,レン,こ.う、こい、こい.しい,romance; in love; yearn for; miss; darling
+107,N2,恐,キョウ,おそ.れる、おそ.る、おそ.ろしい、こわ.い、こわ.がる,fear; dread; awe
+107,N2,恥,チ,は.じる、はじ、は.じらう、は.ずかしい,shame; dishonor
+107,N2,恵,ケイ、エ,めぐ.む、めぐ.み,favor; blessing; grace; kindness
+107,N2,悩,ノウ,なや.む、なや.ます、なや.ましい、なやみ,trouble; worry; in pain; distress; illness
+108,N2,憎,ゾウ,にく.む、にく.い、にく.らしい、にく.しみ,hate; detest
+108,N2,戻,レイ,もど.す、もど.る,re-; return; revert; resume; restore; go backwards
+108,N2,払,フツ、ヒツ、ホツ,はら.う、-はら.い、-ばら.い,pay; clear out; prune; banish; dispose of
+108,N2,抜,バツ、ハツ、ハイ,ぬ.く、-ぬ.く、ぬ.き、ぬ.ける、ぬ.かす、ぬ.かる,slip out; extract; pull out; pilfer; quote; remove; omit
+108,N2,抱,ホウ,だ.く、いだ.く、かか.える,embrace; hug; hold in arms
+108,N2,押,オウ,お.す、お.し-、お.っ-、お.さえる、おさ.える,push; stop; check; subdue; attach; seize; weight; shove; press; seal; do in spite of
+108,N2,挟,キョウ、ショウ,はさ.む、はさ.まる、わきばさ.む、さしはさ.む,pinch; between
+108,N2,捕,ホ,と.らえる、と.らわれる、と.る、とら.える、とら.われる、つか.まえる、つか.まる,catch; capture
+108,N2,捜,ソウ、シュ、シュウ,さが.す,search; look for; locate
+108,N2,掃,ソウ、シュ,は.く,sweep; brush
+109,N2,掘,クツ,ほ.る,dig; delve; excavate
+109,N2,換,カン,か.える、-か.える、か.わる,interchange; period; change; convert; replace; renew
+109,N2,昇,ショウ,のぼ.る,rise up
+109,N2,普,フ,あまね.く、あまねし,universal; wide(ly); generally; Prussia
+109,N2,曇,ドン,くも.る,cloudy weather; cloud up
+109,N2,更,コウ,さら、さら.に、ふ.ける、ふ.かす,grow late; night watch; sit up late; of course; renew; renovate; again; more and more; further
+109,N2,替,タイ,か.える、か.え-、か.わる,exchange; spare; substitute; per-
+109,N2,杯,ハイ,さかずき,counter for cupfuls; wine glass; glass; toast
+109,N2,枯,コ,か.れる、か.らす,wither; die; dry up; be seasoned
+109,N2,柔,ジュウ、ニュウ,やわ.らか、やわ.らかい、やわ、やわ.ら,tender; weakness; gentleness; softness
+110,N2,欧,オウ,うた.う、は.く,Europe
+110,N2,歳,サイ、セイ,とし、とせ、よわい,year-end; age; occasion; opportunity
+110,N2,殿,デン、テン,との、-どの,Mr.; hall; mansion; palace; temple; lord
+110,N2,汗,カン,あせ,sweat; perspire
+110,N2,汚,オ,けが.す、けが.れる、けが.らわしい、よご.す、よご.れる、きたな.い,dirty; pollute; disgrace; rape; defile
+110,N2,沈,チン、ジン,しず.む、しず.める,sink; be submerged; subside; be depressed; aloes
+110,N2,沸,フツ,わ.く、わ.かす,seethe; boil; ferment; uproar; breed
+110,N2,況,キョウ,まし.て、いわ.んや、おもむき,condition; situation
+110,N2,泊,ハク,と.まる、と.める,overnight stay; put up at; ride at anchor
+110,N2,泥,デイ、ナイ、デ、ニ,どろ、なず.む,mud; mire; adhere to; be attached to
+111,N2,浮,フ,う.く、う.かれる、う.かぶ、う.かべる,floating; float; rise to surface
+111,N2,涙,ルイ、レイ,なみだ,tears; sympathy
+111,N2,涼,リョウ,すず.しい、すず.む、すず.やか、うす.い、ひや.す、まことに,refreshing; nice and cool
+111,N2,渡,ト,わた.る、-わた.る、わた.す,transit; ford; ferry; cross; import; deliver; diameter; migrate
+111,N2,湾,ワン,いりえ,gulf; bay; inlet
+111,N2,湿,シツ、シュウ,しめ.る、しめ.す、うるお.う、うるお.す,damp; wet; moist
+111,N2,溶,ヨウ,と.ける、と.かす、と.く,melt; dissolve; thaw
+111,N2,滴,テキ,しずく、したた.る,drip; drop
+111,N2,濃,ノウ,こ.い,concentrated; thick; dark; undiluted
+111,N2,濯,タク,すす.ぐ、ゆす.ぐ,laundry; wash; pour on; rinse
+112,N2,煙,エン,けむ.る、けむり、けむ.い,smoke
+112,N2,燥,ソウ,はしゃ.ぐ,parch; dry up
+112,N2,爆,バク,は.ぜる,bomb; burst open; pop; split
+112,N2,狭,キョウ、コウ,せま.い、せば.める、せば.まる、さ,cramped; narrow; contract; tight
+112,N2,猫,ビョウ,ねこ,cat
+112,N2,珍,チン,めずら.しい、たから,rare; curious; strange
+112,N2,環,カン,わ,ring; circle; loop
+112,N2,甘,カン,あま.い、あま.える、あま.やかす、うま.い,sweet; coax; pamper; be content; sugary
+112,N2,畜,チク,,livestock; domestic fowl and animals
+112,N2,畳,ジョウ、チョウ,たた.む、たたみ、かさ.なる,tatami mat; counter for tatami mats; fold; shut up; do away with
+113,N2,疲,ヒ,つか.れる、-づか.れ、つか.らす,exhausted; tire; weary
+113,N2,療,リョウ,,heal; cure
+113,N2,皆,カイ,みな、みんな,all; everything
+113,N2,盗,トウ,ぬす.む、ぬす.み,steal; rob; pilfer
+113,N2,眠,ミン,ねむ.る、ねむ.い,sleep; die; sleepy
+113,N2,硬,コウ,かた.い,stiff; hard
+113,N2,磨,マ,みが.く、す.る,grind; polish; scour; improve; brush (teeth)
+113,N2,祈,キ,いの.る,pray; wish
+113,N2,突,トツ、カ,つ.く,stab; protruding; thrust; pierce; prick; collision; sudden
+113,N2,符,フ,,token; sign; mark; tally; charm
+114,N2,筒,トウ,つつ,cylinder; pipe; tube; gun barrel; sleeve
+114,N2,粒,リュウ,つぶ,grains; drop; counter for tiny particles
+114,N2,紹,ショウ,,introduce; inherit; help
+114,N2,絡,ラク,から.む、から.まる,entwine; coil around; get caught in
+114,N2,緒,ショ、チョ,お、いとぐち,thong; beginning; inception; end; cord; strap; mental or emotional state
+114,N2,肌,キ,はだ,texture; skin; body; grain
+114,N2,肩,ケン,かた,shoulder
+114,N2,肯,コウ,がえんじ.る,agreement; consent; comply with
+114,N2,脂,シ,あぶら,fat; grease; tallow; lard; rosin; gum; tar
+114,N2,腕,ワン,うで,arm; ability; talent
+115,N2,腰,ヨウ,こし,loins; hips; waist; low wainscoting
+115,N2,膚,フ,はだ,skin; body; grain; texture; disposition
+115,N2,舞,ブ,ま.う、-ま.う、まい,dance; flit; circle; wheel
+115,N2,舟,シュウ,ふね、ふな-、-ぶね,boat; ship
+115,N2,般,ハン,,carrier; carry; all; general; sort; kind
+115,N2,荒,コウ,あ.らす、あ.れる、あら.い、すさ.ぶ、すさ.む、あ.らし,laid waste; rough; rude; wild
+115,N2,菓,カ,,candy; cakes; fruit
+115,N2,薄,ハク,うす.い、うす-、-うす、うす.める、うす.まる、うす.らぐ、うす.ら-、うす.れる、すすき,dilute; thin; weak (tea); pampas grass
+115,N2,袋,タイ、ダイ,ふくろ,sack; bag; pouch
+115,N2,被,ヒ,こうむ.る、おお.う、かぶ.る、かぶ.せる,incur; cover; veil; brood over; shelter; wear; put on; be exposed (film); receiving
+116,N2,触,ショク,ふ.れる、さわ.る、さわ,contact; touch; feel; hit; proclaim; announce; conflict
+116,N2,詰,キツ、キチ,つ.める、つ.め、-づ.め、つ.まる、つ.む,packed; close; pressed; reprove; rebuke; blame
+116,N2,販,ハン,,marketing; sell; trade
+116,N2,賢,ケン,かしこ.い,intelligent; wise; wisdom; cleverness
+116,N2,贈,ゾウ、ソウ,おく.る,presents; send; give to; award to; confer on; presenting something
+116,N2,超,チョウ,こ.える、こ.す,transcend; super-; ultra-
+116,N2,越,エツ、オツ,こ.す、-こ.す、-ご.し、こ.える、-ご.え,surpass; cross over; move to; exceed; Vietnam
+116,N2,踊,ヨウ,おど.る,jump; dance; leap; skip
+116,N2,軒,ケン,のき,flats; counter for houses; eaves
+116,N2,軟,ナン,やわ.らか、やわ.らかい,soft
+117,N2,較,カク、コウ,くら.べる,contrast; compare
+117,N2,辛,シン,から.い、つら.い、-づら.い、かのと,spicy; bitter; hot; acrid
+117,N2,込,,-こ.む、こ.む、こ.み、-こ.み、こ.める,crowded; mixture; in bulk; included; (kokuji)
+117,N2,迎,ゲイ,むか.える,welcome; meet; greet
+117,N2,逃,トウ,に.げる、に.がす、のが.す、のが.れる,escape; flee; shirk; evade; set free
+117,N2,途,ト,みち,route; way; road
+117,N2,遅,チ,おく.れる、おく.らす、おそ.い,slow; late; back; later
+117,N2,違,イ,ちが.う、ちが.い、ちが.える、-ちが.える、たが.う、たが.える,difference; differ
+117,N2,郊,コウ,,outskirts; suburbs; rural area
+117,N2,鈍,ドン,にぶ.い、にぶ.る、にぶ-、なま.る、なまく.ら,dull; slow; foolish; blunt
+118,N2,鋭,エイ,するど.い,pointed; sharpness; edge; weapon; sharp; violent
+118,N2,隅,グウ,すみ,corner; nook
+118,N2,雇,コ,やと.う,employ; hire
+118,N2,零,レイ,ぜろ、こぼ.す、こぼ.れる,zero; spill; overflow; nothing; cipher
+118,N2,震,シン,ふる.う、ふる.える、ふる.わせる、ふる.わす,quake; shake; tremble; quiver; shiver
+118,N2,靴,カ,くつ,shoes
+118,N2,頼,ライ,たの.む、たの.もしい、たよ.る,trust; request
+118,N2,駐,チュウ,,stop-over; reside in; resident
+118,N2,髪,ハツ,かみ,hair of the head
+118,N2,齢,レイ,よわい、とし,age
+119,N1,刀,トウ,かたな、そり,sword; saber; knife
+119,N1,弓,キュウ,ゆみ,"bow; bow (archery, violin)"
+119,N1,汽,キ,,vapor; steam
+119,N1,矢,シ,や,dart; arrow
+119,N1,里,リ,さと,ri; village; parent's home; league
+119,N1,丁,チョウ、テイ、チン、トウ、チ,ひのと,"street; ward; town; counter for guns, tools, leaves or cakes of something; even number; 4th calendar sign"
+119,N1,宮,キュウ、グウ、ク、クウ,みや,Shinto shrine; constellations; palace; princess
+119,N1,帳,チョウ,とばり,notebook; account book; album; curtain; veil; net; tent
+119,N1,昭,ショウ,,shining; bright
+119,N1,笛,テキ,ふえ,flute; clarinet; pipe; whistle; bagpipe; piccolo
+120,N1,羊,ヨウ,ひつじ,sheep
+120,N1,詩,シ,うた,poem; poetry
+120,N1,豆,トウ、ズ,まめ、まめ-,beans; pea; midget
+120,N1,井,セイ、ショウ,い,well; well crib; town; community
+120,N1,佐,サ,,assistant; help
+120,N1,倉,ソウ,くら,godown; warehouse; storehouse; cellar; treasury
+120,N1,典,テン、デン,ふみ、のり,code; ceremony; law; rule
+120,N1,功,コウ、ク,いさお,achievement; merits; success; honor; credit
+120,N1,博,ハク、バク,,Dr.; command; esteem; win acclaim; Ph.D.; exposition; fair
+120,N1,唱,ショウ,とな.える,chant; recite; call upon; yell
+121,N1,奈,ナ、ナイ、ダイ,いかん、からなし,Nara; what?
+121,N1,媛,エン,ひめ,beautiful woman; princess
+121,N1,岐,キ、ギ,,branch off; fork in road; scene; arena; theater
+121,N1,崎,キ,さき、さい、みさき,promontory; cape; spit
+121,N1,巣,ソウ,す、す.くう,nest; rookery; hive; cobweb; den
+121,N1,径,ケイ,みち、こみち、さしわたし、ただちに,diameter; path; method
+121,N1,徳,トク,,benevolence; virtue; goodness; commanding respect
+121,N1,挙,キョ,あ.げる、あ.がる、こぞ.る,raise; plan; project; behavior; actions
+121,N1,旗,キ,はた,flag; banner; standard
+121,N1,松,ショウ,まつ,pine tree
+122,N1,梅,バイ,うめ,plum
+122,N1,梨,リ,なし,pear tree
+122,N1,氏,シ,うじ、-うじ,family name; surname; clan
+122,N1,沖,チュウ,おき、おきつ、ちゅう.する、わく,open sea; offing; rise high into sky
+122,N1,滋,ジ、シ,,nourishing; more & more; be luxuriant; planting; turbidity
+122,N1,潟,セキ,かた、-がた,lagoon
+122,N1,熊,ユウ,くま,bear
+122,N1,牧,ボク,まき,breed; care for; shepherd; feed; pasture
+122,N1,票,ヒョウ,,ballot; label; ticket; sign
+122,N1,縄,ジョウ,なわ、ただ.す,straw rope; cord
+123,N1,芽,ガ,め,bud; sprout; spear; germ
+123,N1,街,ガイ、カイ,まち,boulevard; street; town
+123,N1,賀,ガ,,congratulations; joy
+123,N1,郡,グン,こおり,county; district
+123,N1,鏡,キョウ、ケイ,かがみ,mirror; speculum; barrel-head; round rice-cake offering
+123,N1,隊,タイ,,regiment; party; company; squad
+123,N1,養,ヨウ、リョウ,やしな.う,foster; bring up; rear; develop; nurture
+123,N1,鹿,ロク,しか、か,deer
+123,N1,句,ク,,phrase; clause; sentence; passage; paragraph; counter for haiku
+123,N1,墓,ボ,はか,grave; tomb
+124,N1,士,シ,さむらい,gentleman; scholar; samurai; samurai radical (no. 33)
+124,N1,属,ゾク、ショク,さかん、つく、やから,belong; genus; subordinate official; affiliated
+124,N1,幹,カン,みき,tree trunk; main part; talent; capability
+124,N1,序,ジョ,つい.で、ついで,preface; beginning; order; precedence; occasion; chance; incidentally
+124,N1,弁,ベン、ヘン,かんむり、わきま.える、わ.ける、はなびら、あらそ.う,valve; petal; braid; speech; dialect; discrimination; dispose of; distinguish; conical cap
+124,N1,往,オウ,い.く、いにしえ、さき.に、ゆ.く,journey; travel; chase away; let go; going; before; formerly
+124,N1,態,タイ,わざ.と,attitude; condition; figure; appearance; voice (of verbs)
+124,N1,提,テイ、チョウ、ダイ,さ.げる,propose; take along; carry in hand
+124,N1,桜,オウ、ヨウ,さくら,cherry
+124,N1,潔,ケツ,いさぎよ.い,undefiled; pure; clean; righteous; gallant
+125,N1,災,サイ,わざわ.い,disaster; calamity; woe; curse; evil
+125,N1,益,エキ、ヤク,ま.す,benefit; gain; profit; advantage
+125,N1,眼,ガン、ゲン,まなこ、め,eyeball
+125,N1,紀,キ,,chronicle; account; narrative; history; annals; geologic period
+125,N1,素,ソ、ス,もと,elementary; principle; naked; uncovered
+125,N1,統,トウ,す.べる,overall; relationship; ruling; governing
+125,N1,織,ショク、シキ,お.る、お.り、おり、-おり、-お.り,weave; fabric
+125,N1,義,ギ,,righteousness; justice; morality; honor; loyalty; meaning
+125,N1,肥,ヒ,こ.える、こえ、こ.やす、こ.やし、ふと.る,fertilizer; get fat; fertile; manure; pamper
+125,N1,脈,ミャク,すじ,vein; pulse; hope
+126,N1,興,コウ、キョウ,おこ.る、おこ.す,entertain; revive; retrieve; interest; pleasure
+126,N1,舎,シャ、セキ,やど.る,cottage; inn; hut; house; mansion
+126,N1,衛,エイ、エ,,defense; protection
+126,N1,証,ショウ,あかし,evidence; proof; certificate
+126,N1,謝,シャ,あやま.る,apologize; thank; refuse
+126,N1,護,ゴ,まも.る,safeguard; protect
+126,N1,酸,サン,す.い,acid; bitterness; sour; tart
+126,N1,飼,シ,か.う,domesticate; raise; keep; feed
+126,N1,仁,ジン、ニ、ニン,,humanity; virtue; benevolence; charity; man; kernel
+126,N1,俳,ハイ,,haiku; actor
+127,N1,俵,ヒョウ,たわら,bag; bale; sack; counter for bags
+127,N1,傷,ショウ,きず、いた.む、いた.める,wound; hurt; injure; impair; pain; injury; cut; gash; scar; weak point
+127,N1,創,ソウ、ショウ,つく.る、はじ.める、きず、けず.しける,genesis; wound; injury; hurt; start; originate
+127,N1,厳,ゲン、ゴン,おごそ.か、きび.しい、いか.めしい、いつくし,stern; strictness; severity; rigidity
+127,N1,后,コウ、ゴ,きさき,empress; queen; after; behind; back; later
+127,N1,垂,スイ,た.れる、た.らす、た.れ、-た.れ、なんなんと.す,droop; suspend; hang; slouch
+127,N1,奏,ソウ,かな.でる,play music; speak to a ruler; complete
+127,N1,奮,フン,ふる.う,stirred up; be invigorated; flourish
+127,N1,姿,シ,すがた,figure; form; shape
+127,N1,孝,コウ、キョウ,,filial piety; child's respect
+128,N1,宗,シュウ、ソウ,むね,religion; sect; denomination; main point; origin; essence
+128,N1,宣,セン,のたま.う,proclaim; say; announce
+128,N1,密,ミツ,ひそ.か,secrecy; density (pop); minuteness; carefulness
+128,N1,寸,スン,,measurement; tenth of a shaku; a little; small
+128,N1,射,シャ,い.る、さ.す、う.つ,shoot; shine into; onto; archery
+128,N1,就,シュウ、ジュ,つ.く、つ.ける,concerning; settle; take position; depart; study; per
+128,N1,尺,シャク、セキ,さし,shaku; Japanese foot; measure; scale; rule
+128,N1,己,コ、キ,おのれ、つちのと、な,self
+128,N1,幕,マク、バク,とばり,curtain; bunting; act of play
+128,N1,従,ジュウ、ショウ、ジュ,したが.う、したが.える、より,accompany; obey; submit to; comply; follow; secondary; incidental; subordinate
+129,N1,忠,チュウ,,loyalty; fidelity; faithfulness
+129,N1,恩,オン,,grace; kindness; goodness; favor; mercy; blessing; benefit
+129,N1,憲,ケン,,constitution; law
+129,N1,我,ガ,われ、わ、わ.が-、わが-,ego; I; selfish; our; oneself
+129,N1,推,スイ,お.す,conjecture; infer; guess; suppose; support; push (for)
+129,N1,揮,キ,ふる.う,brandish; wave; wag; swing; shake
+129,N1,敵,テキ,かたき、あだ、かな.う,enemy; foe; opponent
+129,N1,朗,ロウ,ほが.らか、あき.らか,melodious; clear; bright; serene; cheerful
+129,N1,染,セン,そ.める、そ.まる、し.みる、し.み,dye; color; paint; stain; print
+129,N1,株,シュ,かぶ,stocks; stump; shares; stock; counter for small plants
+130,N1,模,モ、ボ,,imitation; copy; mock
+130,N1,樹,ジュ,き,timber; trees; wood; establish; set up
+130,N1,沿,エン,そ.う、-ぞ.い,run alongside; follow along; run along; lie along
+130,N1,派,ハ,,faction; group; party; clique; sect; school
+130,N1,源,ゲン,みなもと,source; origin
+130,N1,潮,チョウ,しお、うしお,tide; salt water; opportunity
+130,N1,激,ゲキ,はげ.しい,violent; get excited; enraged; chafe; incite
+130,N1,熟,ジュク,う.れる,mellow; ripen; mature; acquire skill
+130,N1,班,ハン,,squad; corps; unit; group
+130,N1,皇,コウ、オウ,,emperor
+131,N1,盛,セイ、ジョウ,も.る、さか.る、さか.ん,boom; prosper; copulate
+131,N1,盟,メイ,,alliance; oath
+131,N1,磁,ジ,,magnet; porcelain
+131,N1,秘,ヒ,ひ.める、ひそ.か、かく.す,secret; conceal
+131,N1,穀,コク,,cereals; grain
+131,N1,穴,ケツ,あな,hole; aperture; slit; cave; den
+131,N1,筋,キン,すじ,muscle; sinew; tendon; fiber; plot; plan; descent
+131,N1,策,サク,,scheme; plan; policy; step; means
+131,N1,糖,トウ,,sugar
+131,N1,系,ケイ,,lineage; system
+132,N1,納,ノウ、ナッ、ナ、ナン、トウ,おさ.める、-おさ.める、おさ.まる,settlement; obtain; reap; pay; supply; store
+132,N1,絹,ケン,きぬ,silk
+132,N1,縦,ジュウ,たて,vertical; length; height; self-indulgent; wayward
+132,N1,縮,シュク,ちぢ.む、ちぢ.まる、ちぢ.める、ちぢ.れる、ちぢ.らす,shrink; contract; shrivel; wrinkle; reduce
+132,N1,聖,セイ、ショウ,ひじり,holy; saint; sage; master; priest
+132,N1,肺,ハイ,,lungs
+132,N1,腸,チョウ,はらわた、わた,intestines; guts; bowels; viscera
+132,N1,臨,リン,のぞ.む,look to; face; meet; confront; attend; call on
+132,N1,至,シ,いた.る,climax; arrive; proceed; reach; attain; result in
+132,N1,舌,ゼツ,した,tongue; reed; clapper
+133,N1,蚕,サン、テン,かいこ、こ,silkworm
+133,N1,衆,シュウ、シュ,おお.い,masses; great numbers; multitude; populace
+133,N1,裁,サイ,た.つ、さば.く,tailor; judge; decision; cut out (pattern)
+133,N1,視,シ,み.る,inspection; regard as; see; look at
+133,N1,覧,ラン,み.る,perusal; see
+133,N1,討,トウ,う.つ,chastise; attack; defeat; destroy; conquer
+133,N1,訳,ヤク,わけ,translate; reason; circumstance; case
+133,N1,誕,タン,,nativity; be born; declension; lie; be arbitrary
+133,N1,誠,セイ,まこと,sincerity; admonish; warn; prohibit; truth; fidelity
+133,N1,貴,キ,たっと.い、とうと.い、たっと.ぶ、とうと.ぶ,precious; value; prize; esteem; honor
+134,N1,遺,イ、ユイ,のこ.す,bequeath; leave behind; reserve
+134,N1,郷,キョウ、ゴウ,さと,home town; village; native place; district
+134,N1,銭,セン、ゼン,ぜに、すき,coin; .01 yen; money
+134,N1,鋼,コウ,はがね,steel
+134,N1,閣,カク,,tower; tall building; palace
+134,N1,陛,ヘイ,,highness; steps (of throne)
+134,N1,障,ショウ,さわ.る,hinder; hurt; harm
+134,N1,丈,ジョウ,たけ、だけ,length; ten shaku; measure; Mr.; Ms.; height; stature; all (one has); only; that's all; merely
+134,N1,且,ショ、ソ、ショウ,か.つ,moreover; also; furthermore
+134,N1,丘,キュウ,おか,hill; knoll
+135,N1,丙,ヘイ,ひのえ,third class; 3rd; 3rd calendar sign
+135,N1,丹,タン,に,rust-colored; red; red lead; pills; sincerity
+135,N1,乏,ボウ,とぼ.しい、とも.しい,destitution; scarce; limited
+135,N1,乙,オツ、イツ,おと-、きのと,the latter; duplicate; strange; witty; fishhook radical (no. 5)
+135,N1,亀,キ、キュウ、キン,かめ,tortoise; turtle
+135,N1,亜,ア,つ.ぐ,Asia; rank next; come after; -ous
+135,N1,享,キョウ、コウ,う.ける,enjoy; receive; undergo; answer (phone); take; get; catch
+135,N1,亭,テイ、チン,,pavilion; restaurant; mansion; arbor; cottage; vaudeville; music hall; stage name
+135,N1,仙,セン、セント,,hermit; wizard; cent
+135,N1,仰,ギョウ、コウ,あお.ぐ、おお.せ、お.っしゃる、おっしゃ.る,face-up; look up; depend; seek; respect; revere; drink; take
+136,N1,企,キ,くわだ.てる、たくら.む,undertake; scheme; design; attempt; plan
+136,N1,伎,ギ、キ,わざ、わざおぎ,deed; skill
+136,N1,伏,フク,ふ.せる、ふ.す,prostrated; bend down; bow; cover; lay (pipes)
+136,N1,伐,バツ、ハツ、カ、ボチ,き.る、そむ.く、う.つ,fell; strike; attack; punish
+136,N1,伯,ハク,,chief; count; earl; uncle; Brazil
+136,N1,伴,ハン、バン,ともな.う,consort; accompany; bring with; companion
+136,N1,但,タン,ただ.し,however; but
+136,N1,佳,カ,,excellent; beautiful; good; pleasing; skilled
+136,N1,併,ヘイ,あわ.せる,join; get together; unite; collective
+136,N1,侍,ジ、シ,さむらい、はべ.る,waiter; samurai; wait upon; serve
+137,N1,侮,ブ,あなど.る、あなず.る,scorn; despise; make light of; contempt
+137,N1,侯,コウ,,marquis; lord; daimyo
+137,N1,侵,シン,おか.す,encroach; invade; raid; trespass; violate
+137,N1,促,ソク,うなが.す,stimulate; urge; press; demand; incite
+137,N1,俊,シュン,,sagacious; genius; excellence
+137,N1,俗,ゾク,,vulgar; customs; manners; worldliness; mundane things
+137,N1,俸,ホウ,,stipend; salary
+137,N1,倣,ホウ,なら.う,emulate; imitate
+137,N1,倫,リン,,ethics; companion
+137,N1,倹,ケン,つま.しい、つづまやか,frugal; economy; thrifty
+138,N1,偏,ヘン,かたよ.る,partial; side; left-side radical; inclining; biased
+138,N1,偵,テイ,,spy
+138,N1,偽,ギ、カ,いつわ.る、にせ、いつわ.り,falsehood; lie; deceive; pretend; counterfeit; forgery
+138,N1,傍,ボウ,かたわ.ら、わき、おか-、はた、そば,bystander; side; besides; while; nearby; third person
+138,N1,傑,ケツ,すぐ.れる,greatness; excellence
+138,N1,傘,サン,かさ,umbrella
+138,N1,催,サイ,もよう.す、もよお.す,sponsor; hold (a meeting); give (a dinner)
+138,N1,債,サイ,,bond; loan; debt
+138,N1,僕,ボク,しもべ,me; I (male); servant; manservant
+138,N1,僚,リョウ,,colleague; official; companion
+139,N1,僧,ソウ,,Buddhist priest; monk
+139,N1,儀,ギ,,ceremony; rule; affair; case; a matter
+139,N1,儒,ジュ,,Confucian
+139,N1,償,ショウ,つぐな.う,reparation; make up for; recompense; redeem
+139,N1,充,ジュウ,あ.てる、み.たす,allot; fill
+139,N1,克,コク,か.つ,overcome; kindly; skillfully
+139,N1,免,メン,まぬか.れる、まぬが.れる,excuse; dismissal
+139,N1,兼,ケン,か.ねる、-か.ねる,concurrently; and; beforehand; in advance
+139,N1,冒,ボウ,おか.す,risk; face; defy; dare; damage; assume (a name)
+139,N1,冗,ジョウ,,superfluous; uselessness
+140,N1,冠,カン,かんむり,crown; best; peerless
+140,N1,冶,ヤ,い.る,melting; smelting
+140,N1,准,ジュン,,quasi-; semi-; associate
+140,N1,凝,ギョウ,こ.る、こ.らす、こご.らす、こご.らせる、こご.る,congeal; freeze; stiff; be absorbed in
+140,N1,凡,ボン、ハン,およ.そ、おうよ.そ、すべ.て,commonplace; ordinary; mediocre
+140,N1,凶,キョウ,,villain; evil; bad luck; disaster
+140,N1,凸,トツ,でこ,convex; beetle brow; uneven
+140,N1,凹,オウ,くぼ.む、へこ.む、ぼこ,concave; hollow; sunken
+140,N1,刃,ジン、ニン,は、やいば、き.る,blade; sword; edge
+140,N1,刈,ガイ、カイ,か.る,reap; cut; clip; trim; prune
+141,N1,刑,ケイ,,punish; penalty; sentence; punishment
+141,N1,削,サク,けず.る、はつ.る、そ.ぐ,plane; sharpen; whittle; pare; shave
+141,N1,剖,ボウ,,divide
+141,N1,剛,ゴウ,,sturdy; strength
+141,N1,剣,ケン,つるぎ,sabre; sword; blade; clock hand
+141,N1,剤,ザイ、スイ、セイ,かる、けず.る,dose; medicine; drug
+141,N1,剰,ジョウ,あまつさえ、あま.り、あま.る,surplus; besides
+141,N1,劣,レツ,おと.る,inferiority; be inferior to; be worse
+141,N1,励,レイ,はげ.む、はげ.ます,encourage; be diligent; inspire
+141,N1,劾,ガイ,,censure; criminal investigation
+142,N1,勅,チョク,いまし.める、みことのり,imperial order
+142,N1,勘,カン,,intuition; perception; check; compare; sixth sense
+142,N1,勧,カン、ケン,すす.める,persuade; recommend; advise; encourage; offer
+142,N1,勲,クン,いさお,meritorious deed; merit
+142,N1,匠,ショウ,たくみ,artisan; workman; carpenter
+142,N1,匿,トク,かくま.う,hide; shelter; shield
+142,N1,升,ショウ,ます,measuring box; 1.8 liter
+142,N1,卑,ヒ,いや.しい、いや.しむ、いや.しめる,lowly; base; vile; vulgar; despise
+142,N1,卓,タク,,eminent; table; desk; high
+142,N1,即,ソク,つ.く、つ.ける、すなわ.ち,instant; namely; as is; conform; agree; adapt
+143,N1,却,キャク,かえ.って、しりぞ.く、しりぞ.ける,instead; on the contrary; rather; step back; withdraw; retreat
+143,N1,卸,シャ,おろ.す、おろし、おろ.し,wholesale
+143,N1,厄,ヤク,,unlucky; misfortune; bad luck; disaster
+143,N1,厘,リン,,rin; 1/10 sen; 1/10 bu
+143,N1,又,ユウ,また、また-、また.の-,or again; furthermore; on the other hand
+143,N1,及,キュウ,およ.ぶ、およ.び、および、およ.ぼす,reach out; exert; exercise; cause
+143,N1,叔,シュク,,uncle; youth
+143,N1,叙,ジョ,つい.ず、ついで,confer; relate; narrate; describe
+143,N1,吉,キチ、キツ,よし,good luck; joy; congratulations
+143,N1,吏,リ,,officer; an official
+144,N1,吐,ト,は.く、つ.く,spit; vomit; belch; confess; tell (lies)
+144,N1,吟,ギン,,versify; singing; recital
+144,N1,呂,ロ、リョ,せぼね,spine; backbone
+144,N1,呈,テイ,,display; offer; present; send; exhibit
+144,N1,呉,ゴ,く.れる、くれ,give; do something for; kingdom of Wu
+144,N1,哀,アイ,あわ.れ、あわ.れむ、かな.しい,pathetic; grief; sorrow; pathos; pity; sympathize
+144,N1,哲,テツ,さとい、あきらか,philosophy; clear
+144,N1,唄,バイ,うた、うた.う,song; ballad
+144,N1,唆,サ,そそ.る、そそのか.す,tempt; seduce; instigate; promote
+144,N1,唇,シン,くちびる,lips
+145,N1,唐,トウ,から,T'ang; China; foreign
+145,N1,唯,ユイ、イ,ただ,solely; only; merely; simply
+145,N1,啓,ケイ,ひら.く、さと.す,disclose; open; say
+145,N1,喚,カン,わめ.く,yell; cry; call; scream; summon
+145,N1,喝,カツ,,hoarse; scold
+145,N1,喪,ソウ,も,miss; mourning
+145,N1,嗣,シ,,heir; succeed
+145,N1,嘆,タン,なげ.く、なげ.かわしい,sigh; lament; moan; grieve; sigh of admiration
+145,N1,嘱,ショク,しょく.する、たの.む,entrust; request; send a message
+145,N1,噴,フン,ふ.く,erupt; spout; emit; flush out
+146,N1,嚇,カク,おど.す,menacing; dignity; majesty; threaten
+146,N1,囚,シュウ,とら.われる,captured; criminal; arrest; catch
+146,N1,圏,ケン,かこ.い,sphere; circle; radius; range
+146,N1,坑,コウ,,pit; hole
+146,N1,坪,ヘイ,つぼ,two-mat area; approx. thirty-six sq ft
+146,N1,垣,エン,かき,hedge; fence; wall
+146,N1,執,シツ、シュウ,と.る,tenacious; take hold; grasp; take to heart
+146,N1,培,バイ,つちか.う,cultivate; foster
+146,N1,堀,クツ,ほり,ditch; moat; canal
+146,N1,堅,ケン,かた.い、-がた.い,strict; hard; solid; tough; tight; reliable
+147,N1,堕,ダ,お.ちる、くず.す、くず.れる,degenerate; descend to; lapse into
+147,N1,堤,テイ,つつみ,dike; bank; embankment
+147,N1,堪,カン、タン,た.える、たま.る、こら.える、こた.える,withstand; endure; support; resist
+147,N1,塀,ヘイ、ベイ,,fence; wall; (kokuji)
+147,N1,塁,ルイ、ライ、スイ,とりで,bases; fort; rampart; walls; base(ball)
+147,N1,塊,カイ、ケ,かたまり、つちくれ,clod; lump; chunk; clot; mass
+147,N1,塑,ソ,でく,model; molding
+147,N1,塚,チョウ,つか、-づか,hillock; mound
+147,N1,塾,ジュク,,cram school; private school
+147,N1,墜,ツイ,お.ちる、お.つ,crash; fall (down)
+148,N1,墨,ボク,すみ,black ink; India ink; ink stick; Mexico
+148,N1,墳,フン,,tomb; mound
+148,N1,墾,コン,は.る、ひら.く,ground-breaking; open up farmland
+148,N1,壇,ダン、タン,,podium; stage; rostrum; terrace
+148,N1,壊,カイ、エ,こわ.す、こわ.れる、やぶ.る,demolition; break; destroy
+148,N1,壌,ジョウ,つち,lot; earth; soil
+148,N1,壮,ソウ,さかん,robust; manhood; prosperity
+148,N1,壱,イチ、イツ,ひとつ,one (in documents)
+148,N1,奇,キ,く.しき、あや.しい、くし、めずら.しい,strange; strangeness; curiosity
+148,N1,奉,ホウ、ブ,たてまつ.る、まつ.る、ほう.ずる,observance; offer; present; dedicate
+149,N1,契,ケイ,ちぎ.る,pledge; promise; vow
+149,N1,奔,ホン,はし.る,run; bustle
+149,N1,奨,ショウ、ソウ,すす.める,exhort; urge; encourage
+149,N1,奪,ダツ,うば.う,rob; take by force; snatch away; dispossess; plunder; usurp
+149,N1,奴,ド,やつ、やっこ,guy; slave; manservant; fellow
+149,N1,如,ジョ、ニョ,ごと.し,likeness; like; such as; as if; better; best; equal
+149,N1,妃,ヒ,きさき,queen; princess
+149,N1,妄,モウ、ボウ,みだ.りに,delusion; unnecessarily; without authority; reckless
+149,N1,妊,ニン、ジン,はら.む、みごも.る,pregnancy
+149,N1,妙,ミョウ、ビョウ,たえ,exquisite; strange; queer; mystery; miracle; excellent; delicate; charming
+150,N1,妥,ダ,,gentle; peace; satisfactory; appropriate
+150,N1,妨,ボウ,さまた.げる,disturb; prevent; hamper; obstruct
+150,N1,姫,キ,ひめ、ひめ-,princess
+150,N1,姻,イン,,matrimony; marry
+150,N1,威,イ,おど.す、おど.し、おど.かす,intimidate; dignity; majesty; menace; threaten
+150,N1,娠,シン,,with child; pregnancy
+150,N1,娯,ゴ,,recreation; pleasure
+150,N1,婆,バ,ばば、ばあ,old woman; grandma; wet nurse
+150,N1,婿,セイ,むこ,bridegroom; son-in-law
+150,N1,媒,バイ,なこうど,mediator; go-between
+151,N1,嫁,カ,よめ、とつ.ぐ、い.く、ゆ.く,marry into; bride
+151,N1,嫌,ケン、ゲン,きら.う、きら.い、いや,dislike; detest; hate
+151,N1,嫡,チャク、テキ,,legitimate wife; direct descent (non-bastard)
+151,N1,嬢,ジョウ,むすめ,lass; girl; Miss; daughter
+151,N1,孔,コウ、ク,あな,cavity; hole; slit; very; great; exceedingly
+151,N1,孤,コ,,orphan; alone
+151,N1,宜,ギ,よろ.しい、よろ.しく,best regards; good
+151,N1,宰,サイ,,superintend; manager; rule
+151,N1,宴,エン,うたげ,banquet; feast; party
+151,N1,宵,ショウ,よい,wee hours; evening; early night
+152,N1,寂,ジャク、セキ,さび、さび.しい、さび.れる、さみ.しい,loneliness; quietly; mellow; mature; death of a priest
+152,N1,寛,カン,くつろ.ぐ、ひろ.い、ゆる.やか,tolerant; leniency; generosity; relax; feel at home; be at ease; broadminded
+152,N1,寡,カ,,widow; minority; few
+152,N1,寧,ネイ,むし.ろ,rather; preferably; peaceful; quiet; tranquility
+152,N1,審,シン,つまび.らか、つぶさ.に,hearing; judge; trial
+152,N1,寮,リョウ,,dormitory; hostel; villa; tea pavillion
+152,N1,寿,ジュ、ス、シュウ,ことぶき、ことぶ.く、ことほ.ぐ,longevity; congratulations; one's natural life
+152,N1,尉,イ、ジョウ,,military officer; jailer; old man; rank
+152,N1,尋,ジン,たず.ねる、ひろ,inquire; fathom; look for
+152,N1,尚,ショウ,なお,esteem; furthermore; still; yet
+153,N1,尼,ニ,あま,nun
+153,N1,尽,ジン、サン,つ.きる、つ.くす、つ.かす、-づ.く、-ず.く、ことごと.く,exhaust; use up; run out of; deplete; befriend; serve
+153,N1,尾,ビ,お,tail; end; counter for fish; lower slope of mountain
+153,N1,尿,ニョウ,ゆばり、いばり、しと,urine
+153,N1,屈,クツ,かが.む、かが.める,yield; bend; flinch; submit
+153,N1,履,リ,は.く,perform; complete; footgear; shoes; boots; put on (the feet)
+153,N1,屯,トン,たむろ,barracks; police station; camp; ton
+153,N1,岬,コウ,みさき,headland; cape; spit; promontory
+153,N1,岳,ガク,たけ,point; peak; mountain
+153,N1,峠,,とうげ,mountain peak; mountain pass; climax; crest; (kokuji)
+154,N1,峡,キョウ、コウ,はざま,gorge; ravine
+154,N1,峰,ホウ,みね、ね,summit; peak
+154,N1,崇,スウ,あが.める,adore; respect; revere; worship
+154,N1,崩,ホウ,くず.れる、-くず.れ、くず.す,crumble; die; demolish; level
+154,N1,嵐,ラン,あらし,storm; tempest
+154,N1,巡,ジュン,めぐ.る、めぐ.り,patrol; go around; circumference
+154,N1,巧,コウ,たく.み、たく.む、うま.い,adroit; skilled; ingenuity
+154,N1,帆,ハン,ほ,sail
+154,N1,帝,テイ,みかど,sovereign; the emperor; god; creator
+154,N1,帥,スイ,,commander; leading troops; governor
+155,N1,幣,ヘイ,ぬさ,cash; bad habit; humble prefix; gift; Shinto offerings of cloth; rope; cut paper
+155,N1,幻,ゲン,まぼろし,phantasm; vision; dream; illusion; apparition
+155,N1,幽,ユウ,ふか.い、かす.か、くら.い、しろ.い,seclude; confine to a room; deep; profound; secluded; faint; dark; tranquil; calm
+155,N1,幾,キ,いく-、いく.つ、いく.ら,how many; how much; how far; how long; some; several
+155,N1,庶,ショ,,commoner; all; bastard
+155,N1,庸,ヨウ,,commonplace; ordinary; employment
+155,N1,廃,ハイ,すた.れる、すた.る,abolish; obsolete; cessation; discarding; abandon
+155,N1,廉,レン,,bargain; reason; charge; suspicion; point; account; purity; honest; low price; cheap; rested; contented; peaceful
+155,N1,廊,ロウ,,corridor; hall; tower
+155,N1,廷,テイ,,courts; imperial court; government office
+156,N1,弊,ヘイ,,abuse; evil; vice; breakage
+156,N1,弐,ニ、ジ,ふた.つ、そえ,II; two; second
+156,N1,弔,チョウ,とむら.う、とぶら.う,condolences; mourning; funeral
+156,N1,弥,ミ、ビ,や、いや、いよ.いよ、わた.る,all the more; increasingly
+156,N1,弦,ゲン,つる,bowstring; chord; hypotenuse
+156,N1,弧,コ,,arc; arch; bow
+156,N1,弾,ダン、タン,ひ.く、-ひ.き、はず.む、たま、はじ.く、はじ.ける、ただ.す、はじ.きゆみ,bullet; twang; flip; snap
+156,N1,彩,サイ,いろど.る,coloring; paint; makeup
+156,N1,彫,チョウ,ほ.る、-ぼ.り,carve; engrave; chisel
+156,N1,彰,ショウ,,patent; clear
+157,N1,影,エイ,かげ,shadow; silhouette; phantom
+157,N1,征,セイ,,subjugate; attack the rebellious; collect taxes
+157,N1,徐,ジョ,おもむ.ろに,gradually; slowly; deliberately; gently
+157,N1,循,ジュン,,sequential; follow
+157,N1,微,ビ,かす.か,delicate; minuteness; insignificance
+157,N1,徴,チョウ、チ,しるし,indications; sign; omen; symptom; collect; seek; refer to; question
+157,N1,徹,テツ,,penetrate; clear; pierce; strike home; sit up (all night)
+157,N1,忌,キ,い.む、い.み、い.まわしい,mourning; abhor; detestable; death anniversary
+157,N1,忍,ニン,しの.ぶ、しの.ばせる,endure; bear; put up with; conceal; secrete; spy; sneak
+157,N1,怠,タイ,おこた.る、なま.ける,neglect; laziness
+158,N1,怪,カイ、ケ,あや.しい、あや.しむ,suspicious; mystery; apparition
+158,N1,恒,コウ,つね、つねに,constancy; always
+158,N1,恨,コン,うら.む、うら.めしい,regret; bear a grudge; resentment; malice; hatred
+158,N1,恭,キョウ,うやうや.しい,respect; reverent
+158,N1,悔,カイ,く.いる、く.やむ、くや.しい,repent; regret
+158,N1,悟,ゴ,さと.る,enlightenment; perceive; discern; realize; understand
+158,N1,悠,ユウ,,permanence; distant; long time; leisure
+158,N1,患,カン,わずら.う,afflicted; disease; suffer from; be ill
+158,N1,悦,エツ,よろこ.ぶ、よろこ.ばす,ecstasy; joy; rapture
+158,N1,悼,トウ,いた.む,lament; grieve over
+159,N1,惑,ワク,まど.う,beguile; delusion; perplexity
+159,N1,惜,セキ,お.しい、お.しむ,pity; be sparing of; frugal; stingy; regret
+159,N1,惨,サン、ザン,みじ.め、いた.む、むご.い,wretched; disaster; cruelty; harsh
+159,N1,惰,ダ,,lazy; laziness
+159,N1,愁,シュウ,うれ.える、うれ.い,distress; grieve; lament; be anxious
+159,N1,愉,ユ,たの.しい、たの.しむ,pleasure; happy; rejoice
+159,N1,愚,グ,おろ.か,foolish; folly; absurdity; stupid
+159,N1,慈,ジ,いつく.しむ,mercy
+159,N1,慌,コウ,あわ.てる、あわ.ただしい,disconcerted; be confused; lose one's head
+159,N1,慎,シン,つつし.む、つつ.ましい、つつし、つつし.み,humility; be careful; discreet; prudent
+160,N1,慕,ボ,した.う,pining; yearn for; love dearly; adore
+160,N1,慢,マン,,ridicule; laziness
+160,N1,慨,ガイ,なげ.く,rue; be sad; sigh; lament
+160,N1,慮,リョ,おもんぱく.る、おもんぱか.る,prudence; thought; concern; consider; deliberate; fear
+160,N1,慰,イ,なぐさ.める、なぐさ.む,consolation; amusement; seduce; cheer; make sport of; comfort; console
+160,N1,慶,ケイ,よろこ.び,jubilation; congratulate; rejoice; be happy
+160,N1,憂,ユウ,うれ.える、うれ.い、う.い、う.き,melancholy; grieve; lament; be anxious; sad; unhappy
+160,N1,憤,フン,いきどお.る,aroused; resent; be indignant; anger
+160,N1,憧,ショウ、トウ、ドウ,あこが.れる,yearn after; long for; aspire to; admire; adore
+160,N1,憩,ケイ,いこ.い、いこ.う,recess; rest; relax; repose
+161,N1,憶,オク,,recollection; think; remember
+161,N1,憾,カン,うら.む,remorse; regret; be sorry
+161,N1,懇,コン,ねんご.ろ,sociable; kind; courteous; hospitable; cordial
+161,N1,懐,カイ、エ,ふところ、なつ.かしい、なつ.かしむ、なつ.く、なつ.ける、なず.ける、いだ.く、おも.う,feelings; heart; yearn; miss someone; become attached to; bosom; breast; pocket
+161,N1,懲,チョウ,こ.りる、こ.らす、こ.らしめる,penal; chastise; punish; discipline
+161,N1,懸,ケン、ケ,か.ける、か.かる,state of suspension; hang; depend; consult; distant; far apart
+161,N1,戒,カイ,いまし.める,commandment
+161,N1,戯,ギ、ゲ,たわむ.れる、ざ.れる、じゃ.れる,frolic; play; sport
+161,N1,房,ボウ,ふさ,tassel; tuft; fringe; bunch; lock (hair); segment (orange); house; room
+161,N1,扇,セン,おうぎ,fan; folding fan
+162,N1,扉,ヒ,とびら,front door; title page; front page
+162,N1,扱,ソウ、キュウ,あつか.い、あつか.う、あつか.る、こ.く,handle; entertain; thresh; strip
+162,N1,扶,フ,たす.ける,aid; help; assist
+162,N1,抄,ショウ,,extract; selection; summary; copy; spread thin
+162,N1,把,ハ、ワ,,grasp; faggot; bunch; counter for bundles
+162,N1,抑,ヨク,おさ.える,repress; well; now; in the first place; push; shove; press; seal; do in spite of
+162,N1,抗,コウ,あらが.う,confront; resist; defy; oppose
+162,N1,択,タク,えら.ぶ,choose; select; elect; prefer
+162,N1,披,ヒ,,expose; open
+162,N1,抵,テイ,,resist; reach; touch
+163,N1,抹,マツ,,rub; paint; erase
+163,N1,抽,チュウ,ひき-,pluck; pull; extract; excel
+163,N1,拍,ハク、ヒョウ,,clap; beat (music)
+163,N1,拐,カイ,,kidnap; falsify
+163,N1,拒,キョ、ゴ,こば.む,repel; refuse; reject; decline
+163,N1,拓,タク,ひら.く,clear (the land); open; break up (land)
+163,N1,拘,コウ,かか.わる,arrest; seize; concerned; adhere to; despite
+163,N1,拙,セツ,つたな.い,bungling; clumsy; unskillful
+163,N1,拠,キョ、コ,よ.る,foothold; based on; follow; therefore
+163,N1,括,カツ,くく.る,fasten; tie up; arrest; constrict
+164,N1,拳,ケン、ゲン,こぶし,fist
+164,N1,拷,ゴウ,,torture; beat
+164,N1,挑,チョウ,いど.む,challenge; contend for; make love to
+164,N1,振,シン,ふ.る、ふ.れる、ふ.るう,shake; wave; wag; swing
+164,N1,挿,ソウ,さ.す、はさ.む,insert; put in; graft; wear (sword)
+164,N1,据,キョ,す.える、す.わる,set; lay a foundation; install; equip; squat down; sit down
+164,N1,掌,ショウ,てのひら、たなごころ,palm of hand; rule; administer; conduct
+164,N1,排,ハイ,,repudiate; exclude; expel; reject; line up; arrange
+164,N1,掛,カイ、ケイ,か.ける、-か.ける、か.け、-か.け、-が.け、か.かる、-か.かる、-が.かる、か.かり、-が.かり、かかり、-がかり,hang; suspend; depend; arrive at; tax; pour
+164,N1,控,コウ,ひか.える、ひか.え,withdraw; draw in; hold back; refrain from; be moderate
+165,N1,措,ソ,お.く,set aside; give up; suspend; discontinue; lay aside; except
+165,N1,掲,ケイ,かか.げる,put up (a notice); put up; hoist; display; hang out; publish; describe
+165,N1,描,ビョウ,えが.く、か.く,sketch; compose; write; draw; paint
+165,N1,揚,ヨウ,あ.げる、-あ.げ、あ.がる,raise; elevate; hoist; praise; extol; fry in deep fat
+165,N1,握,アク,にぎ.る,grip; hold; mould sushi; bribe
+165,N1,援,エン,,abet; help; save
+165,N1,揺,ヨウ,ゆ.れる、ゆ.る、ゆ.らぐ、ゆ.るぐ、ゆ.する、ゆ.さぶる、ゆ.すぶる、うご.く,swing; shake; sway; rock; tremble; vibrate
+165,N1,搬,ハン,,conveyor; carry; transport
+165,N1,搭,トウ,,board; load (a vehicle); ride
+165,N1,携,ケイ,たずさ.える、たずさ.わる,portable; carry (in hand); armed with; bring along
+166,N1,搾,サク,しぼ.る,squeeze
+166,N1,摂,セツ、ショウ,おさ.める、かね.る、と.る,vicarious; surrogate; act in addition to; take in; absorb
+166,N1,摘,テキ,つ.む,pinch; pick; pluck; trim; clip; summarize
+166,N1,摩,マ,ま.する、さす.る、す.る,chafe; rub; polish; grind; scrape
+166,N1,撃,ゲキ,う.つ,beat; attack; defeat; conquer
+166,N1,撤,テツ,,remove; withdraw; disarm; dismantle; reject; exclude
+166,N1,撮,サツ,と.る、つま.む、-ど.り,snapshot; take pictures
+166,N1,撲,ボク,,slap; strike; hit; beat; tell; speak
+166,N1,擁,ヨウ,,hug; embrace; possess; protect; lead
+166,N1,擦,サツ,す.る、す.れる、-ず.れ、こす.る、こす.れる,grate; rub; scratch; scrape; chafe; scour
+167,N1,擬,ギ,まが.い、もど.き,mimic; aim (a gun) at; nominate; imitate
+167,N1,攻,コウ,せ.める,aggression; attack; criticize; polish
+167,N1,敏,ビン,さとい,cleverness; agile; alert
+167,N1,敢,カン,あ.えて、あ.えない、あ.えず,daring; brave; bold; sad; tragic; pitiful
+167,N1,敷,フ,し.く、-し.き,spread; pave; sit; promulgate
+167,N1,斉,セイ、サイ,そろ.う、ひと.しい、ひと.しく、あたる、はやい,adjusted; alike; equal; similar variety of
+167,N1,斎,サイ,とき、つつし.む、ものいみ、い.む、いわ.う、いつ.く,purification; Buddhist food; room; worship; avoid; alike
+167,N1,斗,ト、トウ,,Big Dipper; ten sho (vol); sake dipper; dots and cross radical (no. 68)
+167,N1,斜,シャ,なな.め、はす,diagonal; slanting; oblique
+167,N1,斤,キン,,axe; 1.32 lb; catty; counter for loaves of bread; axe radical (no. 69)
+168,N1,斥,セキ,しりぞ.ける,reject; retreat; recede; withdraw; repel; repulse
+168,N1,施,シ、セ,ほどこ.す,give; bestow; perform; alms
+168,N1,旋,セン,め.ぐる、いばり,rotation; go around
+168,N1,既,キ,すで.に,previously; already; long ago
+168,N1,旦,タン、ダン,あき.らか、あきら、ただし、あさ、あした,daybreak; dawn; morning
+168,N1,旨,シ,むね、うま.い,delicious; relish; show a liking for; purport; will; clever; expert
+168,N1,旬,ジュン、シュン,,decameron; ten-day period; season (for specific products)
+168,N1,旺,オウ,さかん,flourishing; successful; beautiful; vigorous
+168,N1,昆,コン,,descendants; elder brother; insect
+168,N1,是,ゼ、シ,これ、この、ここ,just so; this; right; justice
+169,N1,晶,ショウ,,sparkle; clear; crystal
+169,N1,暁,ギョウ、キョウ,あかつき、さと.る,daybreak; dawn; in the event
+169,N1,暇,カ,ひま、いとま,spare time; rest; leisure; time; leave of absence
+169,N1,暦,レキ、リャク,こよみ,calendar; almanac
+169,N1,暫,ザン,しばら.く,temporarily; a while; moment; long time
+169,N1,曹,ソウ、ゾウ,,office; official; comrade; fellow
+169,N1,朕,チン,,majestic plural; imperial we
+169,N1,朱,シュ,あけ,vermilion; cinnabar; scarlet; red; bloody
+169,N1,朴,ボク,ほう、ほお、えのき,crude; simple; plain; docile
+169,N1,朽,キュウ,く.ちる,decay; rot; remain in seclusion
+170,N1,杉,サン,すぎ,cedar; cryptomeria
+170,N1,析,セキ,,chop; divide; tear; analyze
+170,N1,枠,,わく,frame; framework; spindle; spool; bounding-box; (kokuji)
+170,N1,枢,スウ、シュ,とぼそ、からくり,hinge; pivot; door; center of things
+170,N1,架,カ,か.ける、か.かる,erect; frame; mount; support; shelf; construct
+170,N1,柄,ヘイ,がら、え、つか,design; pattern; build; nature; character; handle; crank; grip; knob; shaft
+170,N1,某,ボウ,それがし、なにがし,so-and-so; one; a certain; that person
+170,N1,柳,リュウ,やなぎ,willow
+170,N1,栓,セン,,plug; bolt; cork; bung; stopper
+170,N1,核,カク,,nucleus; core; kernel
+171,N1,栽,サイ,,plantation; planting
+171,N1,桃,トウ,もも,peach
+171,N1,桑,ソウ,くわ,mulberry
+171,N1,桟,サン、セン,かけはし,scaffold; cleat; frame; jetty; bolt (door)
+171,N1,棄,キ,す.てる,abandon; throw away; discard; resign; reject; sacrifice
+171,N1,棋,キ,ご,chess piece; Japanese chess; shogi
+171,N1,棚,ホウ,たな、-だな,shelf; ledge; rack; mount; mantle; trellis
+171,N1,棟,トウ,むね、むな-,ridgepole; ridge
+171,N1,棺,カン,,coffin; casket
+171,N1,椎,ツイ、スイ,つち、う.つ,chinquapin; mallet; spine
+172,N1,楼,ロウ,たかどの,watchtower; lookout; high building
+172,N1,概,ガイ,おおむ.ね,outline; condition; approximation; generally
+172,N1,槽,ソウ,ふね,vat; tub; tank
+172,N1,欄,ラン,てすり,column; handrail; blank; space
+172,N1,欺,ギ,あざむ.く,deceit; cheat; delude
+172,N1,款,カン,,goodwill; article; section; friendship; collusion
+172,N1,歓,カン,よろこ.ぶ,delight; joy
+172,N1,殉,ジュン,,martyrdom; follow by resigning
+172,N1,殊,シュ,こと,particularly; especially; exceptionally
+172,N1,殖,ショク,ふ.える、ふ.やす,augment; increase; multiply; raise
+173,N1,殴,オウ,なぐ.る,assault; hit; beat; thrash
+173,N1,殻,カク、コク、バイ,から、がら,husk; nut shell
+173,N1,汁,ジュウ,しる、-しる、つゆ,soup; juice; broth; sap; gravy; pus
+173,N1,江,コウ,え,creek; inlet; bay
+173,N1,汰,タ、タイ,おご.る、にご.る、よな.げる,washing; sieving; filtering; weeding out; luxury
+173,N1,沙,サ、シャ,すな、よなげる,sand
+173,N1,没,ボツ、モツ,おぼ.れる、しず.む、ない,drown; sink; hide; fall into; disappear; die
+173,N1,沢,タク,さわ、うるお.い、うるお.す、つや,swamp; marsh; brilliance; grace
+173,N1,沼,ショウ,ぬま,marsh; lake; bog; swamp; pond
+173,N1,泌,ヒツ、ヒ,,ooze; flow; soak in; penetrate; secrete
+174,N1,泡,ホウ,あわ,bubbles; foam; suds; froth
+174,N1,泰,タイ,,peaceful; calm; peace; easy; Thailand; extreme; excessive; great
+174,N1,洞,ドウ,ほら,den; cave; excavation
+174,N1,津,シン,つ,haven; port; harbor; ferry
+174,N1,洪,コウ,,deluge; flood; vast
+174,N1,浄,ジョウ、セイ,きよ.める、きよ.い,clean; purify; cleanse; exorcise; Manchu Dynasty
+174,N1,浜,ヒン,はま,seacoast; beach; seashore
+174,N1,浦,ホ,うら,bay; creek; inlet; gulf; beach; seacoast
+174,N1,浪,ロウ,,wandering; waves; billows; reckless; unrestrained
+174,N1,浸,シン,ひた.す、ひた.る、つ.かる,immersed; soak; dip; steep; moisten; wet; dunk
+175,N1,涯,ガイ,はて,horizon; shore; limit; bound
+175,N1,淑,シュク,しと.やか,graceful; gentle; pure
+175,N1,淡,タン,あわ.い,thin; faint; pale; fleeting
+175,N1,添,テン,そ.える、そ.う,annexed; accompany; marry; suit; meet; satisfy; attach; append; garnish; imitate
+175,N1,渇,カツ,かわ.く,thirst; dry up; parch
+175,N1,渉,ショウ,わた.る,ford; go cross; transit; ferry; import; involve
+175,N1,渋,ジュウ、シュウ,しぶ、しぶ.い、しぶ.る,astringent; hesitate; reluctant; have diarrhea
+175,N1,渓,ケイ,たに、たにがわ,mountain stream; valley
+175,N1,渦,カ,うず,whirlpool; eddy; vortex
+175,N1,湧,ユウ、ヨウ、ユ,わ.く,boil; ferment; seethe; uproar; breed
+176,N1,溝,コウ,みぞ,gutter; ditch; sewer; drain; 10**32
+176,N1,滅,メツ,ほろ.びる、ほろ.ぶ、ほろ.ぼす,destroy; ruin; overthrow; perish
+176,N1,滑,カツ、コツ,すべ.る、なめ.らか,slippery; slide; slip; fail exam
+176,N1,滝,ロウ、ソウ,たき,waterfall; rapids; cascade
+176,N1,滞,タイ、テイ,とどこお.る,stagnate; be delayed; overdue; arrears
+176,N1,漂,ヒョウ,ただよ.う,drift; float (on liquid)
+176,N1,漆,シツ,うるし,lacquer; varnish; seven
+176,N1,漏,ロウ,も.る、も.れる、も.らす,leak; escape; time
+176,N1,漠,バク,,vague; obscure; desert; wide
+176,N1,漫,マン,みだり.に、そぞ.ろ,cartoon; involuntarily; unrestrained; in spite of oneself; corrupt
+177,N1,漬,シ,つ.ける、つ.かる、-づ.け、-づけ,pickling; soak; moisten; steep
+177,N1,漸,ゼン,ようや.く、やや、ようよ.う、すす.む,steadily; gradually advancing; finally; barely
+177,N1,潜,セン,ひそ.む、もぐ.る、かく.れる、くぐ.る、ひそ.める,submerge; conceal; hide; lower (voice); hush
+177,N1,潤,ジュン,うるお.う、うるお.す、うる.む,wet; be watered; profit by; receive benefits; favor; charm; steep
+177,N1,澄,チョウ,す.む、す.ます、-す.ます,lucidity; be clear; clear; clarify; settle; strain; look grave
+177,N1,濁,ダク、ジョク,にご.る、にご.す,voiced; uncleanness; wrong; nigori; impurity
+177,N1,濫,ラン,みだ.りに、みだ.りがましい,excessive; overflow; spread out
+177,N1,瀬,ライ,せ,rapids; current; torrent; shallows; shoal
+177,N1,炉,ロ,いろり,hearth; furnace; kiln; reactor
+177,N1,炊,スイ,た.く、-だ.き,cook; boil
+178,N1,炎,エン,ほのお,inflammation; flame; blaze
+178,N1,為,イ,ため、な.る、な.す、す.る、たり、つく.る、なり,do; change; make; benefit; welfare; be of use; reach to; try; practice; cost; serve as; good; advantage; as a result of
+178,N1,烈,レツ,はげ.しい,ardent; violent; vehement; furious; severe; extreme
+178,N1,焦,ショウ,こ.げる、こ.がす、こ.がれる、あせ.る、じ.れる、じ.らす,char; hurry; impatient; irritate; burn; scorch; singe
+178,N1,煩,ハン、ボン,わずら.う、わずら.わす、うるさ.がる、うるさ.い,anxiety; trouble; worry; pain; ill; annoy; nuisance; irksome
+178,N1,煮,シャ,に.る、-に、に.える、に.やす,boil; cook
+178,N1,爵,シャク,,baron; peerage; court rank
+178,N1,爽,ソウ,あき.らか、さわ.やか、たがう,refreshing; bracing; resonant; sweet; clear
+178,N1,牲,セイ,,animal sacrifice; offering
+178,N1,犠,ギ、キ,いけにえ,sacrifice
+179,N1,狂,キョウ,くる.う、くる.おしい、くるお.しい,lunatic; insane; crazy; confuse
+179,N1,狩,シュ,か.る、か.り、-が.り,hunt; raid; gather
+179,N1,猛,モウ,,fierce; rave; rush; become furious; wildness; strength
+179,N1,猟,リョウ,かり、か.る,game-hunting; shooting; game; bag
+179,N1,献,ケン、コン,たてまつ.る,offering; counter for drinks; present; offer
+179,N1,猶,ユウ、ユ,なお,furthermore; still; yet
+179,N1,猿,エン,さる,monkey
+179,N1,獄,ゴク,,prison; jail
+179,N1,獣,ジュウ,けもの、けだもの,animal; beast
+179,N1,獲,カク,え.る,seize; get; find; earn; acquire; can; may; able to
+180,N1,玄,ゲン,くろ、くろ.い,mysterious; occultness; black; deep; profound
+180,N1,珠,シュ,たま,pearl; gem; jewel
+180,N1,琴,キン、ゴン,こと,harp; koto
+180,N1,瑠,ル、リュウ,,lapis lazuli
+180,N1,璃,リ,,glassy; lapis lazuli
+180,N1,璽,ジ,,emperor's seal
+180,N1,瓶,ビン、ヘイ,かめ,bottle; vial; jar; jug; vat; urn
+180,N1,甚,ジン,はなは.だ、はなは.だしい,tremendously; very; great; exceedingly
+180,N1,甲,コウ、カン,きのえ,armor; high (voice); A grade; first class; former; instep; carapace
+180,N1,畔,ハン,あぜ、くろ、ほとり,paddy ridge; levee
+181,N1,畝,ボウ、ホ、モ、ム,せ、うね,furrow; thirty tsubo; ridge; rib
+181,N1,疎,ソ、ショ,うと.い、うと.む、まば.ら,alienate; rough; neglect; shun; sparse; penetrate
+181,N1,疫,エキ、ヤク,,epidemic
+181,N1,疾,シツ,はや.い,rapidly
+181,N1,症,ショウ,,symptoms; illness
+181,N1,痘,トウ,,pox; smallpox
+181,N1,痢,リ,,diarrhea
+181,N1,痴,チ,し.れる、おろか,stupid; foolish
+181,N1,癒,ユ,い.える、いや.す、い.やす,healing; cure; quench (thirst); wreak
+181,N1,癖,ヘキ,くせ、くせ.に,mannerism; habit; vice; trait; fault; kink
+182,N1,盆,ボン,,basin; lantern festival; tray
+182,N1,監,カン,,oversee; official; govt office; rule; administer
+182,N1,盤,バン,,tray; shallow bowl; platter; tub; board; phonograph record
+182,N1,盲,モウ,めくら,blind; blind man; ignoramus
+182,N1,盾,ジュン,たて,shield; escutcheon; pretext
+182,N1,眉,ビ、ミ,まゆ,eyebrow
+182,N1,眺,チョウ,なが.める,stare; watch; look at; see; scrutinize
+182,N1,睡,スイ,ねむ.る、ねむ.い,drowsy; sleep; die
+182,N1,督,トク,,coach; command; urge; lead; supervise
+182,N1,睦,ボク、モク,むつ.まじい、むつ.む、むつ.ぶ,intimate; friendly; harmonious
+183,N1,瞬,シュン,またた.く、まじろ.ぐ,wink; blink; twinkle
+183,N1,瞭,リョウ,あきらか,clear
+183,N1,瞳,ドウ、トウ,ひとみ,pupil (of eye)
+183,N1,矛,ム、ボウ,ほこ,halberd; arms; festival float
+183,N1,矯,キョウ,た.める,rectify; straighten; correct; reform; cure; control; pretend; falsify
+183,N1,砕,サイ,くだ.く、くだ.ける,smash; break; crush; familiar; popular
+183,N1,砲,ホウ,,cannon; gun
+183,N1,硝,ショウ,,nitrate; saltpeter
+183,N1,硫,リュウ,,sulphur
+183,N1,碁,ゴ,,Go
+184,N1,碑,ヒ,いしぶみ,tombstone; monument
+184,N1,礁,ショウ,,reef; sunken rock
+184,N1,礎,ソ,いしずえ,cornerstone; foundation stone
+184,N1,祉,シ,,welfare; happiness
+184,N1,祥,ショウ,さいわ.い、きざ.し、よ.い、つまび.らか,auspicious; happiness; blessedness; good omen; good fortune
+184,N1,禅,ゼン、セン,しずか、ゆず.る,Zen; silent meditation
+184,N1,禍,カ,わざわい,calamity; misfortune; evil; curse
+184,N1,秀,シュウ,ひい.でる,excel; excellence; beauty; surpass
+184,N1,租,ソ,,tariff; crop tax; borrowing
+184,N1,秩,チツ,,regularity; salary; order
+185,N1,称,ショウ,たた.える、とな.える、あ.げる、かな.う、はか.り、はか.る、ほめ.る,appellation; praise; admire; name; title; fame
+185,N1,稚,チ、ジ,いとけない、おさない、おくて、おでる,immature; young
+185,N1,稲,トウ、テ,いね、いな-,rice plant
+185,N1,稼,カ,かせ.ぐ,earnings; work; earn money
+185,N1,稿,コウ,わら、したがき,draft; copy; manuscript; straw
+185,N1,穂,スイ,ほ,ear; ear (grain); head; crest (wave)
+185,N1,穏,オン,おだ.やか,calm; quiet; moderation
+185,N1,穫,カク,,harvest; reap
+185,N1,窃,セツ,ぬす.む、ひそ.か,stealth; steal; secret; private; hushed
+185,N1,窒,チツ,,plug up; obstruct
+186,N1,窮,キュウ、キョウ,きわ.める、きわ.まる、きわ.まり、きわ.み,hard up; destitute; suffer; perplexed; cornered
+186,N1,窯,ヨウ,かま,kiln; oven; furnace
+186,N1,竜,リュウ、リョウ、ロウ,たつ、いせ,dragon; imperial
+186,N1,端,タン,はし、は、はた、-ばた、はな,edge; origin; end; point; border; verge; cape
+186,N1,箇,カ、コ,,counter for articles
+186,N1,範,ハン,,pattern; example; model
+186,N1,篤,トク,あつ.い,fervent; kind; cordial; serious; deliberate
+186,N1,簿,ボ,,register; record book
+186,N1,籍,セキ,,enroll; domiciliary register; membership
+186,N1,粋,スイ,いき,chic; style; purity; essence; pith; cream; elite; choice
+187,N1,粗,ソ,あら.い、あら-,coarse; rough; rugged
+187,N1,粘,ネン,ねば.る,sticky; glutinous; greasy; persevere
+187,N1,粛,シュク、スク,つつし.む,solemn; quietly; softly
+187,N1,粧,ショウ,,cosmetics; adorn (one's person)
+187,N1,糧,リョウ、ロウ,かて,provisions; food; bread
+187,N1,糾,キュウ,ただ.す,twist; ask; investigate; verify
+187,N1,紋,モン,,family crest; figures
+187,N1,紛,フン,まぎ.れる、-まぎ.れ、まぎ.らす、まぎ.らわす、まぎ.らわしい,distract; be mistaken for; go astray; divert
+187,N1,紡,ボウ,つむ.ぐ,spinning
+187,N1,索,サク,,cord; rope; searching; inquiring
+188,N1,紫,シ,むらさき,purple; violet
+188,N1,累,ルイ,,accumulate; involvement; trouble; tie up; continually
+188,N1,紳,シン,,sire; good belt; gentleman
+188,N1,紺,コン,,dark blue; navy
+188,N1,絞,コウ,しぼ.る、し.める、し.まる,strangle; constrict; wring
+188,N1,継,ケイ,つ.ぐ、まま-,inherit; succeed; continue; patch; graft (tree)
+188,N1,維,イ,,fiber; tie; rope
+188,N1,綱,コウ,つな,hawser; class (genus); rope; cord; cable
+188,N1,網,モウ,あみ,netting; network
+188,N1,緊,キン,し.める、し.まる,tense; solid; hard; reliable; tight
+189,N1,締,テイ,し.まる、し.まり、し.める、-し.め、-じ.め,tighten; tie; shut; lock; fasten
+189,N1,緩,カン,ゆる.い、ゆる.やか、ゆる.む、ゆる.める,slacken; loosen; relax; lessen; be moderate; ease
+189,N1,緯,イ,よこいと、ぬき,horizontal; woof; left & right; (parallels of) latitude; prediction
+189,N1,縁,エン、-ネン,ふち、ふち.どる、ゆかり、よすが、へり、えにし,affinity; relation; connection; edge; border; verge; brink
+189,N1,縛,バク,しば.る,truss; arrest; bind; tie; restrain
+189,N1,縫,ホウ,ぬ.う,sew; stitch; embroider
+189,N1,繁,ハン,しげ.る、しげ.く,luxuriant; thick; overgrown; frequency; complexity; trouble
+189,N1,繊,セン,,slender; fine; thin kimono
+189,N1,繕,ゼン,つくろ.う,darning; repair; mend; trim; tidy up; adjust
+189,N1,繭,ケン,まゆ、きぬ,cocoon
+190,N1,繰,ソウ,く.る,winding; reel; spin; turn (pages); look up; refer to
+190,N1,缶,カン,かま,tin can; container; jar radical (no. 121)
+190,N1,罰,バツ、バチ、ハツ,ばっ.する,penalty; punishment
+190,N1,罷,ヒ,まか.り-、や.める,quit; stop; leave; withdraw; go
+190,N1,羅,ラ,うすもの,gauze; thin silk; Rome; arrange; spread out
+190,N1,翁,オウ,おきな,venerable old man
+190,N1,翻,ホン、ハン,ひるがえ.る、ひるがえ.す,flip; turn over; wave; flutter; change (mind)
+190,N1,翼,ヨク,つばさ,wing; plane; flank
+190,N1,耐,タイ,た.える,-proof; enduring
+190,N1,耗,モウ、コウ,,decrease
+191,N1,聴,チョウ、テイ,き.く、ゆる.す,listen; headstrong; naughty; careful inquiry
+191,N1,肖,ショウ,あやか.る,resemblance
+191,N1,肝,カン,きも,liver; pluck; nerve; chutzpah
+191,N1,肢,シ,,limb; arms & legs
+191,N1,肪,ボウ,,obese; fat
+191,N1,胆,タン,きも,gall bladder; courage; pluck; nerve
+191,N1,胎,タイ,,womb; uterus
+191,N1,胞,ホウ,,placenta; sac; sheath
+191,N1,胴,ドウ,,trunk; torso; hull (ship); hub of wheel
+191,N1,脅,キョウ,おびや.かす、おど.す、おど.かす,threaten; coerce
+192,N1,脚,キャク、キャ、カク,あし,skids; leg; undercarriage; lower part; base
+192,N1,脱,ダツ,ぬ.ぐ、ぬ.げる,undress; removing; escape from; get rid of; be left out; take off
+192,N1,腐,フ,くさ.る、-くさ.る、くさ.れる、くさ.れ、くさ.らす、くさ.す,rot; decay; sour
+192,N1,膜,マク,,membrane
+192,N1,膨,ボウ,ふく.らむ、ふく.れる,swell; get fat; thick
+192,N1,臭,シュウ,くさ.い、-くさ.い、にお.う、にお.い,stinking; ill-smelling; suspicious looking; odor; savor; fragrance; be fragrant; stink; glow; be bright
+192,N1,致,チ,いた.す,doth; do; send; forward; cause; exert; incur; engage
+192,N1,舗,ホ,,shop; store; pave
+192,N1,舶,ハク,,liner; ship
+192,N1,艇,テイ,,rowboat; small boat
+193,N1,艦,カン,,warship
+193,N1,艶,エン,つや、なま.めかしい、あで.やか、つや.めく、なま.めく,glossy; luster; glaze; polish; charm; colorful; captivating
+193,N1,芋,ウ,いも,taro; yam; tuber
+193,N1,芝,シ,しば,turf; lawn
+193,N1,芳,ホウ,かんば.しい,perfume; balmy; favorable; fragrant
+193,N1,苗,ビョウ、ミョウ,なえ、なわ-,seedling; sapling; shoot
+193,N1,茂,モ,しげ.る,overgrown; grow thick; be luxuriant
+193,N1,茎,ケイ、キョウ,くき,stalk; stem
+193,N1,荘,ソウ、ショウ、チャン,ほうき、おごそ.か,villa; inn; cottage; feudal manor; solemn; dignified
+193,N1,菊,キク,,chrysanthemum
+194,N1,菌,キン,,germ; fungus; bacteria
+194,N1,華,カ、ケ,はな,splendor; flower; petal; shine; luster; ostentatious; showy; gay; gorgeous
+194,N1,葬,ソウ,ほうむ.る,interment; bury; shelve
+194,N1,蓄,チク,たくわ.える,amass; raise; hoard; store
+194,N1,薦,セン,すす.める,recommend; mat; advise; encourage; offer
+194,N1,薪,シン,たきぎ、まき,fuel; firewood; kindling
+194,N1,薫,クン,かお.る,send forth fragrance; fragrant; be scented; smoke (tobacco)
+194,N1,藍,ラン,あい,indigo
+194,N1,藤,トウ、ドウ,ふじ,wisteria
+194,N1,藩,ハン,,clan; enclosure
+195,N1,藻,ソウ,も,seaweed; duckweed
+195,N1,虎,コ,とら,tiger; drunkard
+195,N1,虐,ギャク,しいた.げる,tyrannize; oppress
+195,N1,虚,キョ、コ,むな.しい、うつ.ろ,void; emptiness; unpreparedness; crack; fissure; untruth
+195,N1,虜,リョ、ロ,とりこ、とりく,captive; barbarian; low epithet for the enemy
+195,N1,虞,グ,おそれ、おもんぱか.る、はか.る、うれ.える、あざむ.く、あやま.る、のぞ.む、たの.しむ,fear; uneasiness; anxiety; concern; expectation; consideration
+195,N1,虹,コウ,にじ,rainbow
+195,N1,蚊,ブン,か,mosquito
+195,N1,蛇,ジャ、ダ、イ、ヤ,へび,snake; serpent; hard drinker
+195,N1,蛍,ケイ,ほたる,lightning-bug; firefly
+196,N1,蛮,バン,えびす,barbarian
+196,N1,融,ユウ,と.ける、と.かす,dissolve; melt
+196,N1,衝,ショウ,つ.く,collide; brunt; highway; opposition (astronomy); thrust; pierce; stab; prick
+196,N1,衡,コウ,,equilibrium; measuring rod; scale
+196,N1,衰,スイ,おとろ.える,decline; wane; weaken
+196,N1,衷,チュウ,,inmost; heart; mind; inside
+196,N1,裂,レツ,さ.く、さ.ける、-ぎ.れ,split; rend; tear
+196,N1,裕,ユウ,,abundant; rich; fertile
+196,N1,裸,ラ,はだか,naked; nude; uncovered; partially clothed
+196,N1,褐,カツ,,brown; woollen kimono
+197,N1,褒,ホウ,ほ.める,praise; extol
+197,N1,襟,キン,えり,collar; neck; lapel; one's inner feelings
+197,N1,襲,シュウ,おそ.う、かさ.ね,attack; advance on; succeed to; pile; heap
+197,N1,覆,フク,おお.う、くつがえ.す、くつがえ.る,capsize; cover; shade; mantle; be ruined
+197,N1,覇,ハ、ハク,はたがしら,hegemony; supremacy; leadership; champion
+197,N1,訂,テイ,ただ.す,revise; correct; decide
+197,N1,託,タク,かこつ.ける、かこ.つ、かこ.つける,consign; requesting; entrusting with; pretend; hint
+197,N1,訟,ショウ,,sue; accuse
+197,N1,訴,ソ,うった.える,accusation; sue; complain of pain; appeal to
+197,N1,診,シン,み.る,checkup; seeing; diagnose; examine
+198,N1,詐,サ,いつわ.る,lie; falsehood; deceive; pretend
+198,N1,詔,ショウ,みことのり,imperial edict
+198,N1,詠,エイ,よ.む、うた.う,recitation; poem; song; composing
+198,N1,該,ガイ,,above-stated; the said; that specific
+198,N1,詳,ショウ,くわ.しい、つまび.らか,detailed; full; minute; accurate; well-informed
+198,N1,誇,コ,ほこ.る,boast; be proud; pride; triumphantly
+198,N1,誉,ヨ,ほま.れ、ほ.める,reputation; praise; honor; glory
+198,N1,誓,セイ,ちか.う,vow; swear; pledge
+198,N1,誘,ユウ,さそ.う、いざな.う,entice; lead; tempt; invite; ask; call for; seduce; allure
+198,N1,請,セイ、シン、ショウ,こ.う、う.ける,solicit; invite; ask
+199,N1,諭,ユ,さと.す,rebuke; admonish; charge; warn; persuade
+199,N1,諮,シ,はか.る,consult with
+199,N1,諾,ダク,,consent; assent; agreement
+199,N1,謀,ボウ、ム,はか.る、たばか.る、はかりごと,conspire; cheat; impose on; plan; devise; scheme; have in mind; deceive
+199,N1,謁,エツ,,audience; audience (with king)
+199,N1,謄,トウ,,mimeograph; copy
+199,N1,謙,ケン,へりくだ.る,self-effacing; humble oneself; condescend; be modest
+199,N1,謡,ヨウ,うた.い、うた.う,song; sing; ballad; noh chanting
+199,N1,謹,キン,つつし.む,discreet; reverently; humbly
+199,N1,譜,フ,,musical score; music; note; staff; table; genealogy
+200,N1,譲,ジョウ,ゆず.る,defer; turnover; transfer; convey
+200,N1,豚,トン,ぶた,pork; pig
+200,N1,豪,ゴウ,えら.い,overpowering; great; powerful; excelling; Australia
+200,N1,貞,テイ、ジョウ,ただし.い、さだ,upright; chastity; constancy; righteousness
+200,N1,貢,コウ、ク,みつ.ぐ,tribute; support; finance
+200,N1,貫,カン,つらぬ.く、ぬ.く、ぬき,pierce; 8 1/3lbs; penetrate; brace
+200,N1,賄,ワイ,まかな.う,bribe; board; supply; finance
+200,N1,賊,ゾク,,burglar; rebel; traitor; robber
+200,N1,賓,ヒン,まろうど、したがう,V.I.P.; guest
+200,N1,賜,シ,たまわ.る、たま.う、たも.う,grant; gift; boon; results
+201,N1,賠,バイ,,compensation; indemnify
+201,N1,賦,フ、ブ,,levy; ode; prose; poem; tribute; installment
+201,N1,購,コウ,,subscription; buy
+201,N1,赦,シャ,ゆる.す,pardon; forgiveness
+201,N1,赴,フ,おもむ.く,proceed; get; become; tend
+201,N1,趣,シュ,おもむき、おもむ.く,purport; gist; elegance; interest; proceed to; tend; become
+201,N1,距,キョ,へだ.たる、けづめ,long-distance; spur; fetlock
+201,N1,跡,セキ,あと,tracks; mark; print; impression
+201,N1,跳,チョウ,は.ねる、と.ぶ、-と.び,hop; leap up; spring; jerk; prance; buck; splash; sputter; snap
+201,N1,践,セン,ふ.む,tread; step on; trample; practice; carry through
+202,N1,踏,トウ,ふ.む、ふ.まえる,step; trample; carry through; appraise; evade payment
+202,N1,躍,ヤク,おど.る,leap; dance; skip
+202,N1,軌,キ,,rut; wheel; track; model; way of doing
+202,N1,軸,ジク,,axis; pivot; stem; stalk; counter for book scrolls
+202,N1,載,サイ,の.せる、の.る,ride; board; get on; place; spread; 10**44; record; publish
+202,N1,輝,キ,かがや.く,radiance; shine; sparkle; gleam; twinkle
+202,N1,輩,ハイ,-ばら、やから、やかい、ともがら,comrade; fellow; people; companions
+202,N1,轄,カツ,くさび,control; wedge
+202,N1,辱,ジョク,はずかし.める,embarrass; humiliate; shame
+202,N1,迅,ジン,,swift; fast
+203,N1,迫,ハク,せま.る,urge; force; imminent; spur on
+203,N1,迭,テツ,,transfer; alternation
+203,N1,透,トウ,す.く、す.かす、す.ける、とう.る、とう.す,transparent; permeate; filter; penetrate
+203,N1,逐,チク,,pursue; drive away; chase; accomplish; attain; commit
+203,N1,逓,テイ,かわ.る、たがいに,relay; in turn; sending
+203,N1,逝,セイ,ゆ.く、い.く,departed; die
+203,N1,逮,タイ,,apprehend; chase
+203,N1,逸,イツ,そ.れる、そ.らす、はぐ.れる,deviate; idleness; leisure; miss the mark; evade; elude; parry; diverge
+203,N1,遂,スイ,と.げる、つい.に,consummate; accomplish; attain; commit (suicide)
+203,N1,遇,グウ,あ.う,meet; encounter; interview; treat; entertain; receive; deal with
+204,N1,遍,ヘン,あまね.く,everywhere; times; widely; generally
+204,N1,遣,ケン,つか.う、-つか.い、-づか.い、つか.わす、や.る,dispatch; despatch; send; give; donate; do; undertake
+204,N1,遭,ソウ,あ.う、あ.わせる,encounter; meet; party; association; interview; join
+204,N1,遮,シャ,さえぎ.る,intercept; interrupt; obstruct
+204,N1,遵,ジュン,,abide by; follow; obey; learn
+204,N1,遷,セン,うつ.る、うつ.す、みやこがえ,transition; move; change
+204,N1,避,ヒ,さ.ける、よ.ける,evade; avoid; avert; ward off; shirk; shun
+204,N1,還,カン,かえ.る,send back; return
+204,N1,那,ナ、ダ,なに、なんぞ、いかん,what?
+204,N1,邦,ホウ,くに,home country; country; Japan
+205,N1,邪,ジャ,よこし.ま,wicked; injustice; wrong
+205,N1,邸,テイ,やしき,residence; mansion
+205,N1,郎,ロウ、リョウ,おとこ,son; counter for sons
+205,N1,郭,カク,くるわ,enclosure; quarters; fortification; red-light district
+205,N1,酌,シャク,く.む,bar-tending; serving sake; the host; draw (water); ladle; scoop; pump
+205,N1,酔,スイ,よ.う、よ.い、よ,drunk; feel sick; poisoned; elated; spellbound
+205,N1,酢,サク,す,vinegar; sour; acid; tart
+205,N1,酪,ラク,,dairy products; whey; broth; fruit juice
+205,N1,酬,シュウ、シュ、トウ,むく.いる,repay; reward; retribution
+205,N1,酵,コウ,,fermentation
+206,N1,酷,コク,ひど.い,cruel; severe; atrocious; unjust
+206,N1,醜,シュウ,みにく.い、しこ,ugly; unclean; shame; bad looking
+206,N1,醸,ジョウ,かも.す,brew; cause
+206,N1,采,サイ,と.る、いろどり,dice; form; appearance; take; gather; coloring
+206,N1,釈,シャク、セキ,とく、す.てる、ゆる.す,explanation
+206,N1,釣,チョウ,つ.る、つ.り、つ.り-,angling; fish; catch; allure; ensnare
+206,N1,鈴,レイ、リン,すず,small bell; buzzer
+206,N1,鉛,エン,なまり,lead
+206,N1,鉢,ハチ、ハツ,,bowl; rice tub; pot; crown
+206,N1,銃,ジュウ,つつ,gun; arms
+207,N1,銘,メイ,,inscription; signature (of artisan)
+207,N1,鋳,チュウ、イ、シュ、シュウ,い.る,casting; mint
+207,N1,錠,ジョウ,,lock; fetters; shackles
+207,N1,錦,キン,にしき,brocade; fine dress; honors
+207,N1,錬,レン,ね.る,tempering; refine; drill; train; polish
+207,N1,錯,サク、シャク,,confused; mix; be in disorder
+207,N1,鍛,タン,きた.える,forge; discipline; train
+207,N1,鎌,レン、ケン,かま,sickle; scythe; trick
+207,N1,鎖,サ,くさり、とざ.す,chain; irons; connection
+207,N1,鎮,チン,しず.める、しず.まる、おさえ,tranquilize; ancient peace-preservation centers
+208,N1,鐘,ショウ,かね,bell; gong; chimes
+208,N1,鑑,カン,かんが.みる、かがみ,specimen; take warning from; learn from
+208,N1,閑,カン,,leisure
+208,N1,閥,バツ,,clique; lineage; pedigree; faction; clan
+208,N1,閲,エツ,けみ.する,review; inspection; revision
+208,N1,闘,トウ,たたか.う、あらそ.う,fight; war
+208,N1,阻,ソ,はば.む,thwart; separate from; prevent; obstruct; deter; impede
+208,N1,附,フ,つ.ける、つ.く,affixed; attach; refer to; append
+208,N1,陣,ジン,,camp; battle array; ranks; position; sudden; brief time
+208,N1,陥,カン,おちい.る、おとしい.れる,collapse; fall into; cave in; fall (castle); slide into
+209,N1,陪,バイ,,obeisance; follow; accompany; attend on
+209,N1,陰,イン,かげ、かげ.る,shade; yin; negative; sex organs; secret; shadow
+209,N1,陳,チン,ひ.ねる,exhibit; state; relate; explain
+209,N1,陵,リョウ,みささぎ,mausoleum; imperial tomb; mound; hill
+209,N1,陶,トウ,すえ,pottery; porcelain
+209,N1,隆,リュウ,,hump; high; noble; prosperity
+209,N1,随,ズイ,まにま.に、したが.う,follow; though; notwithstanding; while; during; both; all; obey; submit to; comply; at the mercy of (the waves)
+209,N1,隔,カク,へだ.てる、へだ.たる,isolate; alternate; distance; separate; gulf
+209,N1,隠,イン、オン,かく.す、かく.し、かく.れる、よ.る,conceal; hide; cover
+209,N1,隣,リン,とな.る、となり,neighboring
+210,N1,隷,レイ,したが.う、しもべ,slave; servant; prisoner; criminal; follower
+210,N1,隻,セキ,,vessels; counter for ships; fish; birds; arrows; one of a pair
+210,N1,雄,ユウ,お-、おす、おん,masculine; male; hero; leader; superiority; excellence
+210,N1,雅,ガ,みや.び,gracious; elegant; graceful; refined
+210,N1,雌,シ,め-、めす、めん,feminine; female
+210,N1,離,リ,はな.れる、はな.す,detach; separation; disjoin; digress
+210,N1,雰,フン,,atmosphere; fog
+210,N1,雷,ライ,かみなり、いかずち、いかづち,thunder; lightning bolt
+210,N1,需,ジュ,,demand; request; need
+210,N1,霊,レイ、リョウ,たま,spirits; soul
+211,N1,霜,ソウ,しも,frost
+211,N1,霧,ム、ボウ、ブ,きり,fog; mist
+211,N1,露,ロ、ロウ,つゆ,dew; tears; expose; Russia
+211,N1,韻,イン,,rhyme; elegance; tone
+211,N1,響,キョウ,ひび.く,echo; sound; resound; ring; vibrate
+211,N1,項,コウ,うなじ,paragraph; nape of neck; clause; item; term (expression)
+211,N1,須,ス、シュ,すべから.く、すべし、ひげ、まつ、もち.いる、もと.める,ought; by all means; necessarily
+211,N1,頑,ガン,かたく.な,stubborn; foolish; firmly
+211,N1,頒,ハン,わ.かつ、わ.ける,distribute; disseminate; partition; understand
+211,N1,頻,ヒン,しき.りに,repeatedly; recur
+212,N1,顕,ケン,あきらか、あらわ.れる,appear; existing
+212,N1,顧,コ,かえり.みる,look back; review; examine oneself; turn around
+212,N1,飢,キ,う.える,hungry; starve
+212,N1,飽,ホウ,あ.きる、あ.かす、あ.く,sated; tired of; bored; satiate
+212,N1,飾,ショク,かざ.る、かざ.り,decorate; ornament; adorn; embellish
+212,N1,餓,ガ,う.える,starve; hungry; thirst
+212,N1,駄,ダ、タ,,burdensome; pack horse; horse load; send by horse; trivial; worthless
+212,N1,駆,ク,か.ける、か.る,drive; run; gallop; advance; inspire; impel
+212,N1,駒,ク,こま,pony; horse; colt
+212,N1,騎,キ,,equestrian; riding on horses; counter for equestrians
+213,N1,騒,ソウ,さわ.ぐ、うれい、さわ.がしい,boisterous; make noise; clamor; disturb; excite
+213,N1,騰,トウ,あが.る、のぼ.る,leaping up; jumping up; rising; advancing; going
+213,N1,驚,キョウ,おどろ.く、おどろ.かす,wonder; be surprised; frightened; amazed
+213,N1,髄,ズイ,,marrow; pith; essence
+213,N1,鬼,キ,おに、おに-,ghost; devil
+213,N1,魂,コン,たましい、たま,soul; spirit
+213,N1,魅,ミ,,fascination; charm; bewitch
+213,N1,魔,マ,,witch; demon; evil spirit
+213,N1,鮮,セン,あざ.やか,fresh; vivid; clear; brilliant; Korea
+213,N1,鯨,ゲイ,くじら,whale
+214,N1,鶏,ケイ,にわとり、とり,chicken
+214,N1,鶴,カク,つる,crane; stork
+214,N1,麗,レイ,うるわ.しい、うら.らか,lovely; beautiful; graceful; resplendent
+214,N1,麻,マ、マア,あさ,hemp; flax; numb
+214,N1,黙,モク、ボク,だま.る、もだ.す,silence; become silent; stop speaking; leave as is
+214,N1,鼓,コ,つづみ,drum; beat; rouse; muster
