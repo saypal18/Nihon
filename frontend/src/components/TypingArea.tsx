@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Sentence, ScriptMode, TypingStats, KanaStat } from '../lib/types';
+import { Sentence, ScriptMode, TypingStats, KanaStat, TokenReading } from '../lib/types';
 import { EmielTypingSession, bindEmielKeyboard } from '../lib/emielAdapter';
 import { howlerAudio } from '../lib/howlerAudio';
 import { calculateLiveStats } from '../lib/stats';
@@ -15,6 +15,9 @@ interface TypingAreaProps {
   onStatsUpdate: (stats: TypingStats) => void;
   onPassageComplete: (finalStats: TypingStats) => void;
   resetTrigger: number;
+  isOverlayOpen?: boolean;
+  selectedToken?: { sentenceId: number; tokenIndex: number } | null;
+  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number) => void;
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = ({
@@ -24,6 +27,9 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   onStatsUpdate,
   onPassageComplete,
   resetTrigger,
+  isOverlayOpen = false,
+  selectedToken,
+  onSelectToken,
 }) => {
   const [activeSentenceIndex, setActiveSentenceIndex] = useState(0);
   const [hiraganaCursor, setHiraganaCursor] = useState(0);
@@ -123,8 +129,23 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   // Main Keystroke Event Listener using Emiel's official activate binding
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (isOverlayOpen) return;
 
     const unbind = bindEmielKeyboard(window, (inputEvt) => {
+      // Ignore all typing if overlay is open
+      if (isOverlayOpen) return;
+
+      // In case an event fires while an input/textarea/contenteditable element has focus
+      const activeEl = typeof document !== 'undefined' ? document.activeElement : null;
+      if (
+        activeEl &&
+        (activeEl.tagName === 'INPUT' ||
+          activeEl.tagName === 'TEXTAREA' ||
+          (activeEl as HTMLElement).isContentEditable)
+      ) {
+        return;
+      }
+
       // Only process keydown strokes
       if (inputEvt.input.type !== 'keydown') return;
 
@@ -208,6 +229,7 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
     initializeSession,
     onStatsUpdate,
     onPassageComplete,
+    isOverlayOpen,
   ]);
 
   if (sentences.length === 0) {
@@ -248,6 +270,12 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
                 pendingRoman={isActive ? pendingRoman : ''}
                 scriptMode={scriptMode}
                 showTranslation={showTranslation}
+                selectedTokenIndex={
+                  selectedToken && selectedToken.sentenceId === sentence.id
+                    ? selectedToken.tokenIndex
+                    : null
+                }
+                onSelectToken={onSelectToken}
               />
             </div>
           );

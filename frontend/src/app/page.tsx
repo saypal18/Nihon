@@ -6,11 +6,14 @@ import { TypingArea } from '../components/TypingArea';
 import { InputModal } from '../components/InputModal';
 import { AudioSettingsModal } from '../components/AudioSettingsModal';
 import { ResultsModal } from '../components/ResultsModal';
+import { GlossarySidebar } from '../components/GlossarySidebar';
 import {
   Sentence,
   ScriptMode,
   TypingStats,
   AudioSettings,
+  SelectedWordInfo,
+  TokenReading,
 } from '../lib/types';
 import { howlerAudio, DEFAULT_AUDIO_SETTINGS } from '../lib/howlerAudio';
 
@@ -22,11 +25,11 @@ const DEFAULT_PASSAGE: Sentence[] = [
     katakana: 'ワガハイハネコデアル。',
     translation: 'I am a cat.',
     tokens: [
-      { surface: '吾輩', reading: 'ワガハイ', hiragana: 'わがはい', is_punctuation: false },
-      { surface: 'は', reading: 'ハ', hiragana: 'は', is_punctuation: false },
-      { surface: '猫', reading: 'ネコ', hiragana: 'ねこ', is_punctuation: false },
-      { surface: 'で', reading: 'デ', hiragana: 'で', is_punctuation: false },
-      { surface: 'ある', reading: 'アル', hiragana: 'ある', is_punctuation: false },
+      { surface: '吾輩', reading: 'ワガハイ', hiragana: 'わがはい', is_punctuation: false, dictionary_form: '吾輩' },
+      { surface: 'は', reading: 'ハ', hiragana: 'は', is_punctuation: false, dictionary_form: 'は' },
+      { surface: '猫', reading: 'ネコ', hiragana: 'ねこ', is_punctuation: false, dictionary_form: '猫' },
+      { surface: 'で', reading: 'デ', hiragana: 'で', is_punctuation: false, dictionary_form: 'だ' },
+      { surface: 'ある', reading: 'アル', hiragana: 'ある', is_punctuation: false, dictionary_form: 'ある' },
       { surface: '。', reading: '。', hiragana: '。', is_punctuation: true },
     ],
   },
@@ -37,10 +40,10 @@ const DEFAULT_PASSAGE: Sentence[] = [
     katakana: 'ナマエハマダナイ。',
     translation: 'I do not have a name yet.',
     tokens: [
-      { surface: '名前', reading: 'ナマエ', hiragana: 'なまえ', is_punctuation: false },
-      { surface: 'は', reading: 'ハ', hiragana: 'は', is_punctuation: false },
-      { surface: 'まだ', reading: 'マダ', hiragana: 'まだ', is_punctuation: false },
-      { surface: '無い', reading: 'ナイ', hiragana: 'ない', is_punctuation: false },
+      { surface: '名前', reading: 'ナマエ', hiragana: 'なまえ', is_punctuation: false, dictionary_form: '名前' },
+      { surface: 'は', reading: 'ハ', hiragana: 'は', is_punctuation: false, dictionary_form: 'は' },
+      { surface: 'まだ', reading: 'マダ', hiragana: 'まだ', is_punctuation: false, dictionary_form: 'まだ' },
+      { surface: '無い', reading: 'ナイ', hiragana: 'ない', is_punctuation: false, dictionary_form: '無い' },
       { surface: '。', reading: '。', hiragana: '。', is_punctuation: true },
     ],
   },
@@ -51,16 +54,16 @@ const DEFAULT_PASSAGE: Sentence[] = [
     katakana: 'ドコデウマレタカトントケントウガツカヌ。',
     translation: 'I have no inkling where I was born.',
     tokens: [
-      { surface: 'どこ', reading: 'ドコ', hiragana: 'どこ', is_punctuation: false },
-      { surface: 'で', reading: 'デ', hiragana: 'で', is_punctuation: false },
-      { surface: '生れ', reading: 'ウマレ', hiragana: 'うまれ', is_punctuation: false },
-      { surface: 'た', reading: 'タ', hiragana: 'た', is_punctuation: false },
-      { surface: 'か', reading: 'カ', hiragana: 'か', is_punctuation: false },
-      { surface: 'とんと', reading: 'トント', hiragana: 'とんと', is_punctuation: false },
-      { surface: '見当', reading: 'ケントウ', hiragana: 'けんとう', is_punctuation: false },
-      { surface: 'が', reading: 'ガ', hiragana: 'が', is_punctuation: false },
-      { surface: 'つか', reading: 'ツカ', hiragana: 'つか', is_punctuation: false },
-      { surface: 'ぬ', reading: 'ヌ', hiragana: 'ぬ', is_punctuation: false },
+      { surface: 'どこ', reading: 'ドコ', hiragana: 'どこ', is_punctuation: false, dictionary_form: 'どこ' },
+      { surface: 'で', reading: 'デ', hiragana: 'で', is_punctuation: false, dictionary_form: 'で' },
+      { surface: '生れ', reading: 'ウマレ', hiragana: 'うまれ', is_punctuation: false, dictionary_form: '生れる' },
+      { surface: 'た', reading: 'タ', hiragana: 'た', is_punctuation: false, dictionary_form: 'た' },
+      { surface: 'か', reading: 'カ', hiragana: 'か', is_punctuation: false, dictionary_form: 'か' },
+      { surface: 'とんと', reading: 'トント', hiragana: 'とんと', is_punctuation: false, dictionary_form: 'とんと' },
+      { surface: '見当', reading: 'ケントウ', hiragana: 'けんとう', is_punctuation: false, dictionary_form: '見当' },
+      { surface: 'が', reading: 'ガ', hiragana: 'が', is_punctuation: false, dictionary_form: 'が' },
+      { surface: 'つか', reading: 'ツカ', hiragana: 'つか', is_punctuation: false, dictionary_form: 'つく' },
+      { surface: 'ぬ', reading: 'ヌ', hiragana: 'ぬ', is_punctuation: false, dictionary_form: 'ぬ' },
       { surface: '。', reading: '。', hiragana: '。', is_punctuation: true },
     ],
   },
@@ -90,6 +93,7 @@ export default function Home() {
   const [isAudioSettingsOpen, setIsAudioSettingsOpen] = useState(false);
   const [isResultsModalOpen, setIsResultsModalOpen] = useState(false);
   const [isLoadingPassage, setIsLoadingPassage] = useState(false);
+  const [selectedWord, setSelectedWord] = useState<SelectedWordInfo | null>(null);
 
   // Audio settings
   const [audioSettings, setAudioSettings] = useState<AudioSettings>(DEFAULT_AUDIO_SETTINGS);
@@ -127,19 +131,56 @@ export default function Home() {
     setResetTrigger((prev) => prev + 1);
     setStats(INITIAL_STATS);
     setIsResultsModalOpen(false);
+    setSelectedWord(null);
   }, []);
+
+  // Word selection handler
+  const handleSelectToken = useCallback(
+    (sentence: Sentence, token: TokenReading, tokenIndex: number) => {
+      setSelectedWord((prev) => {
+        if (
+          prev &&
+          prev.sentenceId === sentence.id &&
+          prev.tokenIndex === tokenIndex
+        ) {
+          return null; // Toggle off if clicked again
+        }
+        return {
+          sentenceId: sentence.id,
+          tokenIndex,
+          token,
+          sentence,
+        };
+      });
+    },
+    []
+  );
+
+  const isOverlayOpen =
+    isInputModalOpen || isAudioSettingsOpen || isResultsModalOpen;
+
+  // Escape key closes the glossary sidebar if open
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedWord) {
+        setSelectedWord(null);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [selectedWord]);
 
   // Tab key listener for fast reset
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Tab' && !isInputModalOpen && !isAudioSettingsOpen) {
+      if (e.key === 'Tab' && !isOverlayOpen) {
         e.preventDefault();
         handleReset();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleReset, isInputModalOpen, isAudioSettingsOpen]);
+  }, [handleReset, isOverlayOpen]);
 
   // Prevent spacebar from scrolling the page unless typing in an editable field
   useEffect(() => {
@@ -166,13 +207,13 @@ export default function Home() {
   }, []);
 
   // Handle Passage Submission to FastAPI backend
-  const handleProcessPassage = async (text: string) => {
+  const handleProcessPassage = async (text: string, allowedKanji?: string) => {
     setIsLoadingPassage(true);
     try {
       const res = await fetch('http://localhost:8000/api/process-passage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, allowed_kanji: allowedKanji }),
       });
 
       if (!res.ok) {
@@ -216,7 +257,11 @@ export default function Home() {
       />
 
       {/* Main Typing Workspace */}
-      <main className="flex-1 flex flex-col items-center justify-center py-6 px-4">
+      <main
+        className={`flex-1 flex flex-col items-center justify-center py-6 px-4 transition-all duration-300 ${
+          selectedWord ? 'xl:pr-96' : ''
+        }`}
+      >
         <TypingArea
           sentences={sentences}
           scriptMode={scriptMode}
@@ -224,15 +269,34 @@ export default function Home() {
           onStatsUpdate={setStats}
           onPassageComplete={handlePassageComplete}
           resetTrigger={resetTrigger}
+          isOverlayOpen={isOverlayOpen}
+          selectedToken={
+            selectedWord
+              ? {
+                  sentenceId: selectedWord.sentenceId,
+                  tokenIndex: selectedWord.tokenIndex,
+                }
+              : null
+          }
+          onSelectToken={handleSelectToken}
         />
       </main>
 
       {/* Footer info bar */}
-      <footer className="border-t border-slate-900 py-3 text-center text-xs text-slate-500 font-mono">
+      <footer
+        className={`border-t border-slate-900 py-3 text-center text-xs text-slate-500 font-mono transition-all duration-300 ${
+          selectedWord ? 'xl:pr-96' : ''
+        }`}
+      >
         <span>Nihon Touch-Typing • SudachiPy Morphological Engine & Local Ollama Translation</span>
       </footer>
 
-      {/* Modals */}
+      {/* Modals & Slide-out Glossary */}
+      <GlossarySidebar
+        selectedWord={selectedWord}
+        onClose={() => setSelectedWord(null)}
+      />
+
       <InputModal
         isOpen={isInputModalOpen}
         onClose={() => setIsInputModalOpen(false)}

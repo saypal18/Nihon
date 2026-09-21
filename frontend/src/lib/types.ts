@@ -12,16 +12,46 @@ export interface AudioSettings {
 
 export interface TokenReading {
   surface: string;
+  raw_surface?: string;
   reading: string;
   hiragana: string;
   is_punctuation: boolean;
   candidates?: string[];
   disambiguated?: boolean;
+  dictionary_form?: string;
+  part_of_speech?: string[];
+}
+
+export interface GlossarySense {
+  english_definitions: string[];
+  parts_of_speech: string[];
+  tags: string[];
+  info?: string;
+}
+
+export interface GlossaryData {
+  word: string;
+  dictionary_form?: string;
+  reading: string;
+  romaji: string;
+  senses: GlossarySense[];
+  jlpt_level?: string;
+  is_common: boolean;
+  context_explanation?: string;
+  source: string;
+}
+
+export interface SelectedWordInfo {
+  sentenceId: number;
+  tokenIndex: number;
+  token: TokenReading;
+  sentence: Sentence;
 }
 
 export interface Sentence {
   id: number;
   original: string;
+  raw_original?: string;
   hiragana: string;
   katakana: string;
   translation: string;

@@ -3,10 +3,11 @@ from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from .schemas import PassageRequest, PassageResponse, HealthResponse
+from .schemas import PassageRequest, PassageResponse, HealthResponse, GlossaryRequest, GlossaryResponse
 from .parser import parse_japanese_text, get_tokenizer
 from .translator import translate_sentences, get_translator
 from .disambiguator import detect_available_model
+from .glossary import resolve_glossary
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nihon-backend")
@@ -76,13 +77,14 @@ async def process_passage(request: PassageRequest):
         raise HTTPException(status_code=400, detail="Text cannot be empty.")
         
     try:
-        # Step 1: Sudachi morphological parsing + local LLM reading disambiguation
-        sentences = await parse_japanese_text(text)
+        # Step 1: Sudachi morphological parsing + local LLM reading disambiguation + allowed Kanji filter
+        sentences = await parse_japanese_text(text, allowed_kanji=request.allowed_kanji)
         if not sentences:
             raise HTTPException(status_code=400, detail="No readable sentences found.")
             
         # Step 2: Contextual English translation via online library
-        originals = [s.original for s in sentences]
+        # Use complete raw_original text for accurate context-aware translation
+        originals = [s.raw_original or s.original for s in sentences]
         translations = translate_sentences(originals)
         
         # Merge translations
@@ -95,3 +97,16 @@ async def process_passage(request: PassageRequest):
     except Exception as e:
         logger.error(f"Error processing passage: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Translation / Processing error: {str(e)}")
+
+@app.post("/api/glossary", response_model=GlossaryResponse)
+async def get_glossary(request: GlossaryRequest):
+    word = request.word.strip()
+    if not word:
+        raise HTTPException(status_code=400, detail="Word cannot be empty.")
+    try:
+        glossary_res = await resolve_glossary(request)
+        return glossary_res
+    except Exception as e:
+        logger.error(f"Error resolving glossary for '{word}': {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Glossary lookup error: {str(e)}")
+

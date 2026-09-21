@@ -1,6 +1,8 @@
+import os
+import csv
 import re
 import logging
-from typing import List, Set
+from typing import List, Set, Optional, Tuple
 from sudachipy import dictionary, SplitMode
 from .schemas import SentencePayload, TokenReading
 from .disambiguator import disambiguate_token
@@ -99,6 +101,137 @@ def split_sentences(text: str) -> List[str]:
             
     return sentences
 
+def is_kanji(char: str) -> bool:
+    """Check if any character in string is a CJK ideograph (Kanji)."""
+    if not char:
+        return False
+    return any(
+        (0x4E00 <= ord(c) <= 0x9FFF) or
+        (0x3400 <= ord(c) <= 0x4DBF) or
+        (0x20000 <= ord(c) <= 0x2A6DF) or
+        (0xF900 <= ord(c) <= 0xFAFF)
+        for c in char
+    )
+
+def extract_kanji_set(text: str) -> Set[str]:
+    """Extract all unique Kanji characters from text."""
+    if not text:
+        return set()
+    return {c for c in text if is_kanji(c)}
+
+_kanji_readings = None
+
+def get_kanji_readings():
+    global _kanji_readings
+    if _kanji_readings is None:
+        _kanji_readings = {}
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        possible_paths = [
+            os.path.join(base_dir, "..", "..", "data-prep", "kanji_correct_order.csv"),
+            os.path.join(base_dir, "..", "data-prep", "kanji_correct_order.csv"),
+            os.path.join(os.getcwd(), "data-prep", "kanji_correct_order.csv"),
+        ]
+        csv_path = None
+        for p in possible_paths:
+            if os.path.exists(p):
+                csv_path = p
+                break
+        
+        if csv_path:
+            try:
+                with open(csv_path, mode='r', encoding='utf-8-sig') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        k = row['Kanji']
+                        r_set = set()
+                        for col in ['Onyomi', 'Kunyomi']:
+                            v = row.get(col, '')
+                            if v and v != 'nan':
+                                for part in v.split('、'):
+                                    clean = re.sub(r'[\.\-\(\)]', '', part).strip()
+                                    if clean:
+                                        r_set.add(katakana_to_hiragana(clean))
+                        _kanji_readings[k] = r_set
+            except Exception as e:
+                logger.warning(f"Failed to load kanji_correct_order.csv: {e}")
+
+        # Common rendaku / sound changes / irregular readings
+        common_sound_changes = {
+            '土': ['ど'],
+            '日': ['び', 'にっ', 'ひ'],
+            '供': ['ども', 'ぐ'],
+            '学': ['がっ', 'がく'],
+            '校': ['こう'],
+            '中': ['ちゅう', 'じゅう', 'なか'],
+            '声': ['こえ'],
+            '響': ['ひび'],
+            '元': ['げん', 'がん', 'もと'],
+            '気': ['き', 'け'],
+            '時': ['じ', 'とき'],
+            '人': ['にん', 'びと', 'ひと'],
+            '本': ['ぼん', 'ぽん', 'ほん'],
+            '物': ['もの', 'ぶつ'],
+        }
+        for k, extras in common_sound_changes.items():
+            if k in _kanji_readings:
+                _kanji_readings[k].update(extras)
+            else:
+                _kanji_readings[k] = set(extras)
+
+    return _kanji_readings
+
+def align_token(surface: str, hiragana: str) -> List[Tuple[str, str]]:
+    """
+    Align individual characters of a surface word to slices of its Hiragana reading.
+    Returns list of (surface_char, hiragana_slice) pairs.
+    """
+    if all(not is_kanji(c) for c in surface):
+        return [(surface, hiragana)]
+    if len(surface) == 1:
+        return [(surface, hiragana)]
+    
+    kanji_dict = get_kanji_readings()
+    memo = {}
+
+    def dp(s_i, h_i):
+        key = (s_i, h_i)
+        if key in memo:
+            return memo[key]
+        if s_i == len(surface) and h_i == len(hiragana):
+            return []
+        if s_i == len(surface) or h_i == len(hiragana):
+            return None
+        
+        char = surface[s_i]
+        if not is_kanji(char):
+            if hiragana[h_i] == char:
+                rest = dp(s_i + 1, h_i + 1)
+                if rest is not None:
+                    memo[key] = [(char, char)] + rest
+                    return memo[key]
+            memo[key] = None
+            return None
+        
+        known = kanji_dict.get(char, set())
+        best_candidate = None
+        for l in range(1, min(6, len(hiragana) - h_i + 1)):
+            chunk = hiragana[h_i:h_i+l]
+            rest = dp(s_i + 1, h_i + l)
+            if rest is not None:
+                pair = [(char, chunk)] + rest
+                if chunk in known:
+                    memo[key] = pair
+                    return pair
+                if best_candidate is None:
+                    best_candidate = pair
+        memo[key] = best_candidate
+        return best_candidate
+
+    result = dp(0, 0)
+    if result is not None:
+        return result
+    return [(surface, hiragana)]
+
 def is_all_kana_or_punct(text: str) -> bool:
     """Check if all characters in text are kana, punctuation, or spaces (no kanji)."""
     for c in text:
@@ -123,14 +256,18 @@ def get_candidate_readings(surface: str, primary_reading: str) -> List[str]:
             return sorted(valid)
     return []
 
-async def parse_japanese_text(text: str) -> List[SentencePayload]:
+async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) -> List[SentencePayload]:
     """
     Parse a passage of Japanese text into structured sentence payloads.
     Detects ambiguous Kanji readings and uses local LLM (Ollama) to disambiguate.
+    Applies allowed Kanji filtering: any Kanji outside allowed_kanji is rendered as Hiragana.
     """
     tokenizer = get_tokenizer()
     raw_sentences = split_sentences(text)
     payloads = []
+    
+    filtering_active = (allowed_kanji is not None)
+    allowed_set = extract_kanji_set(allowed_kanji) if filtering_active else set()
     
     for idx, sentence_str in enumerate(raw_sentences, start=1):
         morphemes = tokenizer.tokenize(sentence_str, SplitMode.C)
@@ -139,62 +276,102 @@ async def parse_japanese_text(text: str) -> List[SentencePayload]:
         katakana_parts = []
         
         for m in morphemes:
-            surface = m.surface()
-            pos = m.part_of_speech()
-            reading = m.reading_form()
+            # If compound word has A-mode splits and is not a heteronym requiring full-unit disambiguation:
+            is_hetero = m.surface() in COMMON_HETERONYMS
+            a_splits = m.split(SplitMode.A)
+            units = [m] if (is_hetero or len(a_splits) <= 1) else a_splits
             
-            is_punct = (
-                pos[0] == '補助記号' or 
-                all(c in '。、！？!?「」『』（）()【】…・ー〜～ \t\u3000,.' for c in surface)
-            )
-            
-            if is_punct or not reading:
-                reading = surface
-            
-            # Determine initial Hiragana representation
-            if is_punct:
-                token_hira = surface
-                token_kata = surface
-                candidates = []
-                was_disambiguated = False
-            elif is_all_kana_or_punct(surface):
-                token_hira = katakana_to_hiragana(surface)
-                token_kata = hiragana_to_katakana(surface)
-                candidates = []
-                was_disambiguated = False
-            else:
-                token_hira = katakana_to_hiragana(reading)
-                token_kata = reading
-                candidates = get_candidate_readings(surface, reading)
+            for u in units:
+                surface = u.surface()
+                pos = u.part_of_speech()
+                reading = u.reading_form()
                 
-                # If multiple valid readings exist, disambiguate with local LLM
-                if len(candidates) > 1:
-                    selected_hira, was_disambiguated = await disambiguate_token(
-                        sentence_str, surface, candidates, token_hira
-                    )
-                    token_hira = selected_hira
-                    token_kata = hiragana_to_katakana(selected_hira)
-                else:
+                is_punct = (
+                    pos[0] == '補助記号' or 
+                    all(c in '。、！？!?「」『』（）()【】…・ー〜～ \t\u3000,.' for c in surface)
+                )
+                
+                if is_punct or not reading:
+                    reading = surface
+                
+                # Determine initial Hiragana representation
+                if is_punct:
+                    token_hira = surface
+                    token_kata = surface
+                    candidates = []
                     was_disambiguated = False
+                elif is_all_kana_or_punct(surface):
+                    token_hira = katakana_to_hiragana(surface)
+                    token_kata = hiragana_to_katakana(surface)
+                    candidates = []
+                    was_disambiguated = False
+                else:
+                    token_hira = katakana_to_hiragana(reading)
+                    token_kata = reading
+                    candidates = get_candidate_readings(surface, reading)
+                    
+                    # If multiple valid readings exist, disambiguate with local LLM
+                    if len(candidates) > 1:
+                        selected_hira, was_disambiguated = await disambiguate_token(
+                            sentence_str, surface, candidates, token_hira
+                        )
+                        token_hira = selected_hira
+                        token_kata = hiragana_to_katakana(selected_hira)
+                    else:
+                        was_disambiguated = False
                 
-            tokens.append(TokenReading(
-                surface=surface,
-                reading=token_kata,
-                hiragana=token_hira,
-                is_punctuation=is_punct,
-                candidates=candidates if len(candidates) > 1 else None,
-                disambiguated=was_disambiguated
-            ))
-            
-            hiragana_parts.append(token_hira)
-            katakana_parts.append(token_kata)
+                # Apply allowed Kanji filtering to rendered surface
+                rendered_surface = surface
+                if filtering_active:
+                    kanjis_in_unit = [c for c in surface if is_kanji(c)]
+                    if kanjis_in_unit and not all(k in allowed_set for k in kanjis_in_unit):
+                        alignment = align_token(surface, token_hira)
+                        parts = []
+                        for c, c_hira in alignment:
+                            if is_kanji(c):
+                                if c in allowed_set:
+                                    parts.append(c)
+                                else:
+                                    parts.append(c_hira)
+                            else:
+                                parts.append(c)
+                        rendered_surface = "".join(parts)
+                
+                dict_form = None
+                try:
+                    dict_form = u.dictionary_form()
+                except Exception:
+                    pass
+
+                pos_tags = None
+                try:
+                    pos_tags = [p for p in u.part_of_speech() if p != '*']
+                except Exception:
+                    pass
+
+                tokens.append(TokenReading(
+                    surface=rendered_surface,
+                    raw_surface=surface,
+                    reading=token_kata,
+                    hiragana=token_hira,
+                    is_punctuation=is_punct,
+                    candidates=candidates if len(candidates) > 1 else None,
+                    disambiguated=was_disambiguated,
+                    dictionary_form=dict_form or surface,
+                    part_of_speech=pos_tags
+                ))
+                
+                hiragana_parts.append(token_hira)
+                katakana_parts.append(token_kata)
             
         full_hiragana = "".join(hiragana_parts)
         full_katakana = "".join(katakana_parts)
+        rendered_original = "".join(t.surface for t in tokens) if filtering_active else sentence_str
         
         payloads.append(SentencePayload(
             id=idx,
-            original=sentence_str,
+            original=rendered_original,
+            raw_original=sentence_str,
             hiragana=full_hiragana,
             katakana=full_katakana,
             translation="",

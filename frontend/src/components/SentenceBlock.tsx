@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import * as wanakana from 'wanakana';
-import { Sentence, ScriptMode } from '../lib/types';
+import { Sentence, ScriptMode, TokenReading } from '../lib/types';
 import { mapHiraganaIndexToOriginal } from '../lib/emielAdapter';
 import { CheckCircle2, AlertTriangle, Volume2 } from 'lucide-react';
 import { speakJapanese, stopSpeech } from '../lib/speech';
@@ -19,6 +19,8 @@ interface SentenceBlockProps {
   pendingRoman: string;
   scriptMode: ScriptMode;
   showTranslation: boolean;
+  selectedTokenIndex?: number | null;
+  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number) => void;
 }
 
 export const SentenceBlock: React.FC<SentenceBlockProps> = ({
@@ -30,9 +32,11 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
   parsedRoman,
   inFlightRoman,
   bufferedMistakes,
-  pendingRoman,
+  pendingRoman: _pendingRoman,
   scriptMode,
   showTranslation,
+  selectedTokenIndex = null,
+  onSelectToken,
 }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -108,24 +112,87 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
       {/* Japanese Sentence Characters Line with Voice Pronunciation Button */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 flex flex-wrap items-baseline gap-x-[1px] gap-y-1 font-japanese text-2xl sm:text-3xl font-semibold leading-relaxed tracking-wider select-none">
-          {displayText.split('').map((char, index) => {
-            const isCharCompleted = isCompleted || (isActive && index < activeCharIndex);
+          {sentence.tokens && sentence.tokens.length > 0 ? (
+            (() => {
+              let runningCharIndex = 0;
+              return sentence.tokens.map((token, tokenIdx) => {
+                const isSelected = selectedTokenIndex === tokenIdx;
+                const isPunct = token.is_punctuation;
 
-            return (
-              <span
-                key={index}
-                className={`transition-colors duration-150 ${
-                  isCharCompleted
-                    ? 'text-emerald-400'
-                    : isActive
-                    ? 'text-slate-300'
-                    : 'text-slate-600'
-                }`}
-              >
-                {char}
-              </span>
-            );
-          })}
+                const tokenText =
+                  scriptMode === 'original'
+                    ? token.surface
+                    : scriptMode === 'katakana'
+                    ? token.reading || wanakana.toKatakana(token.hiragana)
+                    : token.hiragana;
+
+                const tokenChars = tokenText.split('');
+                const tokenStartCharIdx = runningCharIndex;
+                runningCharIndex += tokenChars.length;
+
+                return (
+                  <span
+                    key={tokenIdx}
+                    onClick={
+                      !isPunct && onSelectToken
+                        ? () => onSelectToken(sentence, token, tokenIdx)
+                        : undefined
+                    }
+                    className={`inline-flex items-baseline transition-all duration-150 rounded px-[2px] -mx-[1px] ${
+                      isSelected
+                        ? 'border-b-2 border-amber-400 bg-amber-400/15 -mb-0.5'
+                        : !isPunct
+                        ? 'hover:bg-slate-800/60 cursor-pointer hover:border-b hover:border-slate-600/80'
+                        : ''
+                    }`}
+                    title={!isPunct ? `Inspect glossary for '${token.surface}'` : undefined}
+                  >
+                    {tokenChars.map((char, cIdx) => {
+                      const globalIdx = tokenStartCharIdx + cIdx;
+                      const isCharCompleted =
+                        isCompleted || (isActive && globalIdx < activeCharIndex);
+
+                      return (
+                        <span
+                          key={cIdx}
+                          className={`transition-colors duration-150 ${
+                            isSelected
+                              ? 'text-amber-300'
+                              : isCharCompleted
+                              ? 'text-emerald-400'
+                              : isActive
+                              ? 'text-slate-300'
+                              : 'text-slate-600'
+                          }`}
+                        >
+                          {char}
+                        </span>
+                      );
+                    })}
+                  </span>
+                );
+              });
+            })()
+          ) : (
+            displayText.split('').map((char, index) => {
+              const isCharCompleted = isCompleted || (isActive && index < activeCharIndex);
+
+              return (
+                <span
+                  key={index}
+                  className={`transition-colors duration-150 ${
+                    isCharCompleted
+                      ? 'text-emerald-400'
+                      : isActive
+                      ? 'text-slate-300'
+                      : 'text-slate-600'
+                  }`}
+                >
+                  {char}
+                </span>
+              );
+            })
+          )}
         </div>
 
         <button
