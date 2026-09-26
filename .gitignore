@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
 /.pnp
 .pnp.*
@@ -82,3 +82,11 @@ yarn-error.log*
 ehthumbs.db
 Thumbs.db
 [Dd]esktop.ini
+
+# Databases & data files
+*.db
+*.sqlite
+*.sqlite3
+backend/app/data/*.db
+!backend/app/data/.gitkeep
+

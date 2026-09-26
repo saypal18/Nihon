@@ -115,14 +115,15 @@ async def process_passage(request: PassageRequest):
 
 @app.post("/api/glossary", response_model=GlossaryResponse)
 async def get_glossary(request: GlossaryRequest):
-    word = request.word.strip()
-    if not word:
-        raise HTTPException(status_code=400, detail="Word cannot be empty.")
+    has_span = bool(request.sentence and request.clicked_start is not None)
+    has_word = bool(request.word and request.word.strip())
+    if not has_span and not has_word:
+        raise HTTPException(status_code=400, detail="Either character span (sentence, clicked_start) or word must be provided.")
     try:
         glossary_res = await resolve_glossary(request)
         return glossary_res
     except Exception as e:
-        logger.error(f"Error resolving glossary for '{word}': {e}", exc_info=True)
+        logger.error(f"Error resolving glossary: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Glossary lookup error: {str(e)}")
 
 @app.get("/api/tts/status", response_model=TTSStatusResponse)

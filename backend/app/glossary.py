@@ -1,19 +1,27 @@
 import logging
-import urllib.parse
 from typing import Optional, Dict, Any, List
-import httpx
-
-from .schemas import GlossaryRequest, GlossaryResponse, GlossarySense
-from .disambiguator import detect_available_model, OLLAMA_BASE_URL, get_http_client
+from .schemas import (
+    GlossaryRequest,
+    GlossaryResponse,
+    GlossarySense,
+    GrammarInfoSchema,
+    InflectionInfoSchema,
+    InflectionComponentSchema,
+    KanjiDetailSchema,
+    SubTokenSchema
+)
+from .candidate_resolver import resolve_candidates_at_span, CandidateExpression
+from .dictionary_service import get_dictionary_service, DictionaryEntry
+from .sense_ranker import rank_senses_for_candidate
+from .kanji_service import get_kanji_service
 from .parser import katakana_to_hiragana
 
 logger = logging.getLogger("nihon-glossary")
 
-# In-memory dictionary cache to provide 0ms response on repeat word lookups
 _glossary_cache: Dict[str, GlossaryResponse] = {}
 
 def kana_to_romaji(kana: str) -> str:
-    """Simple rule-based Kana to Romaji converter for display in glossary header."""
+    """Rule-based Kana to Romaji converter for display in glossary header."""
     hepburn_table = {
         'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o',
         'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko',
@@ -66,155 +74,260 @@ def kana_to_romaji(kana: str) -> str:
             i += 1
     return "".join(res)
 
-async def fetch_jisho_data(term: str) -> Optional[Dict[str, Any]]:
-    """Query Jisho API for word definitions, POS, and JLPT level."""
-    try:
-        url = f"https://jisho.org/api/v1/search/words?keyword={urllib.parse.quote(term)}"
-        async with httpx.AsyncClient(timeout=4.0) as client:
-            res = await client.get(url)
-            if res.status_code == 200:
-                data = res.json()
-                items = data.get("data", [])
-                if items:
-                    return items[0]
-    except Exception as e:
-        logger.warning(f"Jisho API query failed for '{term}': {e}")
-    return None
-
-async def fetch_ollama_explanation(word: str, dictionary_form: Optional[str], sentence: str) -> Optional[str]:
-    """Use local Ollama model to generate a concise contextual explanation."""
-    detected = await detect_available_model()
-    if not detected or not sentence:
-        return None
-
-    # Prefer non-thinking model like qwen2.5:7b for fast sub-second response if installed
-    model = "qwen2.5:7b" if detected.startswith("qwen3") else detected
-
-    lemma_hint = f" (dictionary form: {dictionary_form})" if dictionary_form and dictionary_form != word else ""
-    prompt = (
-        f"In 1 or 2 concise sentences, explain the Japanese word '{word}'{lemma_hint} "
-        f"as used in this sentence: \"{sentence}\". "
-        f"State its role (e.g. subject marker, past tense verb, adverb) and specific nuance in English. Be direct."
-    )
-
-    try:
-        client = get_http_client()
-        payload = {
-            "model": model,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a concise Japanese language tutor. Provide clear, succinct contextual explanations in English without markdown titles or headers."
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            "stream": False,
-            "options": {
-                "temperature": 0.2,
-                "num_predict": 100
-            }
-        }
-        res = await client.post(f"{OLLAMA_BASE_URL}/api/chat", json=payload, timeout=10.0)
-        if res.status_code == 200:
-            content = res.json().get("message", {}).get("content", "").strip()
-            if content:
-                return content
-    except Exception as e:
-        logger.debug(f"Ollama glossary explanation skipped: {e}")
-    return None
-
 async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
     """
-    Resolve complete glossary information for a target word:
-    1. Check memory cache.
-    2. Query Jisho API using dictionary_form, then surface word.
-    3. Query local Ollama for contextual nuance if sentence is provided.
-    4. Return structured response.
+    Resolve contextual glossary entry for a clicked span or fallback word.
     """
-    cache_key = f"{req.word}_{req.dictionary_form or ''}_{req.reading or ''}_{req.sentence_context or ''}"
+    sentence_text = req.sentence or req.sentence_context or ""
+    clicked_start = req.clicked_start
+    clicked_end = req.clicked_end
+
+    cache_key = f"{sentence_text}_{clicked_start}_{clicked_end}_{req.word}_{req.dictionary_form}"
     if cache_key in _glossary_cache:
         return _glossary_cache[cache_key]
 
-    # Term to query in dictionary
-    query_term = req.dictionary_form if req.dictionary_form else req.word
-    jisho_item = await fetch_jisho_data(query_term)
-    
-    # If not found with dictionary_form, try surface word
-    if not jisho_item and req.word != query_term:
-        jisho_item = await fetch_jisho_data(req.word)
+    kanji_service = get_kanji_service()
+    dict_service = get_dictionary_service()
 
-    # If still not found and reading exists, try reading
-    if not jisho_item and req.reading:
-        hira_reading = katakana_to_hiragana(req.reading)
-        jisho_item = await fetch_jisho_data(hira_reading)
+    # 1. Primary path: Resolve by character span within sentence
+    if sentence_text and clicked_start is not None:
+        if clicked_end is None:
+            clicked_end = clicked_start + 1
+        resolution = resolve_candidates_at_span(sentence_text, clicked_start, clicked_end)
+        if resolution:
+            cand = resolution.primary
+            return await _build_response_from_candidate(
+                cand=cand,
+                sentence=sentence_text,
+                kanji_service=kanji_service,
+                cache_key=cache_key
+            )
 
+    # 2. Fallback path: Legacy word / dictionary_form lookup
+    target_term = req.dictionary_form or req.word or ""
+    entries = dict_service.lookup_term(target_term, reading=req.reading)
+    if not entries and req.word and req.word != target_term:
+        entries = dict_service.lookup_term(req.word, reading=req.reading)
+
+    if entries:
+        entry = entries[0]
+        rank_res = await rank_senses_for_candidate(sentence_text, target_term, entry, use_llm=True)
+        senses = [
+            GlossarySense(
+                english_definitions=s.glosses,
+                parts_of_speech=s.parts_of_speech,
+                tags=s.misc,
+                info=s.info
+            )
+            for s in entry.senses
+        ]
+        hira_reading = katakana_to_hiragana(entry.primary_reading or req.reading or target_term)
+        romaji = kana_to_romaji(hira_reading)
+        kanji_details = [
+            KanjiDetailSchema(
+                kanji=k.kanji,
+                meaning=k.meaning,
+                onyomi=k.onyomi,
+                kunyomi=k.kunyomi,
+                jlpt_level=k.jlpt_level
+            )
+            for k in kanji_service.get_kanji_for_word(target_term)
+        ]
+
+        response = GlossaryResponse(
+            word=req.word or entry.primary_kanji,
+            dictionary_form=entry.primary_kanji,
+            reading=hira_reading,
+            romaji=romaji,
+            senses=senses,
+            selected_sense_index=rank_res.selected_sense_index,
+            is_common=entry.is_common,
+            context_explanation=rank_res.context_reason,
+            kanji_breakdown=kanji_details,
+            confidence=rank_res.confidence,
+            source="nihon_local"
+        )
+        _glossary_cache[cache_key] = response
+        return response
+
+    # 3. Not found fallback
+    display_word = req.word or target_term or "Unknown"
+    hira_reading = katakana_to_hiragana(req.reading or display_word)
+    response = GlossaryResponse(
+        word=display_word,
+        dictionary_form=req.dictionary_form,
+        reading=hira_reading,
+        romaji=kana_to_romaji(hira_reading),
+        senses=[
+            GlossarySense(
+                english_definitions=["No local dictionary definition found."],
+                parts_of_speech=[]
+            )
+        ],
+        source="nihon_local"
+    )
+    _glossary_cache[cache_key] = response
+    return response
+
+async def _build_response_from_candidate(
+    cand: CandidateExpression,
+    sentence: str,
+    kanji_service: Any,
+    cache_key: str
+) -> GlossaryResponse:
+    """Helper to assemble rich GlossaryResponse from CandidateExpression."""
+    entry = cand.dict_entry
     senses: List[GlossarySense] = []
-    jlpt_level = None
-    is_common = False
-    display_reading = req.reading or req.word
+    selected_idx = 0
+    context_exp = None
+    confidence = cand.confidence
 
-    if jisho_item:
-        is_common = jisho_item.get("is_common", False)
-        jlpt_tags = jisho_item.get("jlpt", [])
-        if jlpt_tags:
-            jlpt_level = jlpt_tags[0].replace("jlpt-", "JLPT ").upper()
-
-        # Try to obtain reading from Jisho item
-        jp_list = jisho_item.get("japanese", [])
-        if jp_list:
-            display_reading = jp_list[0].get("reading") or display_reading
-
-        for s in jisho_item.get("senses", []):
-            defs = s.get("english_definitions", [])
-            pos = s.get("parts_of_speech", [])
-            tags = s.get("tags", [])
-            info = "; ".join(s.get("info", [])) if s.get("info") else None
-            if defs:
+    # If Grammatical Particle
+    if cand.category == "particle" and cand.particle_info:
+        p = cand.particle_info
+        senses = [
+            GlossarySense(
+                english_definitions=[f"{p.function_name}: {p.context_role}"],
+                parts_of_speech=["Particle (助詞)"],
+                info=p.explanation
+            )
+        ]
+        context_exp = p.context_role
+        grammar_info = GrammarInfoSchema(
+            pattern_name=p.particle,
+            category="particle",
+            meaning=p.function_name,
+            explanation=p.explanation,
+            context_role=p.context_role
+        )
+    # If Auxiliary Verb Pattern
+    elif cand.category == "auxiliary" and cand.grammar_match:
+        gm = cand.grammar_match
+        pat = gm.pattern
+        senses = [
+            GlossarySense(
+                english_definitions=[f"{pat.meaning} ({pat.pattern_name})"],
+                parts_of_speech=["Auxiliary Verb Construction"],
+                info=pat.explanation
+            )
+        ]
+        # Include main verb senses if available
+        if entry:
+            for s in entry.senses:
                 senses.append(GlossarySense(
-                    english_definitions=defs,
-                    parts_of_speech=pos,
-                    tags=tags,
-                    info=info
+                    english_definitions=s.glosses,
+                    parts_of_speech=s.parts_of_speech,
+                    info=f"Base meaning of {cand.dict_entry.primary_kanji if cand.dict_entry else ''}"
                 ))
 
-    # Contextual explanation from Ollama
-    context_exp = None
-    if req.sentence_context:
-        context_exp = await fetch_ollama_explanation(
-            word=req.word,
-            dictionary_form=req.dictionary_form,
-            sentence=req.sentence_context
+        grammar_info = GrammarInfoSchema(
+            pattern_name=pat.pattern_name,
+            category=pat.category,
+            meaning=pat.meaning,
+            explanation=pat.explanation,
+            formation=pat.formation,
+            level=pat.level
+        )
+        context_exp = f"{pat.meaning} — {pat.explanation}"
+    # Standard Word, Idiom, Compound, or Name
+    else:
+        grammar_info = None
+        if cand.grammar_match:
+            pat = cand.grammar_match.pattern
+            grammar_info = GrammarInfoSchema(
+                pattern_name=pat.pattern_name,
+                category=pat.category,
+                meaning=pat.meaning,
+                explanation=pat.explanation,
+                formation=pat.formation,
+                level=pat.level
+            )
+        if entry:
+            rank_res = await rank_senses_for_candidate(sentence, cand.surface, entry, use_llm=True)
+            selected_idx = rank_res.selected_sense_index
+            context_exp = rank_res.context_reason
+            confidence = min(cand.confidence, rank_res.confidence)
+            senses = [
+                GlossarySense(
+                    english_definitions=s.glosses,
+                    parts_of_speech=s.parts_of_speech,
+                    tags=s.misc,
+                    info=s.info
+                )
+                for s in entry.senses
+            ]
+        else:
+            senses = [
+                GlossarySense(
+                    english_definitions=["No dictionary definition found."],
+                    parts_of_speech=[]
+                )
+            ]
+
+    # Inflection info
+    inflection_info = None
+    if cand.inflection:
+        inf = cand.inflection
+        inflection_info = InflectionInfoSchema(
+            base_verb=inf.base_verb,
+            verb_type=inf.verb_type,
+            form_name=inf.form_name,
+            description=inf.description,
+            components=[
+                InflectionComponentSchema(
+                    surface=c.surface,
+                    lemma=c.lemma,
+                    role=c.role
+                )
+                for c in inf.components
+            ]
         )
 
-    # Fallback definition if Jisho had no result
-    if not senses:
-        if context_exp:
-            senses.append(GlossarySense(
-                english_definitions=[context_exp],
-                parts_of_speech=["Contextual Gloss"]
-            ))
-        else:
-            senses.append(GlossarySense(
-                english_definitions=["No dictionary definition found."],
-                parts_of_speech=[]
-            ))
+    # Sub-tokens
+    sub_tokens = [
+        SubTokenSchema(
+            surface=st.surface,
+            reading=st.reading,
+            lemma=st.lemma,
+            pos=st.pos,
+            start_char=st.start_char,
+            end_char=st.end_char
+        )
+        for st in cand.sub_tokens
+    ]
 
-    hira_reading = katakana_to_hiragana(display_reading)
+    # Kanji breakdown
+    kanji_details = [
+        KanjiDetailSchema(
+            kanji=k.kanji,
+            meaning=k.meaning,
+            onyomi=k.onyomi,
+            kunyomi=k.kunyomi,
+            jlpt_level=k.jlpt_level
+        )
+        for k in kanji_service.get_kanji_for_word(cand.lemma or cand.surface)
+    ]
+
+    hira_reading = katakana_to_hiragana(cand.reading or cand.surface)
     romaji = kana_to_romaji(hira_reading)
 
     response = GlossaryResponse(
-        word=req.word,
-        dictionary_form=req.dictionary_form,
+        word=cand.surface,
+        dictionary_form=cand.lemma,
         reading=hira_reading,
         romaji=romaji,
         senses=senses,
-        jlpt_level=jlpt_level,
-        is_common=is_common,
+        selected_sense_index=selected_idx,
+        is_common=entry.is_common if entry else False,
         context_explanation=context_exp,
-        source="jisho+ollama" if (jisho_item and context_exp) else ("jisho" if jisho_item else "ollama")
+        resolved_span=list(cand.span),
+        category=cand.category,
+        grammar_info=grammar_info,
+        inflection_info=inflection_info,
+        kanji_breakdown=kanji_details,
+        sub_tokens=sub_tokens,
+        confidence=confidence,
+        source="nihon_local"
     )
 
     _glossary_cache[cache_key] = response

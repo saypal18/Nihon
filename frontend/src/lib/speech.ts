@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Sentence, TTSEngine } from './types';
 
-// Speech synthesis manager supporting VOICEVOX Engine (Local Neural TTS) and Browser Web Speech API
-// Prioritizes canonical G2P phonetic reading (tts_kana) so spoken speech and displayed readings agree 100%
+// Speech synthesis manager supporting VOICEVOX Engine and Browser Web Speech API.
+// VOICEVOX receives Japanese source text so its analyzer can use sentence context.
 
 export type SpeechState = 'idle' | 'loading' | 'playing' | 'error';
 
@@ -102,13 +102,7 @@ export function getVoicevoxSpeaker(): number {
  */
 export function getPronunciationText(sentence: Sentence): string {
   if (sentence.tokens && sentence.tokens.length > 0) {
-    return sentence.tokens
-      .map((t) => {
-        if (t.surface === 'は' && !t.is_punctuation) return 'わ';
-        if (t.surface === 'へ' && !t.is_punctuation) return 'え';
-        return t.hiragana;
-      })
-      .join('');
+    return sentence.tokens.map((t) => t.hiragana).join('');
   }
   return sentence.hiragana || sentence.original;
 }
@@ -205,7 +199,7 @@ function playAudioInstance(id: string, audioUrl: string): Promise<void> {
  * Toggles speech synthesis based on user's configured engine ('voicevox' | 'browser'):
  * - If the same audio item is loading or playing -> cancels/stops it.
  * - If a different audio was loading/playing -> stops it and starts the new one.
- * - Prioritizes canonical phonetic reading (tts_kana) so speech matches displayed Hiragana.
+ * - Sends original Japanese text to VOICEVOX for contextual pronunciation analysis.
  * - Checks client FIFO cache to play instant repeats without re-requesting synthesis.
  */
 export async function toggleSpeech(
@@ -269,12 +263,11 @@ export async function toggleSpeech(
   }
 
   // 2. VOICEVOX Engine (Local Neural Speech)
-  const fullText = typeof input === 'string' ? input : input.original || input.hiragana;
-  const canonicalKana = typeof input === 'string' ? '' : (input.tts_kana || input.katakana || input.hiragana);
+  const fullText = typeof input === 'string' ? input : input.raw_original || input.original || input.hiragana;
   if (!fullText || !fullText.trim()) return;
 
   const speakerId = overrideSpeaker !== undefined ? overrideSpeaker : getVoicevoxSpeaker();
-  const cacheKey = `vv:${speakerId}:${(canonicalKana || fullText).trim()}`;
+  const cacheKey = `vv:${speakerId}:${fullText.trim()}`;
 
   // Check client FIFO cache
   const cachedUrl = getCachedAudioUrl(cacheKey);
@@ -295,7 +288,6 @@ export async function toggleSpeech(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: fullText,
-        kana: canonicalKana || undefined,
         speaker: speakerId,
         speed: 1.0,
       }),

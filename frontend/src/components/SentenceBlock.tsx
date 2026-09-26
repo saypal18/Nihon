@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import * as wanakana from 'wanakana';
 import { Sentence, ScriptMode, TokenReading } from '../lib/types';
 import { mapHiraganaIndexToOriginal } from '../lib/emielAdapter';
@@ -20,7 +20,8 @@ interface SentenceBlockProps {
   scriptMode: ScriptMode;
   showTranslation: boolean;
   selectedTokenIndex?: number | null;
-  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number) => void;
+  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number, clickedStart?: number, clickedEnd?: number) => void;
+  activeResolvedSpan?: [number, number] | null;
 }
 
 export const SentenceBlock: React.FC<SentenceBlockProps> = ({
@@ -37,6 +38,7 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
   showTranslation,
   selectedTokenIndex = null,
   onSelectToken,
+  activeResolvedSpan = null,
 }) => {
   const speechId = `sentence-${sentence.id}`;
   const speechState = useSpeechState(speechId);
@@ -99,9 +101,22 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
           {sentence.tokens && sentence.tokens.length > 0 ? (
             (() => {
               let runningCharIndex = 0;
+              let runningRawCharIndex = 0;
+              const rawSentenceText = sentence.raw_original || sentence.original;
+
               return sentence.tokens.map((token, tokenIdx) => {
                 const isSelected = selectedTokenIndex === tokenIdx;
                 const isPunct = token.is_punctuation;
+
+                const rawSurface = token.raw_surface || token.surface;
+                let rawStart = rawSentenceText.indexOf(rawSurface, runningRawCharIndex);
+                if (rawStart === -1) {
+                  rawStart = runningRawCharIndex;
+                }
+                const rawEnd = rawStart + rawSurface.length;
+                runningRawCharIndex = rawEnd;
+
+                const isInSpan = activeResolvedSpan && (rawStart < activeResolvedSpan[1] && rawEnd > activeResolvedSpan[0]);
 
                 const tokenText =
                   scriptMode === 'original'
@@ -119,12 +134,12 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
                     key={tokenIdx}
                     onClick={
                       !isPunct && onSelectToken
-                        ? () => onSelectToken(sentence, token, tokenIdx)
+                        ? () => onSelectToken(sentence, token, tokenIdx, rawStart, rawEnd)
                         : undefined
                     }
                     className={`inline-flex items-baseline transition-all duration-150 rounded px-[2px] -mx-[1px] ${
-                      isSelected
-                        ? 'border-b-2 border-amber-400 bg-amber-400/15 -mb-0.5'
+                      isSelected || isInSpan
+                        ? 'border-b-2 border-amber-400 bg-amber-400/20 -mb-0.5 shadow-sm'
                         : !isPunct
                         ? 'hover:bg-slate-800/60 cursor-pointer hover:border-b hover:border-slate-600/80'
                         : ''

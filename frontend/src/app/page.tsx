@@ -128,30 +128,44 @@ export default function Home() {
     }
   }, []);
 
+  // Multi-token resolved span for active sentence
+  const [activeResolvedSpan, setActiveResolvedSpan] = useState<[number, number] | null>(null);
+
   // Quick reset handler
   const handleReset = useCallback(() => {
     setResetTrigger((prev) => prev + 1);
     setStats(INITIAL_STATS);
     setIsResultsModalOpen(false);
     setSelectedWord(null);
+    setActiveResolvedSpan(null);
   }, []);
 
   // Word selection handler
   const handleSelectToken = useCallback(
-    (sentence: Sentence, token: TokenReading, tokenIndex: number) => {
+    (
+      sentence: Sentence,
+      token: TokenReading,
+      tokenIndex: number,
+      clickedStart?: number,
+      clickedEnd?: number
+    ) => {
       setSelectedWord((prev) => {
         if (
           prev &&
           prev.sentenceId === sentence.id &&
           prev.tokenIndex === tokenIndex
         ) {
+          setActiveResolvedSpan(null);
           return null; // Toggle off if clicked again
         }
+        setActiveResolvedSpan(null);
         return {
           sentenceId: sentence.id,
           tokenIndex,
           token,
           sentence,
+          clickedStart,
+          clickedEnd,
         };
       });
     },
@@ -282,6 +296,7 @@ export default function Home() {
               : null
           }
           onSelectToken={handleSelectToken}
+          activeResolvedSpan={activeResolvedSpan}
         />
       </main>
 
@@ -297,7 +312,29 @@ export default function Home() {
       {/* Modals & Slide-out Glossary */}
       <GlossarySidebar
         selectedWord={selectedWord}
-        onClose={() => setSelectedWord(null)}
+        onClose={() => {
+          setSelectedWord(null);
+          setActiveResolvedSpan(null);
+        }}
+        onResolvedSpanChange={setActiveResolvedSpan}
+        onSelectSubToken={(subToken) => {
+          if (!selectedWord) return;
+          setSelectedWord({
+            sentenceId: selectedWord.sentenceId,
+            tokenIndex: selectedWord.tokenIndex,
+            token: {
+              surface: subToken.surface,
+              reading: subToken.reading,
+              hiragana: subToken.reading,
+              is_punctuation: false,
+              dictionary_form: subToken.lemma,
+              part_of_speech: subToken.pos,
+            },
+            sentence: selectedWord.sentence,
+            clickedStart: subToken.start_char,
+            clickedEnd: subToken.end_char,
+          });
+        }}
       />
 
       <InputModal

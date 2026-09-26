@@ -18,7 +18,8 @@ interface TypingAreaProps {
   resetTrigger: number;
   isOverlayOpen?: boolean;
   selectedToken?: { sentenceId: number; tokenIndex: number } | null;
-  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number) => void;
+  onSelectToken?: (sentence: Sentence, token: TokenReading, tokenIndex: number, clickedStart?: number, clickedEnd?: number) => void;
+  activeResolvedSpan?: [number, number] | null;
 }
 
 export const TypingArea: React.FC<TypingAreaProps> = ({
@@ -31,6 +32,7 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
   isOverlayOpen = false,
   selectedToken,
   onSelectToken,
+  activeResolvedSpan = null,
 }) => {
   const [activeSentenceIndex, setActiveSentenceIndex] = useState(0);
   const [hiraganaCursor, setHiraganaCursor] = useState(0);
@@ -303,6 +305,11 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
                     : null
                 }
                 onSelectToken={onSelectToken}
+                activeResolvedSpan={
+                  selectedToken && selectedToken.sentenceId === sentence.id
+                    ? activeResolvedSpan
+                    : null
+                }
               />
             </div>
           );

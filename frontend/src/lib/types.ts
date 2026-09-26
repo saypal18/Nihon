@@ -26,6 +26,47 @@ export interface TokenReading {
   part_of_speech?: string[];
 }
 
+export interface SubTokenInfo {
+  surface: string;
+  reading: string;
+  lemma: string;
+  pos: string[];
+  start_char: number;
+  end_char: number;
+}
+
+export interface GrammarInfo {
+  pattern_name: string;
+  category: string;
+  meaning: string;
+  explanation: string;
+  formation?: string;
+  level?: string;
+  context_role?: string;
+}
+
+export interface InflectionComponent {
+  surface: string;
+  lemma: string;
+  role: string;
+}
+
+export interface InflectionInfo {
+  base_verb: string;
+  verb_type?: string;
+  form_name: string;
+  description: string;
+  components: InflectionComponent[];
+}
+
+export interface KanjiDetail {
+  kanji: string;
+  meaning: string;
+  onyomi: string[];
+  kunyomi: string[];
+  jlpt_level?: string;
+}
+
 export interface GlossarySense {
   english_definitions: string[];
   parts_of_speech: string[];
@@ -39,9 +80,17 @@ export interface GlossaryData {
   reading: string;
   romaji: string;
   senses: GlossarySense[];
+  selected_sense_index?: number;
   jlpt_level?: string;
   is_common: boolean;
   context_explanation?: string;
+  resolved_span?: [number, number];
+  category?: string;
+  grammar_info?: GrammarInfo;
+  inflection_info?: InflectionInfo;
+  kanji_breakdown?: KanjiDetail[];
+  sub_tokens?: SubTokenInfo[];
+  confidence?: number;
   source: string;
 }
 
@@ -50,6 +99,8 @@ export interface SelectedWordInfo {
   tokenIndex: number;
   token: TokenReading;
   sentence: Sentence;
+  clickedStart?: number;
+  clickedEnd?: number;
 }
 
 export interface Sentence {

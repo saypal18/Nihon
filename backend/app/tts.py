@@ -87,8 +87,8 @@ def synthesize_speech(
 ) -> bytes:
     """
     Synthesize Japanese speech using local VOICEVOX Engine.
-    Prioritizes canonical phonetic kana (tts_kana) with is_kana=True to guarantee
-    100% agreement with the G2P / disambiguated reading.
+    Uses VOICEVOX text analysis when no caller-supplied kana reading is provided.
+    This preserves sentence context for pronunciation analysis.
     """
     client = get_http_client()
     target_speaker = int(speaker) if speaker is not None else 3

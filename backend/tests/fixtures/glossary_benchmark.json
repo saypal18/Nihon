@@ -1,0 +1,214 @@
+[
+  {
+    "id": "idiom_ki_wo_tsukeru_1",
+    "sentence": "車に気をつけてください。",
+    "clicked_start": 2,
+    "clicked_end": 3,
+    "clicked_char": "気",
+    "expected_expression": "気を付ける",
+    "expected_lemma": "気を付ける",
+    "expected_pos_category": "exp",
+    "sense_keyword": "careful"
+  },
+  {
+    "id": "idiom_ki_wo_tsukeru_2",
+    "sentence": "車に気をつけてください。",
+    "clicked_start": 4,
+    "clicked_end": 6,
+    "clicked_char": "つけ",
+    "expected_expression": "気を付ける",
+    "expected_lemma": "気を付ける",
+    "expected_pos_category": "exp",
+    "sense_keyword": "careful"
+  },
+  {
+    "id": "idiom_me_wo_toosu",
+    "sentence": "会議の前に書類に目を通しました。",
+    "clicked_start": 8,
+    "clicked_end": 9,
+    "clicked_char": "目",
+    "expected_expression": "目を通す",
+    "expected_lemma": "目を通す",
+    "expected_pos_category": "exp",
+    "sense_keyword": "scan"
+  },
+  {
+    "id": "idiom_sewa_ni_naru",
+    "sentence": "先生には大変お世話になりました。",
+    "clicked_start": 8,
+    "clicked_end": 10,
+    "clicked_char": "世話",
+    "expected_expression": "世話になる",
+    "expected_lemma": "世話になる",
+    "expected_pos_category": "exp",
+    "sense_keyword": "indebted"
+  },
+  {
+    "id": "aux_te_morau",
+    "sentence": "先生に作文を見てもらいました。",
+    "clicked_start": 6,
+    "clicked_end": 7,
+    "clicked_char": "見",
+    "expected_expression": "見てもらう",
+    "expected_lemma": "見てもらう",
+    "auxiliary_pattern": "〜てもらう",
+    "sense_keyword": "see"
+  },
+  {
+    "id": "aux_te_shimau",
+    "sentence": "ケーキを全部食べてしまいました。",
+    "clicked_start": 7,
+    "clicked_end": 9,
+    "clicked_char": "食べ",
+    "expected_expression": "食べてしまう",
+    "expected_lemma": "食べる",
+    "auxiliary_pattern": "〜てしまう",
+    "sense_keyword": "finish"
+  },
+  {
+    "id": "aux_te_kureru",
+    "sentence": "友達が駅まで来てくれた。",
+    "clicked_start": 7,
+    "clicked_end": 9,
+    "clicked_char": "来て",
+    "expected_expression": "来てくれる",
+    "expected_lemma": "来る",
+    "auxiliary_pattern": "〜てくれる",
+    "sense_keyword": "favor"
+  },
+  {
+    "id": "polysemy_kakeru_phone",
+    "sentence": "友達に電話をかけました。",
+    "clicked_start": 6,
+    "clicked_end": 8,
+    "clicked_char": "かけ",
+    "expected_expression": "かける",
+    "expected_lemma": "かける",
+    "sense_keyword": "call"
+  },
+  {
+    "id": "polysemy_kakeru_glasses",
+    "sentence": "祖父は眼鏡をかけて本を読んでいます。",
+    "clicked_start": 5,
+    "clicked_end": 8,
+    "clicked_char": "かけて",
+    "expected_expression": "かける",
+    "expected_lemma": "かける",
+    "sense_keyword": "wear"
+  },
+  {
+    "id": "polysemy_toru_photo",
+    "sentence": "公園で綺麗な写真を撮った。",
+    "clicked_start": 9,
+    "clicked_end": 12,
+    "clicked_char": "撮った",
+    "expected_expression": "撮る",
+    "expected_lemma": "撮る",
+    "sense_keyword": "photo"
+  },
+  {
+    "id": "particle_wo_object",
+    "sentence": "図書館で日本語の本を読む。",
+    "clicked_start": 9,
+    "clicked_end": 10,
+    "clicked_char": "を",
+    "expected_expression": "を",
+    "expected_lemma": "を",
+    "expected_pos_category": "particle",
+    "particle_function": "direct_object"
+  },
+  {
+    "id": "particle_ni_target",
+    "sentence": "明日東京に行きます。",
+    "clicked_start": 4,
+    "clicked_end": 5,
+    "clicked_char": "に",
+    "expected_expression": "に",
+    "expected_lemma": "に",
+    "expected_pos_category": "particle",
+    "particle_function": "destination"
+  },
+  {
+    "id": "particle_de_location",
+    "sentence": "図書館で勉強しました。",
+    "clicked_start": 3,
+    "clicked_end": 4,
+    "clicked_char": "で",
+    "expected_expression": "で",
+    "expected_lemma": "で",
+    "expected_pos_category": "particle",
+    "particle_function": "location"
+  },
+  {
+    "id": "particle_wa_topic",
+    "sentence": "私は学生です。",
+    "clicked_start": 1,
+    "clicked_end": 2,
+    "clicked_char": "は",
+    "expected_expression": "は",
+    "expected_lemma": "は",
+    "expected_pos_category": "particle",
+    "particle_function": "topic"
+  },
+  {
+    "id": "particle_ga_subject",
+    "sentence": "猫が好きです。",
+    "clicked_start": 1,
+    "clicked_end": 2,
+    "clicked_char": "が",
+    "expected_expression": "が",
+    "expected_lemma": "が",
+    "expected_pos_category": "particle",
+    "particle_function": "subject"
+  },
+  {
+    "id": "compound_toshokan",
+    "sentence": "毎日図書館で勉強します。",
+    "clicked_start": 2,
+    "clicked_end": 5,
+    "clicked_char": "図書館",
+    "expected_expression": "図書館",
+    "expected_lemma": "図書館",
+    "sense_keyword": "library"
+  },
+  {
+    "id": "compound_senkyo",
+    "sentence": "選挙管理委員会の発表を聞いた。",
+    "clicked_start": 0,
+    "clicked_end": 2,
+    "clicked_char": "選挙",
+    "expected_expression": "選挙管理委員会",
+    "expected_lemma": "選挙管理委員会",
+    "sense_keyword": "election"
+  },
+  {
+    "id": "inflection_tabesasaserareta",
+    "sentence": "野菜を無理やり食べさせられた。",
+    "clicked_start": 7,
+    "clicked_end": 8,
+    "clicked_char": "食",
+    "expected_expression": "食べさせられた",
+    "expected_lemma": "食べる",
+    "inflection_type": "causative_passive"
+  },
+  {
+    "id": "inflection_ikanakatta",
+    "sentence": "昨日は学校に行かなかった。",
+    "clicked_start": 7,
+    "clicked_end": 8,
+    "clicked_char": "行",
+    "expected_expression": "行かなかった",
+    "expected_lemma": "行く",
+    "inflection_type": "negative_past"
+  },
+  {
+    "id": "name_tokyo",
+    "sentence": "東京タワーを見に行きました。",
+    "clicked_start": 0,
+    "clicked_end": 2,
+    "clicked_char": "東京",
+    "expected_expression": "東京",
+    "expected_lemma": "東京",
+    "sense_keyword": "Tokyo"
+  }
+]

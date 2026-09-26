@@ -345,15 +345,6 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
                     else:
                         was_disambiguated = False
                 
-                # Derive phonetic reading for speech synthesis (VOICEVOX)
-                # Particles は and へ are pronounced ワ and エ in standard Japanese phonetics
-                if pos[0] == '助詞' and surface == 'は':
-                    phonetic_kata = 'ワ'
-                elif pos[0] == '助詞' and surface == 'へ':
-                    phonetic_kata = 'エ'
-                else:
-                    phonetic_kata = token_kata
-
                 # Apply allowed Kanji filtering to rendered surface
                 rendered_surface = surface
                 if filtering_active:
@@ -397,7 +388,7 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
                 
                 hiragana_parts.append(token_hira)
                 katakana_parts.append(token_kata)
-                tts_kana_parts.append(phonetic_kata)
+                tts_kana_parts.append(token_kata)
             
         full_hiragana = "".join(hiragana_parts)
         full_katakana = "".join(katakana_parts)
