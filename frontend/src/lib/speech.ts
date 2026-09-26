@@ -12,6 +12,17 @@ export interface ActiveSpeechInfo {
   error?: string;
 }
 
+export interface SpeechTarget {
+  text: string;
+  kana?: string;
+}
+
+type SpeechInput = Sentence | string | SpeechTarget;
+
+function isSpeechTarget(input: SpeechInput): input is SpeechTarget {
+  return typeof input !== 'string' && 'text' in input;
+}
+
 type SpeechListener = (active: ActiveSpeechInfo | null) => void;
 const listeners = new Set<SpeechListener>();
 
@@ -204,7 +215,7 @@ function playAudioInstance(id: string, audioUrl: string): Promise<void> {
  */
 export async function toggleSpeech(
   id: string,
-  input: Sentence | string,
+  input: SpeechInput,
   overrideEngine?: TTSEngine,
   overrideSpeaker?: number
 ): Promise<void> {
@@ -227,7 +238,11 @@ export async function toggleSpeech(
       return;
     }
 
-    const phoneticText = typeof input === 'string' ? input : getPronunciationText(input);
+    const phoneticText = typeof input === 'string'
+      ? input
+      : isSpeechTarget(input)
+      ? input.kana || input.text
+      : getPronunciationText(input);
     const utterance = new SpeechSynthesisUtterance(phoneticText);
     utterance.lang = 'ja-JP';
     utterance.rate = 0.95;
@@ -263,11 +278,17 @@ export async function toggleSpeech(
   }
 
   // 2. VOICEVOX Engine (Local Neural Speech)
-  const fullText = typeof input === 'string' ? input : input.raw_original || input.original || input.hiragana;
+  const fullText = typeof input === 'string'
+    ? input
+    : isSpeechTarget(input)
+    ? input.text
+    : input.raw_original || input.original || input.hiragana;
   if (!fullText || !fullText.trim()) return;
 
+  const pronunciationKana = isSpeechTarget(input) ? input.kana : undefined;
+
   const speakerId = overrideSpeaker !== undefined ? overrideSpeaker : getVoicevoxSpeaker();
-  const cacheKey = `vv:${speakerId}:${fullText.trim()}`;
+  const cacheKey = `vv:${speakerId}:${fullText.trim()}:${pronunciationKana || ''}`;
 
   // Check client FIFO cache
   const cachedUrl = getCachedAudioUrl(cacheKey);
@@ -288,6 +309,7 @@ export async function toggleSpeech(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: fullText,
+        kana: pronunciationKana,
         speaker: speakerId,
         speed: 1.0,
       }),
@@ -336,11 +358,15 @@ export async function toggleSpeech(
  * Legacy compatibility helper
  */
 export function speakJapanese(
-  input: Sentence | string,
+  input: SpeechInput,
   onStart?: () => void,
   onEnd?: () => void
 ): void {
-  const id = typeof input === 'string' ? `inline-${input}` : `sentence-${input.id}`;
+  const id = typeof input === 'string'
+    ? `inline-${input}`
+    : isSpeechTarget(input)
+    ? `inline-${input.text}`
+    : `sentence-${input.id}`;
   toggleSpeech(id, input).then(() => {
     onStart?.();
   });

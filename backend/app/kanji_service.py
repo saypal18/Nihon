@@ -22,20 +22,14 @@ class KanjiService:
         if self._loaded:
             return
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        # Search path for joyo_kanji_dataset.csv
-        candidates = [
-            os.path.join(base_dir, "..", "data-prep", "joyo_kanji_dataset.csv"),
-            os.path.join(base_dir, "data", "joyo_kanji_dataset.csv"),
-            os.path.join(os.getcwd(), "data-prep", "joyo_kanji_dataset.csv"),
-        ]
-        csv_path = None
-        for p in candidates:
-            if os.path.exists(p):
-                csv_path = p
-                break
+        # This canonical dataset stores the app's JLPT labels. The levels are
+        # legacy-derived estimates documented by data-prep/create_kanji_set.py.
+        csv_path = os.path.abspath(
+            os.path.join(base_dir, "..", "data-prep", "kanji_correct_order.csv")
+        )
 
-        if not csv_path:
-            logger.warning("joyo_kanji_dataset.csv not found for KanjiService.")
+        if not os.path.exists(csv_path):
+            logger.warning("data-prep/kanji_correct_order.csv not found for KanjiService.")
             self._loaded = True
             return
 
@@ -61,9 +55,9 @@ class KanjiService:
                         kunyomi=kunyomi,
                         jlpt_level=jlpt if jlpt and jlpt != "Non-JLPT" else None
                     )
-            logger.info(f"Loaded {len(self._cache)} Kanji details successfully.")
+            logger.info(f"Loaded {len(self._cache)} Kanji details from kanji_correct_order.csv successfully.")
         except Exception as e:
-            logger.error(f"Error loading joyo_kanji_dataset.csv: {e}")
+            logger.error(f"Error loading kanji_correct_order.csv: {e}")
         finally:
             self._loaded = True
 

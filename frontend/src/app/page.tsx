@@ -153,7 +153,10 @@ export default function Home() {
         if (
           prev &&
           prev.sentenceId === sentence.id &&
-          prev.tokenIndex === tokenIndex
+          prev.tokenIndex === tokenIndex &&
+          prev.selectionScope !== 'component' &&
+          prev.clickedStart === clickedStart &&
+          prev.clickedEnd === clickedEnd
         ) {
           setActiveResolvedSpan(null);
           return null; // Toggle off if clicked again
@@ -166,6 +169,7 @@ export default function Home() {
           sentence,
           clickedStart,
           clickedEnd,
+          selectionScope: 'sentence',
         };
       });
     },
@@ -333,6 +337,7 @@ export default function Home() {
             sentence: selectedWord.sentence,
             clickedStart: subToken.start_char,
             clickedEnd: subToken.end_char,
+            selectionScope: 'component',
           });
         }}
       />

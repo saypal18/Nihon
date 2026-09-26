@@ -39,7 +39,8 @@ class ResolutionResult(BaseModel):
 def resolve_candidates_at_span(
     sentence: str,
     clicked_start: int,
-    clicked_end: int
+    clicked_end: int,
+    expand_context: bool = True
 ) -> Optional[ResolutionResult]:
     """
     Resolve candidate lexical and grammatical interpretations for a clicked character span.
@@ -59,16 +60,8 @@ def resolve_candidates_at_span(
         if not (m.end_char <= clicked_start or m.start_char >= clicked_end):
             clicked_indices.append(idx)
 
-    # Fallback to nearest morpheme if click landed in whitespace or boundary
     if not clicked_indices:
-        closest_idx = 0
-        min_dist = float("inf")
-        for idx, m in enumerate(morphemes):
-            dist = min(abs(m.start_char - clicked_start), abs(m.end_char - clicked_start))
-            if dist < min_dist:
-                min_dist = dist
-                closest_idx = idx
-        clicked_indices = [closest_idx]
+        return None
 
     anchor_idx = clicked_indices[0]
     dict_service = get_dictionary_service()
@@ -95,6 +88,8 @@ def resolve_candidates_at_span(
             span_surf = "".join(m.surface for m in span_morphemes)
             span_start = span_morphemes[0].start_char
             span_end = span_morphemes[-1].end_char
+            if not expand_context and (span_start < clicked_start or span_end > clicked_end):
+                continue
 
             # Also try lemma sequence (e.g. 気 + を + つける -> 気をつける)
             lemma_combo = "".join(m.surface if m != span_morphemes[-1] else m.lemma for m in span_morphemes)
@@ -153,7 +148,11 @@ def resolve_candidates_at_span(
                     span=(span_start, span_end),
                     surface=span_surf,
                     lemma=entry.primary_kanji or matched_term,
-                    reading=entry.primary_reading or "".join(m.reading for m in span_morphemes),
+                    reading=(
+                        "".join(m.reading for m in span_morphemes)
+                        if inflection
+                        else entry.primary_reading or "".join(m.reading for m in span_morphemes)
+                    ),
                     category="name" if entry.is_name else "idiom",
                     priority=3 if entry.is_name else 1,
                     confidence=0.95,
@@ -163,6 +162,8 @@ def resolve_candidates_at_span(
                     sub_tokens=sub_toks
                 ))
     for aux in aux_matches:
+        if not expand_context and (aux.start_char < clicked_start or aux.end_char > clicked_end):
+            continue
         if not (aux.end_char <= clicked_start or aux.start_char >= clicked_end):
             # The click landed in this construction
             main_verb_entries = dict_service.lookup_term(aux.main_verb_lemma) if aux.main_verb_lemma else []
@@ -203,6 +204,8 @@ def resolve_candidates_at_span(
 
     # 4. Check Mode C Compounds
     for comp in analyzed.compounds_c:
+        if not expand_context and (comp.start_char < clicked_start or comp.end_char > clicked_end):
+            continue
         if not (comp.end_char <= clicked_start or comp.start_char >= clicked_end):
             if len(comp.a_morphemes) > 1:
                 entries = dict_service.lookup_term(comp.surface)
@@ -236,6 +239,8 @@ def resolve_candidates_at_span(
     # 5. Check Single Mode A Morphemes
     for c_idx in clicked_indices:
         m = morphemes[c_idx]
+        if not expand_context and (m.start_char < clicked_start or m.end_char > clicked_end):
+            continue
         pos0 = m.pos[0] if m.pos else ""
 
         # Check if Particle
@@ -266,15 +271,21 @@ def resolve_candidates_at_span(
             # Check if this morpheme is a verb with inflections attached
             # (e.g. 食べさせられた or 食べた or 行かなかった)
             pred_morphemes = [m]
-            for j in range(c_idx + 1, min(c_idx + 5, n_morphemes)):
-                next_m = morphemes[j]
-                next_pos = next_m.pos[0] if next_m.pos else ""
-                if next_pos in ["助動詞", "接尾辞"] or next_m.lemma in ["ない", "た", "ます", "れる", "られる", "せる", "させる"]:
-                    pred_morphemes.append(next_m)
-                else:
-                    break
+            if expand_context:
+                for j in range(c_idx + 1, min(c_idx + 5, n_morphemes)):
+                    next_m = morphemes[j]
+                    next_pos = next_m.pos[0] if next_m.pos else ""
+                    if next_pos in ["助動詞", "接尾辞"] or next_m.lemma in ["ない", "た", "ます", "れる", "られる", "せる", "させる"]:
+                        pred_morphemes.append(next_m)
+                    else:
+                        break
 
-            inflection = analyze_inflection_chain(pred_morphemes) if len(pred_morphemes) > 1 else None
+            has_single_morpheme_inflection = bool(m.inflection_form)
+            inflection = (
+                analyze_inflection_chain(pred_morphemes)
+                if len(pred_morphemes) > 1 or has_single_morpheme_inflection
+                else None
+            )
             span_start = pred_morphemes[0].start_char
             span_end = pred_morphemes[-1].end_char
             full_surface = sentence[span_start:span_end]
@@ -295,7 +306,7 @@ def resolve_candidates_at_span(
                 span=(span_start, span_end),
                 surface=full_surface if inflection else m.surface,
                 lemma=m.lemma,
-                reading=m.reading,
+                reading="".join(pm.reading for pm in pred_morphemes),
                 category="name" if is_name else "word",
                 priority=4 if not is_name else 3,
                 confidence=0.88,

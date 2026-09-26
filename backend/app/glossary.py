@@ -15,6 +15,7 @@ from .dictionary_service import get_dictionary_service, DictionaryEntry
 from .sense_ranker import rank_senses_for_candidate
 from .kanji_service import get_kanji_service
 from .parser import katakana_to_hiragana
+from .sentence_analysis import analyze_sentence
 
 logger = logging.getLogger("nihon-glossary")
 
@@ -82,7 +83,7 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
     clicked_start = req.clicked_start
     clicked_end = req.clicked_end
 
-    cache_key = f"{sentence_text}_{clicked_start}_{clicked_end}_{req.word}_{req.dictionary_form}"
+    cache_key = f"{sentence_text}_{clicked_start}_{clicked_end}_{req.selection_scope}_{req.word}_{req.dictionary_form}"
     if cache_key in _glossary_cache:
         return _glossary_cache[cache_key]
 
@@ -93,7 +94,17 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
     if sentence_text and clicked_start is not None:
         if clicked_end is None:
             clicked_end = clicked_start + 1
-        resolution = resolve_candidates_at_span(sentence_text, clicked_start, clicked_end)
+        valid_click = 0 <= clicked_start < clicked_end <= len(sentence_text)
+        resolution = (
+            resolve_candidates_at_span(
+                sentence_text,
+                clicked_start,
+                clicked_end,
+                expand_context=req.selection_scope != "component",
+            )
+            if valid_click
+            else None
+        )
         if resolution:
             cand = resolution.primary
             return await _build_response_from_candidate(
@@ -103,11 +114,30 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
                 cache_key=cache_key
             )
 
-    # 2. Fallback path: Legacy word / dictionary_form lookup
-    target_term = req.dictionary_form or req.word or ""
-    entries = dict_service.lookup_term(target_term, reading=req.reading)
-    if not entries and req.word and req.word != target_term:
-        entries = dict_service.lookup_term(req.word, reading=req.reading)
+    # 2. Exact-span fallback: never replace a clicked span with its surrounding token.
+    has_valid_span = (
+        sentence_text
+        and clicked_start is not None
+        and clicked_end is not None
+        and 0 <= clicked_start < clicked_end <= len(sentence_text)
+    )
+    target_term = sentence_text[clicked_start:clicked_end] if has_valid_span else (req.word or "")
+    target_reading = req.reading if req.word == target_term else None
+    if has_valid_span:
+        try:
+            analyzed = analyze_sentence(sentence_text)
+            overlapping = [
+                m for m in analyzed.morphemes_a
+                if m.start_char < clicked_end and m.end_char > clicked_start
+            ]
+            if overlapping and overlapping[0].start_char == clicked_start and overlapping[-1].end_char == clicked_end:
+                target_reading = "".join(m.reading for m in overlapping)
+        except Exception:
+            logger.exception("Could not derive reading for clicked glossary span")
+
+    # With legacy requests that have no span, retain the provided dictionary form.
+    lookup_term = (req.dictionary_form or target_term) if not has_valid_span else target_term
+    entries = dict_service.lookup_term(lookup_term, reading=target_reading)
 
     if entries:
         entry = entries[0]
@@ -121,7 +151,7 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
             )
             for s in entry.senses
         ]
-        hira_reading = katakana_to_hiragana(entry.primary_reading or req.reading or target_term)
+        hira_reading = katakana_to_hiragana(target_reading or entry.primary_reading or target_term)
         romaji = kana_to_romaji(hira_reading)
         kanji_details = [
             KanjiDetailSchema(
@@ -135,7 +165,7 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
         ]
 
         response = GlossaryResponse(
-            word=req.word or entry.primary_kanji,
+            word=target_term or entry.primary_kanji,
             dictionary_form=entry.primary_kanji,
             reading=hira_reading,
             romaji=romaji,
@@ -143,6 +173,7 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
             selected_sense_index=rank_res.selected_sense_index,
             is_common=entry.is_common,
             context_explanation=rank_res.context_reason,
+            resolved_span=[clicked_start, clicked_end] if has_valid_span else None,
             kanji_breakdown=kanji_details,
             confidence=rank_res.confidence,
             source="nihon_local"
@@ -151,13 +182,14 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
         return response
 
     # 3. Not found fallback
-    display_word = req.word or target_term or "Unknown"
-    hira_reading = katakana_to_hiragana(req.reading or display_word)
+    display_word = target_term or "Unknown"
+    hira_reading = katakana_to_hiragana(target_reading or display_word)
     response = GlossaryResponse(
         word=display_word,
-        dictionary_form=req.dictionary_form,
+        dictionary_form=None if has_valid_span else req.dictionary_form,
         reading=hira_reading,
         romaji=kana_to_romaji(hira_reading),
+        resolved_span=[clicked_start, clicked_end] if has_valid_span else None,
         senses=[
             GlossarySense(
                 english_definitions=["No local dictionary definition found."],
@@ -176,7 +208,17 @@ async def _build_response_from_candidate(
     cache_key: str
 ) -> GlossaryResponse:
     """Helper to assemble rich GlossaryResponse from CandidateExpression."""
-    entry = cand.dict_entry
+    entry = None
+    if cand.surface:
+        entries = get_dictionary_service().lookup_term(cand.surface, reading=cand.reading)
+        if entries:
+            entry = entries[0]
+    if entry is None and cand.lemma and cand.lemma != cand.surface:
+        entries = get_dictionary_service().lookup_term(cand.lemma, reading=cand.reading)
+        if entries:
+            entry = entries[0]
+    if entry is None:
+        entry = cand.dict_entry
     senses: List[GlossarySense] = []
     selected_idx = 0
     context_exp = None
@@ -313,7 +355,7 @@ async def _build_response_from_candidate(
 
     response = GlossaryResponse(
         word=cand.surface,
-        dictionary_form=cand.lemma,
+        dictionary_form=entry.primary_kanji if entry else cand.lemma,
         reading=hira_reading,
         romaji=romaji,
         senses=senses,

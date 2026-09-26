@@ -101,6 +101,7 @@ export interface SelectedWordInfo {
   sentence: Sentence;
   clickedStart?: number;
   clickedEnd?: number;
+  selectionScope?: 'sentence' | 'component';
 }
 
 export interface Sentence {
@@ -147,4 +148,3 @@ export type {
   WeakItemsSettings,
   WeakItemsState,
 } from './weakItemsManager';
-

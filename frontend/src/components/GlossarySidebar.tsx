@@ -30,14 +30,46 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
   onResolvedSpanChange,
   onSelectSubToken,
 }) => {
-  const [data, setData] = useState<GlossaryData | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [glossaryResult, setGlossaryResult] = useState<{
+    key: string;
+    data: GlossaryData;
+    error: string | null;
+  } | null>(null);
 
   const speechId = selectedWord
-    ? `glossary-${selectedWord.sentenceId}-${selectedWord.tokenIndex}`
+    ? `glossary-${selectedWord.sentenceId}-${selectedWord.clickedStart ?? selectedWord.tokenIndex}-${selectedWord.clickedEnd ?? ''}`
     : 'glossary-idle';
   const speechState = useSpeechState(speechId);
+  const clickedSurface = selectedWord
+    ? (() => {
+        const sentenceText = selectedWord.sentence.raw_original || selectedWord.sentence.original;
+        const { clickedStart, clickedEnd } = selectedWord;
+        if (
+          clickedStart !== undefined &&
+          clickedEnd !== undefined &&
+          clickedStart >= 0 &&
+          clickedStart < clickedEnd &&
+          clickedEnd <= sentenceText.length
+        ) {
+          return sentenceText.slice(clickedStart, clickedEnd);
+        }
+        return selectedWord.token.raw_surface || selectedWord.token.surface;
+      })()
+    : '';
+  const selectionKey = selectedWord
+    ? JSON.stringify([
+        selectedWord.sentenceId,
+        selectedWord.sentence.raw_original || selectedWord.sentence.original,
+        selectedWord.clickedStart ?? null,
+        selectedWord.clickedEnd ?? null,
+        selectedWord.selectionScope || 'sentence',
+        selectedWord.tokenIndex,
+      ])
+    : null;
+  const hasCurrentResult = Boolean(selectionKey && glossaryResult?.key === selectionKey);
+  const data = hasCurrentResult ? glossaryResult?.data || null : null;
+  const error = hasCurrentResult ? glossaryResult?.error || null : null;
+  const isLoading = Boolean(selectedWord && !hasCurrentResult);
 
   // Stop speech when closing or unmounting
   useEffect(() => {
@@ -53,6 +85,8 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
     }
 
     const { token, sentence, clickedStart, clickedEnd } = selectedWord;
+    const requestKey = selectionKey;
+    if (!requestKey) return;
     let isCancelled = false;
 
     const fetchGlossary = async () => {
@@ -65,6 +99,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
             sentence: sentenceText,
             clicked_start: clickedStart,
             clicked_end: clickedEnd,
+            selection_scope: selectedWord.selectionScope || 'sentence',
             word: token.surface,
             dictionary_form: token.dictionary_form,
             reading: token.reading || token.hiragana,
@@ -78,9 +113,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
 
         const json: GlossaryData = await res.json();
         if (!isCancelled) {
-          setData(json);
-          setError(null);
-          setIsLoading(false);
+          setGlossaryResult({ key: requestKey, data: json, error: null });
           if (json.resolved_span && onResolvedSpanChange) {
             onResolvedSpanChange(json.resolved_span);
           }
@@ -88,39 +121,38 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
       } catch (err: unknown) {
         if (!isCancelled) {
           console.error('Failed to load glossary from backend:', err);
-          setData({
-            word: token.surface,
-            dictionary_form: token.dictionary_form,
-            reading: token.hiragana,
-            romaji: '',
-            senses: [
-              {
-                english_definitions: ['(Local dictionary service unreachable)'],
-                parts_of_speech: token.part_of_speech || [],
-                tags: [],
-              },
-            ],
-            is_common: false,
-            source: 'fallback',
+          setGlossaryResult({
+            key: requestKey,
+            data: {
+              word: clickedSurface,
+              reading: token.hiragana,
+              romaji: '',
+              senses: [
+                {
+                  english_definitions: ['(Local dictionary service unreachable)'],
+                  parts_of_speech: token.part_of_speech || [],
+                  tags: [],
+                },
+              ],
+              is_common: false,
+              source: 'fallback',
+            },
+            error: 'Could not reach backend glossary API.',
           });
-          setError('Could not reach backend glossary API.');
-          setIsLoading(false);
         }
       }
     };
 
-    // Trigger loading state immediately
-    setIsLoading(true);
     fetchGlossary();
 
     return () => {
       isCancelled = true;
     };
-  }, [selectedWord, onResolvedSpanChange]);
+  }, [selectedWord, selectionKey, clickedSurface, onResolvedSpanChange]);
 
   const handlePronounce = () => {
-    if (!selectedWord) return;
-    toggleSpeech(speechId, selectedWord.sentence);
+    if (!data || isLoading) return;
+    toggleSpeech(speechId, { text: data.word, kana: data.reading });
   };
 
   const isOpen = Boolean(selectedWord);
@@ -179,7 +211,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="font-japanese text-3xl font-bold text-amber-300 tracking-wider">
-                    {data?.word || selectedWord.token.surface}
+                    {data?.word || clickedSurface}
                   </div>
                   <div className="flex items-center gap-2 mt-1 text-slate-400 font-mono text-sm">
                     <span className="font-japanese text-emerald-400 font-medium">
@@ -197,9 +229,10 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                 <button
                   type="button"
                   onClick={handlePronounce}
-                  title="Listen to the source sentence in context"
-                  aria-label="Listen to the source sentence in context"
-                  className={`p-2 rounded-lg transition-all flex items-center justify-center ${
+                  disabled={!data || isLoading}
+                  title="Listen to this glossary entry"
+                  aria-label="Listen to this glossary entry"
+                  className={`p-2 rounded-lg transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed ${
                     speechState === 'loading'
                       ? 'text-amber-400 bg-amber-400/20 ring-1 ring-amber-400/50'
                       : speechState === 'playing'
@@ -357,7 +390,10 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                     <button
                       key={idx}
                       type="button"
-                      onClick={() => onSelectSubToken && onSelectSubToken(st)}
+                      onClick={() => {
+                        onResolvedSpanChange?.(null);
+                        onSelectSubToken?.(st);
+                      }}
                       className="px-2.5 py-1 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 transition-all text-xs font-mono text-slate-300 flex items-center gap-1.5 cursor-pointer shadow-sm group"
                       title={`Inspect '${st.surface}'`}
                     >
@@ -386,6 +422,11 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                     JMdict Local DB
                   </span>
                 </div>
+                {data.inflection_info && data.dictionary_form && data.dictionary_form !== data.word && (
+                  <p className="-mt-2 text-[10px] font-mono text-slate-500">
+                    Base-form entry: <span className="font-japanese text-slate-400">{data.dictionary_form}</span>
+                  </p>
+                )}
 
                 <div className="space-y-2.5">
                   {data.senses.slice(0, 5).map((sense, idx) => {
