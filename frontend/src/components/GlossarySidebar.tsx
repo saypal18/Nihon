@@ -165,12 +165,12 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                   onClick={handlePronounce}
                   title={
                     speechState === 'loading'
-                      ? 'Synthesizing with Qwen3-TTS... (click to cancel)'
+                      ? 'Synthesizing with VOICEVOX... (click to cancel)'
                       : speechState === 'playing'
-                      ? 'Speaking with Qwen3-TTS (click to stop)'
+                      ? 'Speaking with VOICEVOX (click to stop)'
                       : speechState === 'error'
                       ? 'Speech generation failed'
-                      : 'Pronounce word (Qwen3-TTS)'
+                      : 'Pronounce word (VOICEVOX)'
                   }
                   aria-label="Pronounce word"
                   className={`p-2 rounded-lg transition-all flex items-center justify-center ${

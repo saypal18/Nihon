@@ -1,5 +1,5 @@
 import logging
-from typing import List
+from typing import List, Dict, Any
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -11,15 +11,15 @@ from .parser import parse_japanese_text, get_tokenizer
 from .translator import translate_sentences, get_translator
 from .disambiguator import detect_available_model
 from .glossary import resolve_glossary
-from .tts import synthesize_speech, get_tts_status
+from .tts import synthesize_speech, get_tts_status, is_voicevox_running, get_speakers
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nihon-backend")
 
 app = FastAPI(
     title="Nihon Japanese Touch-Typing Backend",
-    description="NLP Morphological Analysis (SudachiPy) + Local LLM Disambiguation (Ollama)",
-    version="2.1.0",
+    description="NLP Morphological Analysis (Sudachi Full) + Local LLM Disambiguation (Ollama) + VOICEVOX TTS",
+    version="3.0.0",
 )
 
 # Enable CORS for frontend Next.js dev server
@@ -33,28 +33,24 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup_event():
-    logger.info("Initializing SudachiPy dictionary...")
+    logger.info("Initializing Sudachi Full dictionary...")
     get_tokenizer()
+    
     logger.info("Initializing Googletrans online translation client...")
     get_translator()
+    
     logger.info("Detecting local Ollama LLM model...")
     model = await detect_available_model()
     if model:
         logger.info(f"Ollama LLM Disambiguator ready with model: {model}")
     else:
-        logger.info("Ollama not currently detected. Operating in SudachiPy standalone mode.")
+        logger.info("Ollama not currently detected. Operating in Sudachi standalone mode.")
     
-    # Pre-warm Qwen3-TTS on GPU in background thread so startup isn't blocked
-    import threading
-    def _preload_tts():
-        try:
-            logger.info("Pre-loading Qwen3-TTS on GPU in background...")
-            from .tts import load_model
-            load_model()
-            logger.info("Qwen3-TTS pre-loaded and ready.")
-        except Exception as e:
-            logger.warning(f"Qwen3-TTS background preload warning: {e}")
-    threading.Thread(target=_preload_tts, daemon=True).start()
+    # Check VOICEVOX Engine connectivity
+    if is_voicevox_running():
+        logger.info("VOICEVOX Engine connected on localhost:50021.")
+    else:
+        logger.warning("VOICEVOX Engine not currently detected on localhost:50021. Audio synthesis will be unavailable until started.")
 
     logger.info("Nihon backend ready.")
 
@@ -76,15 +72,17 @@ async def health_check():
 
     llm_model = await detect_available_model()
     llm_ready = llm_model is not None
+    vv_ready = is_voicevox_running()
 
     return HealthResponse(
         status="ok",
-        morphological_parser="SudachiPy (UniDic Mode C)",
+        morphological_parser="Sudachi Full (UniDic Mode C + A)",
         translation_engine="Googletrans (Online Google Translate API)",
         sudachi_ready=sudachi_ready,
         online_translation_ready=online_trans_ready,
         llm_disambiguator_ready=llm_ready,
         llm_model=llm_model,
+        voicevox_ready=vv_ready,
     )
 
 @app.post("/api/process-passage", response_model=PassageResponse)
@@ -94,7 +92,7 @@ async def process_passage(request: PassageRequest):
         raise HTTPException(status_code=400, detail="Text cannot be empty.")
         
     try:
-        # Step 1: Sudachi morphological parsing + local LLM reading disambiguation + allowed Kanji filter
+        # Step 1: Sudachi Full morphological parsing + local LLM reading disambiguation + allowed Kanji filter
         sentences = await parse_japanese_text(text, allowed_kanji=request.allowed_kanji)
         if not sentences:
             raise HTTPException(status_code=400, detail="No readable sentences found.")
@@ -132,20 +130,25 @@ async def tts_status():
     status = get_tts_status()
     return TTSStatusResponse(**status)
 
+@app.get("/api/tts/speakers")
+async def tts_speakers() -> List[Dict[str, Any]]:
+    return get_speakers()
+
 @app.post("/api/tts")
 async def text_to_speech(request: TTSRequest):
     text = request.text.strip()
-    if not text:
-        raise HTTPException(status_code=400, detail="Text cannot be empty.")
+    kana = (request.kana or "").strip()
+    if not text and not kana:
+        raise HTTPException(status_code=400, detail="Either text or kana must be provided.")
     try:
         wav_bytes = synthesize_speech(
-            text=text,
-            speaker=request.speaker,
-            instruction=request.instruction,
-            model_size=request.model_size or "large"
+            text=text or kana,
+            kana=kana if kana else None,
+            speaker=request.speaker if request.speaker is not None else 3,
+            speed=request.speed or 1.0,
+            pitch=request.pitch or 0.0
         )
         return Response(content=wav_bytes, media_type="audio/wav")
     except Exception as e:
-        logger.error(f"TTS generation error for '{text[:20]}': {e}", exc_info=True)
+        logger.error(f"VOICEVOX TTS generation error: {e}", exc_info=True)
         raise HTTPException(status_code=503, detail=f"TTS service unavailable: {str(e)}")
-

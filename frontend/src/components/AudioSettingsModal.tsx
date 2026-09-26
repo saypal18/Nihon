@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { X, Volume2, VolumeX, Play, Sliders, Music, Zap, ShieldAlert, Loader2, Sparkles } from 'lucide-react';
+import { X, Volume2, VolumeX, Play, Sliders, Music, Zap, ShieldAlert, Loader2, Sparkles, UserCheck } from 'lucide-react';
 import { AudioSettings, SoundProfile, TTSEngine } from '../lib/types';
 import { howlerAudio } from '../lib/howlerAudio';
 import { toggleSpeech, useSpeechState } from '../lib/speech';
@@ -47,41 +47,51 @@ const TTS_ENGINES: {
   badgeColor: string;
 }[] = [
   {
-    id: 'qwen-large',
-    name: 'Qwen3-TTS Large (1.7B)',
-    description: 'Studio-grade generative voice with native Japanese speaker (ono_anna). Highest prosody & realism.',
-    badge: 'Studio GPU',
+    id: 'voicevox',
+    name: 'VOICEVOX Engine (Local Neural TTS)',
+    description: 'Ultra-fast, phonetically accurate neural speech driven directly by canonical G2P reading.',
+    badge: 'Local Neural',
     badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-  },
-  {
-    id: 'qwen-small',
-    name: 'Qwen3-TTS Small (0.6B)',
-    description: 'Lightweight 0.6B model on your RTX 5070 Ti. Fast response times and low synthesis latency.',
-    badge: 'Fast GPU',
-    badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
   },
   {
     id: 'browser',
     name: 'Browser Web Speech API',
-    description: 'Client-side synthesized voice via your browser / OS. Instant playback with zero GPU memory.',
+    description: 'Client-side synthesized voice via your browser / OS. Instant playback with zero memory.',
     badge: 'Built-in',
     badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
   },
+];
+
+const VOICEVOX_SPEAKERS = [
+  { id: 3, name: 'ずんだもん (Zundamon)', style: 'ノーマル' },
+  { id: 2, name: '四国めたん (Shikoku Metan)', style: 'ノーマル' },
+  { id: 8, name: '春日部つむぎ (Kasukabe Tsumugi)', style: 'ノーマル' },
+  { id: 9, name: '波音リツ (Namine Ritsu)', style: 'ノーマル' },
+  { id: 11, name: '玄野武宏 (Kurono Takehiro - Male)', style: 'ノーマル' },
+  { id: 13, name: '青山龍星 (Aoyama Ryusei - Male)', style: 'ノーマル' },
+  { id: 14, name: '冥鳴ひまり (Meimei Himari)', style: 'ノーマル' },
+  { id: 46, name: '小夜/SAYO (Sayo)', style: 'ノーマル' },
 ];
 
 // Sub-component for individual TTS engine row with state-aware test button
 const TTSEngineOption: React.FC<{
   engine: typeof TTS_ENGINES[0];
   isSelected: boolean;
+  speakerId?: number;
   onSelect: () => void;
-}> = ({ engine, isSelected, onSelect }) => {
+}> = ({ engine, isSelected, speakerId, onSelect }) => {
   const speechId = `test-tts-${engine.id}`;
   const speechState = useSpeechState(speechId);
 
   const handleTestTTS = (e: React.MouseEvent) => {
     e.stopPropagation();
     onSelect();
-    toggleSpeech(speechId, 'こんにちは、日本語の練習をしましょう。', engine.id);
+    toggleSpeech(
+      speechId,
+      'こんにちは、日本語の練習をしましょう。',
+      engine.id,
+      speakerId
+    );
   };
 
   return (
@@ -157,6 +167,9 @@ export const AudioSettingsModal: React.FC<AudioSettingsModalProps> = ({
 
   if (!isOpen) return null;
 
+  const currentEngine = settings.ttsEngine || 'voicevox';
+  const currentSpeaker = settings.voicevoxSpeaker || 3;
+
   const testKeySound = (profile: SoundProfile) => {
     howlerAudio.playKeystroke(profile);
   };
@@ -199,7 +212,7 @@ export const AudioSettingsModal: React.FC<AudioSettingsModalProps> = ({
                 Japanese Speech Synthesis (TTS) Engine
               </label>
               <span className="text-[11px] text-amber-400 font-mono">
-                Current: {settings.ttsEngine || 'qwen-large'}
+                Current: {currentEngine}
               </span>
             </div>
             <div className="grid grid-cols-1 gap-2.5">
@@ -207,11 +220,36 @@ export const AudioSettingsModal: React.FC<AudioSettingsModalProps> = ({
                 <TTSEngineOption
                   key={engine.id}
                   engine={engine}
-                  isSelected={(settings.ttsEngine || 'qwen-large') === engine.id}
+                  isSelected={currentEngine === engine.id}
+                  speakerId={currentSpeaker}
                   onSelect={() => onUpdateSettings({ ttsEngine: engine.id })}
                 />
               ))}
             </div>
+
+            {/* VOICEVOX Speaker Selection */}
+            {currentEngine === 'voicevox' && (
+              <div className="mt-3 p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <UserCheck className="w-4 h-4 text-emerald-400" />
+                    <span className="text-xs font-semibold text-slate-200">VOICEVOX Character Voice</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 mt-0.5">Select preferred voice character</p>
+                </div>
+                <select
+                  value={currentSpeaker}
+                  onChange={(e) => onUpdateSettings({ voicevoxSpeaker: parseInt(e.target.value, 10) })}
+                  className="bg-slate-900 border border-slate-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-amber-400"
+                >
+                  {VOICEVOX_SPEAKERS.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name} ({s.style})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           {/* Master Enable Toggle */}

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Sentence, TTSEngine } from './types';
 
-// Speech synthesis manager supporting Qwen3-TTS (Large/Small) and Browser Web Speech API
-// Includes a client-side FIFO audio cache (buffer length = 10) to prevent redundant model calls
+// Speech synthesis manager supporting VOICEVOX Engine (Local Neural TTS) and Browser Web Speech API
+// Prioritizes canonical G2P phonetic reading (tts_kana) so spoken speech and displayed readings agree 100%
 
 export type SpeechState = 'idle' | 'loading' | 'playing' | 'error';
 
@@ -22,8 +22,8 @@ let activeAbortController: AbortController | null = null;
 
 const BACKEND_TTS_URL = 'http://localhost:8000/api/tts';
 
-// --- FIFO Audio Cache (buffer length = 10) ---
-const FIFO_CACHE_LIMIT = 10;
+// --- FIFO Audio Cache (buffer length = 20) ---
+const FIFO_CACHE_LIMIT = 20;
 const audioCache = new Map<string, string>(); // cacheKey -> blob object URL
 const cacheQueue: string[] = [];              // FIFO order of cache keys
 
@@ -32,7 +32,6 @@ function getCachedAudioUrl(cacheKey: string): string | undefined {
 }
 
 function putCachedAudioUrl(cacheKey: string, url: string): void {
-  // If already in cache, keep existing
   if (audioCache.has(cacheKey)) {
     return;
   }
@@ -59,7 +58,7 @@ function updateActive(active: ActiveSpeechInfo | null) {
 }
 
 /**
- * Reads the selected TTS engine from localStorage, defaulting to 'qwen-large'
+ * Reads the selected TTS engine from localStorage, defaulting to 'voicevox'
  */
 export function getCurrentTTSEngine(): TTSEngine {
   if (typeof window !== 'undefined') {
@@ -67,7 +66,7 @@ export function getCurrentTTSEngine(): TTSEngine {
       const saved = localStorage.getItem('nihon_audio_settings');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed.ttsEngine) {
+        if (parsed.ttsEngine === 'voicevox' || parsed.ttsEngine === 'browser') {
           return parsed.ttsEngine;
         }
       }
@@ -75,7 +74,27 @@ export function getCurrentTTSEngine(): TTSEngine {
       // fallback
     }
   }
-  return 'qwen-large';
+  return 'voicevox';
+}
+
+/**
+ * Reads the configured VOICEVOX speaker ID from localStorage (default: 3 - Zundamon Normal)
+ */
+export function getVoicevoxSpeaker(): number {
+  if (typeof window !== 'undefined') {
+    try {
+      const saved = localStorage.getItem('nihon_audio_settings');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.voicevoxSpeaker === 'number') {
+          return parsed.voicevoxSpeaker;
+        }
+      }
+    } catch {
+      // fallback
+    }
+  }
+  return 3; // Default: ずんだもん (ノーマル)
 }
 
 /**
@@ -183,16 +202,17 @@ function playAudioInstance(id: string, audioUrl: string): Promise<void> {
 }
 
 /**
- * Toggles speech synthesis based on user's configured engine ('qwen-large' | 'qwen-small' | 'browser'):
+ * Toggles speech synthesis based on user's configured engine ('voicevox' | 'browser'):
  * - If the same audio item is loading or playing -> cancels/stops it.
  * - If a different audio was loading/playing -> stops it and starts the new one.
- * - Checks 10-item FIFO cache: hitting the same sound button with the same selected model
- *   skips the backend call and plays immediately from cache.
+ * - Prioritizes canonical phonetic reading (tts_kana) so speech matches displayed Hiragana.
+ * - Checks client FIFO cache to play instant repeats without re-requesting synthesis.
  */
 export async function toggleSpeech(
   id: string,
   input: Sentence | string,
-  overrideEngine?: TTSEngine
+  overrideEngine?: TTSEngine,
+  overrideSpeaker?: number
 ): Promise<void> {
   // If the same item is currently loading or playing, clicking again cancels it
   if (currentActive && currentActive.id === id) {
@@ -248,14 +268,15 @@ export async function toggleSpeech(
     return;
   }
 
-  // 2. Qwen3-TTS (Large or Small via local GPU backend)
+  // 2. VOICEVOX Engine (Local Neural Speech)
   const fullText = typeof input === 'string' ? input : input.original || input.hiragana;
+  const canonicalKana = typeof input === 'string' ? '' : (input.tts_kana || input.katakana || input.hiragana);
   if (!fullText || !fullText.trim()) return;
 
-  const modelSize = engine === 'qwen-small' ? 'small' : 'large';
-  const cacheKey = `${modelSize}:${fullText.trim()}`;
+  const speakerId = overrideSpeaker !== undefined ? overrideSpeaker : getVoicevoxSpeaker();
+  const cacheKey = `vv:${speakerId}:${(canonicalKana || fullText).trim()}`;
 
-  // Check 10-slot FIFO cache: if already synthesized with this model, play immediately without re-triggering model
+  // Check client FIFO cache
   const cachedUrl = getCachedAudioUrl(cacheKey);
   if (cachedUrl) {
     await playAudioInstance(id, cachedUrl);
@@ -265,7 +286,7 @@ export async function toggleSpeech(
   const controller = new AbortController();
   activeAbortController = controller;
 
-  // Immediately notify UI that this item is in the 'loading' state
+  // Immediately notify UI that this item is loading
   updateActive({ id, state: 'loading' });
 
   try {
@@ -274,19 +295,20 @@ export async function toggleSpeech(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: fullText,
-        model_size: modelSize,
-        instruction: 'Speak clearly with accurate standard Japanese pronunciation and natural rhythm for language learning.',
+        kana: canonicalKana || undefined,
+        speaker: speakerId,
+        speed: 1.0,
       }),
       signal: controller.signal,
     });
 
     if (!res.ok) {
-      throw new Error(`TTS server returned status ${res.status}`);
+      throw new Error(`VOICEVOX server returned status ${res.status}`);
     }
 
     const blob = await res.blob();
     if (!blob || blob.size === 0) {
-      throw new Error('Received empty audio from TTS server');
+      throw new Error('Received empty audio from VOICEVOX server');
     }
 
     // Check if user clicked cancel while the network fetch was resolving
@@ -295,20 +317,17 @@ export async function toggleSpeech(
     }
 
     const audioUrl = URL.createObjectURL(blob);
-    // Put into FIFO cache
     putCachedAudioUrl(cacheKey, audioUrl);
 
     await playAudioInstance(id, audioUrl);
   } catch (err: unknown) {
-    // If the request was deliberately aborted by user click, quietly exit
     if (controller.signal.aborted) {
       return;
     }
 
-    console.error(`Qwen3-TTS (${modelSize}) generation error:`, err);
+    console.error('VOICEVOX generation error:', err);
     updateActive({ id, state: 'error', error: String(err) });
 
-    // Display error state briefly, then return to idle
     setTimeout(() => {
       if (currentActive?.id === id && currentActive.state === 'error') {
         updateActive(null);

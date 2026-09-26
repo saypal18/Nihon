@@ -185,12 +185,12 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
           onClick={handlePlayVoice}
           title={
             speechState === 'loading'
-              ? 'Synthesizing with Qwen3-TTS... (click to cancel)'
+              ? 'Synthesizing with VOICEVOX... (click to cancel)'
               : speechState === 'playing'
-              ? 'Speaking with Qwen3-TTS (click to stop)'
+              ? 'Speaking with VOICEVOX (click to stop)'
               : speechState === 'error'
               ? 'Speech generation failed'
-              : 'Pronounce sentence (Qwen3-TTS)'
+              : 'Pronounce sentence (VOICEVOX)'
           }
           aria-label="Pronounce sentence"
           className={`shrink-0 p-2 rounded-lg transition-all duration-200 focus:outline-none cursor-pointer flex items-center justify-center ${

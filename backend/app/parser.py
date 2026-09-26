@@ -6,6 +6,7 @@ from typing import List, Set, Optional, Tuple
 from sudachipy import dictionary, SplitMode
 from .schemas import SentencePayload, TokenReading
 from .disambiguator import disambiguate_token
+from .normalizer import normalize_japanese_text
 
 logger = logging.getLogger("nihon-parser")
 
@@ -15,16 +16,21 @@ _tokenizer = None
 def get_dictionary():
     global _dict
     if _dict is None:
-        _dict = dictionary.Dictionary()
+        try:
+            _dict = dictionary.Dictionary(dict="full")
+            logger.info("Loaded Sudachi Full dictionary successfully.")
+        except Exception as e:
+            logger.warning(f"Could not load Sudachi Full dictionary ({e}), falling back to default Dictionary.")
+            _dict = dictionary.Dictionary()
     return _dict
 
 def get_tokenizer():
     global _tokenizer
     if _tokenizer is None:
-        _tokenizer = get_dictionary().create()
+        _tokenizer = get_dictionary().tokenizer()
     return _tokenizer
 
-# High-frequency Japanese heteronyms where context-dependent disambiguation is essential
+# Comprehensive Japanese heteronyms where context-dependent disambiguation is essential
 COMMON_HETERONYMS = {
     '一日': ['いちにち', 'ついたち'],
     '何人': ['なんにん', 'なんびと'],
@@ -46,10 +52,23 @@ COMMON_HETERONYMS = {
     '初日': ['しょにち', 'はつひ'],
     '白黒': ['しろくろ', 'はくこく'],
     '行': ['ぎょう', 'こう'],
+    '十分': ['じゅうぶん', 'じゅっぷん'],
+    '辛い': ['からい', 'つらい'],
+    '開く': ['ひらく', 'あく'],
+    '下り': ['くだり', 'おり'],
+    '生': ['なま', 'せい', 'しょう'],
+    '雨天': ['うてん', 'あめてん'],
+    '両面': ['りょうめん', 'りょうおもて'],
+    '客間': ['きゃくま', 'きゃくのま'],
+    '色気': ['いろけ', 'しきけ'],
+    '木綿': ['もめん', 'ゆう'],
+    '日本橋': ['にほんばし', 'にっぽんばし'],
+    '色紙': ['しきし', 'いろがみ'],
+    '大分': ['だいぶ', 'おおいた'],
 }
 
 def katakana_to_hiragana(text: str) -> str:
-    """Convert Katakana characters in text to Hiragana."""
+    """Convert Katakana characters in text to Hiragana deterministically."""
     result = []
     for c in text:
         code = ord(c)
@@ -62,7 +81,7 @@ def katakana_to_hiragana(text: str) -> str:
     return "".join(result)
 
 def hiragana_to_katakana(text: str) -> str:
-    """Convert Hiragana characters in text to Katakana."""
+    """Convert Hiragana characters in text to Katakana deterministically."""
     result = []
     for c in text:
         code = ord(c)
@@ -258,12 +277,17 @@ def get_candidate_readings(surface: str, primary_reading: str) -> List[str]:
 
 async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) -> List[SentencePayload]:
     """
-    Parse a passage of Japanese text into structured sentence payloads.
-    Detects ambiguous Kanji readings and uses local LLM (Ollama) to disambiguate.
-    Applies allowed Kanji filtering: any Kanji outside allowed_kanji is rendered as Hiragana.
+    Parse a passage of Japanese text into structured sentence payloads:
+    1. Input normalization (NFKC, punctuation, full-width variants).
+    2. Sudachi Full morphological parsing + tokenization.
+    3. Context-aware local LLM (Ollama) disambiguation for heteronyms.
+    4. Canonical Katakana + deterministic Hiragana derivation (guaranteed 100% agreement).
+    5. Construction of phonetic TTS kana for VOICEVOX synthesis.
+    6. Allowed Kanji filtering (furigana conversion for unlearned Kanji).
     """
+    normalized_text = normalize_japanese_text(text)
     tokenizer = get_tokenizer()
-    raw_sentences = split_sentences(text)
+    raw_sentences = split_sentences(normalized_text)
     payloads = []
     
     filtering_active = (allowed_kanji is not None)
@@ -274,6 +298,7 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
         tokens: List[TokenReading] = []
         hiragana_parts = []
         katakana_parts = []
+        tts_kana_parts = []
         
         for m in morphemes:
             # If compound word has A-mode splits and is not a heteronym requiring full-unit disambiguation:
@@ -294,20 +319,20 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
                 if is_punct or not reading:
                     reading = surface
                 
-                # Determine initial Hiragana representation
+                # Determine initial Hiragana & Katakana representation
                 if is_punct:
-                    token_hira = surface
                     token_kata = surface
+                    token_hira = surface
                     candidates = []
                     was_disambiguated = False
                 elif is_all_kana_or_punct(surface):
-                    token_hira = katakana_to_hiragana(surface)
                     token_kata = hiragana_to_katakana(surface)
+                    token_hira = katakana_to_hiragana(surface)
                     candidates = []
                     was_disambiguated = False
                 else:
-                    token_hira = katakana_to_hiragana(reading)
                     token_kata = reading
+                    token_hira = katakana_to_hiragana(reading)
                     candidates = get_candidate_readings(surface, reading)
                     
                     # If multiple valid readings exist, disambiguate with local LLM
@@ -320,6 +345,15 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
                     else:
                         was_disambiguated = False
                 
+                # Derive phonetic reading for speech synthesis (VOICEVOX)
+                # Particles は and へ are pronounced ワ and エ in standard Japanese phonetics
+                if pos[0] == '助詞' and surface == 'は':
+                    phonetic_kata = 'ワ'
+                elif pos[0] == '助詞' and surface == 'へ':
+                    phonetic_kata = 'エ'
+                else:
+                    phonetic_kata = token_kata
+
                 # Apply allowed Kanji filtering to rendered surface
                 rendered_surface = surface
                 if filtering_active:
@@ -363,9 +397,11 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
                 
                 hiragana_parts.append(token_hira)
                 katakana_parts.append(token_kata)
+                tts_kana_parts.append(phonetic_kata)
             
         full_hiragana = "".join(hiragana_parts)
         full_katakana = "".join(katakana_parts)
+        full_tts_kana = "".join(tts_kana_parts)
         rendered_original = "".join(t.surface for t in tokens) if filtering_active else sentence_str
         
         payloads.append(SentencePayload(
@@ -374,6 +410,7 @@ async def parse_japanese_text(text: str, allowed_kanji: Optional[str] = None) ->
             raw_original=sentence_str,
             hiragana=full_hiragana,
             katakana=full_katakana,
+            tts_kana=full_tts_kana,
             translation="",
             tokens=tokens
         ))

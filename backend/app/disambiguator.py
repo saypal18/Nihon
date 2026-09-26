@@ -7,13 +7,16 @@ logger = logging.getLogger("nihon-disambiguator")
 
 OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 PREFERRED_MODELS = [
+    "qwen2.5:7b",
+    "qwen2.5:7b-instruct",
+    "qwen2.5:14b",
+    "qwen2.5:32b",
+    "qwen2.5:latest",
+    "qwen2.5",
     "qwen3:latest",
     "qwen3",
     "qwen3:8b",
     "qwen3:14b",
-    "qwen2.5:7b",
-    "qwen2.5:7b-instruct",
-    "qwen2.5:14b",
     "aya-expanse:8b",
     "phi4:latest",
     "deepseek-r1:7b",
@@ -61,7 +64,7 @@ async def disambiguate_token(
     default_reading: str
 ) -> Tuple[str, bool]:
     """
-    Constrained contextual selection using local LLM (Qwen2.5 on RTX 5070 Ti) via Ollama.
+    Constrained contextual selection using local LLM (Qwen2.5 / Ollama on RTX 5070 Ti).
     Returns (selected_hiragana, was_disambiguated).
     """
     if len(candidates) <= 1:
@@ -96,23 +99,37 @@ async def disambiguate_token(
             "stream": False,
             "options": {
                 "temperature": 0.0,
-                "num_predict": 10,
+                "num_predict": 30,
             }
         }
         res = await client.post(f"{OLLAMA_BASE_URL}/api/chat", json=payload)
         if res.status_code == 200:
-            content = res.json().get("message", {}).get("content", "").strip()
-            # Check if any candidate is contained in the LLM response
-            # Prefer longest match to handle substrings
-            matched = None
-            for c in sorted(candidates, key=len, reverse=True):
-                if c in content:
-                    matched = c
-                    break
-            
-            if matched:
-                logger.info(f"Disambiguated '{surface}' in \"{sentence}\" -> '{matched}' (via {model})")
-                return matched, True
+            msg_obj = res.json().get("message", {})
+            content = msg_obj.get("content", "").strip()
+            if not content and "thinking" in msg_obj:
+                content = msg_obj.get("thinking", "").strip()
+
+            # Exact match check first
+            clean_content = content.replace('*', '').replace('「', '').replace('」', '').strip()
+            for c in candidates:
+                if clean_content == c:
+                    logger.info(f"Disambiguated '{surface}' in \"{sentence}\" -> '{c}' (via {model})")
+                    return c, True
+
+            # Match first occurring candidate in response
+            # Find candidate with earliest position in response
+            earliest_idx = 999999
+            earliest_cand = None
+            for c in candidates:
+                idx = content.find(c)
+                if idx != -1 and idx < earliest_idx:
+                    earliest_idx = idx
+                    earliest_cand = c
+
+            if earliest_cand:
+                logger.info(f"Disambiguated '{surface}' in \"{sentence}\" -> '{earliest_cand}' (via {model})")
+                return earliest_cand, True
+
     except Exception as e:
         logger.warning(f"Failed to disambiguate '{surface}' via Ollama: {e}")
 

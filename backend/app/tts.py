@@ -1,158 +1,160 @@
 import io
+import re
 import logging
-from typing import Optional, Dict, Any, Tuple
+from typing import Optional, Dict, Any, Tuple, List
 from collections import OrderedDict
 import threading
+import httpx
 
 logger = logging.getLogger("nihon-tts")
 
-MODELS = {
-    "large": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
-    "small": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
-}
+VOICEVOX_BASE_URL = "http://127.0.0.1:50021"
 
-FIFO_CACHE_SIZE = 10
-_tts_cache: OrderedDict[Tuple[str, str, str, str], bytes] = OrderedDict()
+# In-memory FIFO audio cache for fast repetitive sentence replay
+FIFO_CACHE_SIZE = 50
+_audio_cache: OrderedDict[Tuple[str, int, float, float], bytes] = OrderedDict()
 _cache_lock = threading.Lock()
 
-_model_instances: Dict[str, Any] = {
-    "large": None,
-    "small": None,
-}
-_model_locks = {
-    "large": threading.Lock(),
-    "small": threading.Lock(),
-}
-_init_errors: Dict[str, Optional[str]] = {
-    "large": None,
-    "small": None,
-}
-_is_loading: Dict[str, bool] = {
-    "large": False,
-    "small": False,
-}
+_client: Optional[httpx.Client] = None
 
-def get_device() -> str:
+def get_http_client() -> httpx.Client:
+    global _client
+    if _client is None or getattr(_client, "is_closed", False):
+        _client = httpx.Client(timeout=30.0)
+    return _client
+
+def is_voicevox_running() -> bool:
+    """Check if local VOICEVOX engine is responding."""
     try:
-        import torch
-        if torch.cuda.is_available():
-            return "cuda:0"
+        client = get_http_client()
+        r = client.get(f"{VOICEVOX_BASE_URL}/version", timeout=1.5)
+        return r.status_code == 200
     except Exception:
-        pass
-    return "cpu"
+        return False
 
-def load_model(size: str = "large"):
-    """Load Qwen3-TTS model into memory for requested size ('large' or 'small')."""
-    model_size = "small" if "small" in size.lower() else "large"
-    model_id = MODELS[model_size]
-
-    if _model_instances[model_size] is not None:
-        return _model_instances[model_size]
-
-    with _model_locks[model_size]:
-        if _model_instances[model_size] is not None:
-            return _model_instances[model_size]
-
-        _is_loading[model_size] = True
+def get_tts_status() -> dict:
+    available = is_voicevox_running()
+    speakers_count = 0
+    if available:
         try:
-            import torch
-            from qwen_tts import Qwen3TTSModel
+            client = get_http_client()
+            r = client.get(f"{VOICEVOX_BASE_URL}/speakers", timeout=2.0)
+            if r.status_code == 200:
+                speakers_count = len(r.json())
+        except Exception:
+            pass
 
-            device = get_device()
-            logger.info(f"Loading Qwen3-TTS {model_size} model ({model_id}) on {device}...")
-
-            dtype = torch.bfloat16 if "cuda" in device else torch.float32
-            model = Qwen3TTSModel.from_pretrained(
-                model_id,
-                device_map=device,
-                dtype=dtype
-            )
-            _model_instances[model_size] = model
-            _init_errors[model_size] = None
-            logger.info(f"Qwen3-TTS {model_size} ({model_id}) loaded successfully.")
-            return _model_instances[model_size]
-        except Exception as e:
-            _init_errors[model_size] = str(e)
-            logger.error(f"Failed to load Qwen3-TTS {model_size} model: {e}")
-            raise
-        finally:
-            _is_loading[model_size] = False
-
-def is_tts_ready(size: str = "large") -> bool:
-    model_size = "small" if "small" in size.lower() else "large"
-    return _model_instances[model_size] is not None
-
-def get_tts_status(size: str = "large") -> dict:
-    model_size = "small" if "small" in size.lower() else "large"
-    device = get_device()
     return {
-        "available": is_tts_ready(model_size),
-        "model": MODELS[model_size],
-        "device": device,
-        "is_loading": _is_loading[model_size],
-        "error": _init_errors[model_size]
+        "available": available,
+        "engine": "VOICEVOX Engine",
+        "url": VOICEVOX_BASE_URL,
+        "speakers_count": speakers_count,
+        "error": None if available else "VOICEVOX Engine not running on localhost:50021"
     }
+
+def get_speakers() -> List[Dict[str, Any]]:
+    """Retrieve list of available speakers from VOICEVOX."""
+    try:
+        client = get_http_client()
+        r = client.get(f"{VOICEVOX_BASE_URL}/speakers")
+        if r.status_code == 200:
+            return r.json()
+    except Exception as e:
+        logger.warning(f"Failed to fetch VOICEVOX speakers: {e}")
+    return []
+
+def clean_kana_for_voicevox(kana: str) -> str:
+    """
+    Clean kana text for VOICEVOX is_kana mode:
+    - Standardize Japanese punctuation
+    - Remove characters incompatible with AquesTalk syntax
+    """
+    if not kana:
+        return ""
+    # Standardize punctuation
+    cleaned = kana.replace('?', '？').replace('!', '！').replace(',', '、').replace('.', '。')
+    cleaned = cleaned.replace(' ', '、').replace('\u3000', '、')
+    # Filter only supported characters: Katakana, Hiragana, prolonged sound mark, and standard Japanese punctuation
+    # AquesTalk kana allows Katakana, '/', ''', and Japanese punctuation marks
+    return cleaned
 
 def synthesize_speech(
     text: str,
-    speaker: Optional[str] = None,
-    instruction: Optional[str] = None,
-    model_size: str = "large"
+    kana: Optional[str] = None,
+    speaker: int = 3,
+    speed: float = 1.0,
+    pitch: float = 0.0
 ) -> bytes:
     """
-    Synthesizes Japanese speech for given text using Qwen3-TTS (large or small).
-    Returns audio as WAV bytes.
+    Synthesize Japanese speech using local VOICEVOX Engine.
+    Prioritizes canonical phonetic kana (tts_kana) with is_kana=True to guarantee
+    100% agreement with the G2P / disambiguated reading.
     """
-    import soundfile as sf
-
-    size = "small" if "small" in str(model_size).lower() else "large"
-    default_instruct = instruction or "Speak clearly with accurate standard Japanese pronunciation and natural rhythm."
-    chosen_speaker_key = speaker or "ono_anna"
-    cache_key = (size, text.strip(), chosen_speaker_key, default_instruct)
+    client = get_http_client()
+    target_speaker = int(speaker) if speaker is not None else 3
+    speech_key = (kana or text).strip()
+    cache_key = (speech_key, target_speaker, round(speed, 2), round(pitch, 2))
 
     # 1. Check in-memory FIFO cache
     with _cache_lock:
-        if cache_key in _tts_cache:
-            logger.info(f"Serving Japanese speech from backend FIFO cache [{size}]: '{text[:30]}...'")
-            return _tts_cache[cache_key]
+        if cache_key in _audio_cache:
+            logger.info(f"Serving VOICEVOX speech from FIFO cache: '{speech_key[:25]}...' [speaker={target_speaker}]")
+            return _audio_cache[cache_key]
 
-    # 2. Run model inference if not cached
-    model = load_model(size)
-
-    # Determine default speaker if not provided (ono_anna is native Japanese speaker)
-    chosen_speaker = speaker
-    if not chosen_speaker:
+    # 2. Generate AudioQuery from VOICEVOX
+    audio_query = None
+    if kana and kana.strip():
+        cleaned_kana = clean_kana_for_voicevox(kana.strip())
         try:
-            supported = model.get_supported_speakers()
-            if "ono_anna" in supported:
-                chosen_speaker = "ono_anna"
-            elif supported and len(supported) > 0:
-                chosen_speaker = supported[0]
-            else:
-                chosen_speaker = "ono_anna"
-        except Exception:
-            chosen_speaker = "ono_anna"
+            # Query using canonical kana with is_kana=true
+            q_res = client.post(
+                f"{VOICEVOX_BASE_URL}/audio_query",
+                params={
+                    "text": cleaned_kana,
+                    "speaker": target_speaker,
+                    "is_kana": "true"
+                }
+            )
+            if q_res.status_code == 200:
+                audio_query = q_res.json()
+        except Exception as e:
+            logger.debug(f"Audio query with is_kana=true failed ({e}), falling back to text query.")
 
-    logger.info(f"Synthesizing Japanese speech [{size}]: '{text[:30]}...' [speaker={chosen_speaker}]")
+    # Fallback to plain text audio_query if kana query was not possible
+    if audio_query is None:
+        q_res = client.post(
+            f"{VOICEVOX_BASE_URL}/audio_query",
+            params={
+                "text": text.strip(),
+                "speaker": target_speaker
+            }
+        )
+        if q_res.status_code != 200:
+            raise RuntimeError(f"VOICEVOX audio_query failed ({q_res.status_code}): {q_res.text}")
+        audio_query = q_res.json()
 
-    wavs, sr = model.generate_custom_voice(
-        text=text,
-        language="Japanese",
-        speaker=chosen_speaker,
-        instruct=default_instruct
+    # 3. Apply prosody / speed / pitch parameters
+    if speed != 1.0:
+        audio_query["speedScale"] = max(0.5, min(2.0, speed))
+    if pitch != 0.0:
+        audio_query["pitchScale"] = max(-0.15, min(0.15, pitch))
+
+    # 4. Synthesize speech WAV from AudioQuery
+    synth_res = client.post(
+        f"{VOICEVOX_BASE_URL}/synthesis",
+        params={"speaker": target_speaker},
+        json=audio_query
     )
+    if synth_res.status_code != 200:
+        raise RuntimeError(f"VOICEVOX synthesis failed ({synth_res.status_code}): {synth_res.text}")
 
-    audio_data = wavs[0] if isinstance(wavs, list) else wavs
+    wav_bytes = synth_res.content
+    logger.info(f"Synthesized {len(wav_bytes)} bytes WAV via VOICEVOX [speaker={target_speaker}] for '{speech_key[:25]}...'")
 
-    buffer = io.BytesIO()
-    sf.write(buffer, audio_data, sr, format="WAV")
-    wav_bytes = buffer.getvalue()
-
-    # 3. Store in FIFO cache, evicting the oldest entry if capacity reached
+    # 5. Store in FIFO cache
     with _cache_lock:
-        if len(_tts_cache) >= FIFO_CACHE_SIZE:
-            evicted_key, _ = _tts_cache.popitem(last=False)  # FIFO pop oldest
-            logger.debug(f"FIFO cache evicted oldest entry: {evicted_key[1][:20]}")
-        _tts_cache[cache_key] = wav_bytes
+        if len(_audio_cache) >= FIFO_CACHE_SIZE:
+            _audio_cache.popitem(last=False)
+        _audio_cache[cache_key] = wav_bytes
 
     return wav_bytes

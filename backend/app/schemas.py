@@ -22,6 +22,7 @@ class SentencePayload(BaseModel):
     raw_original: Optional[str] = None
     hiragana: str
     katakana: str
+    tts_kana: Optional[str] = None
     translation: str
     tokens: List[TokenReading] = []
 
@@ -36,6 +37,7 @@ class HealthResponse(BaseModel):
     online_translation_ready: bool
     llm_disambiguator_ready: bool = False
     llm_model: Optional[str] = None
+    voicevox_ready: bool = False
 
 class GlossaryRequest(BaseModel):
     word: str = Field(..., description="Surface word or clicked word")
@@ -62,14 +64,23 @@ class GlossaryResponse(BaseModel):
 
 class TTSRequest(BaseModel):
     text: str = Field(..., description="Japanese text to synthesize")
-    speaker: Optional[str] = Field(default=None, description="Speaker name or preset")
-    instruction: Optional[str] = Field(default=None, description="Optional style or tone instruction")
+    kana: Optional[str] = Field(default=None, description="Authoritative phonetic kana / katakana representation from G2P")
+    speaker: Optional[int] = Field(default=1, description="VOICEVOX style ID (default: 1 - Zundamon normal or 3)")
     speed: Optional[float] = Field(default=1.0, description="Speech playback speed")
-    model_size: Optional[str] = Field(default="large", description="Model size: 'large' (1.7B) or 'small' (0.6B)")
+    pitch: Optional[float] = Field(default=0.0, description="Speech pitch adjustment")
+
+class SpeakerStyle(BaseModel):
+    id: int
+    name: str
+
+class SpeakerInfo(BaseModel):
+    name: str
+    speaker_uuid: str
+    styles: List[SpeakerStyle]
 
 class TTSStatusResponse(BaseModel):
     available: bool
-    model: str
-    device: str
+    engine: str = "VOICEVOX Engine"
+    url: str = "http://127.0.0.1:50021"
+    speakers_count: int = 0
     error: Optional[str] = None
-
