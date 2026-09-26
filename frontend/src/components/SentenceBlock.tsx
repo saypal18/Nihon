@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import * as wanakana from 'wanakana';
 import { Sentence, ScriptMode, TokenReading } from '../lib/types';
 import { mapHiraganaIndexToOriginal } from '../lib/emielAdapter';
-import { CheckCircle2, AlertTriangle, Volume2 } from 'lucide-react';
-import { speakJapanese, stopSpeech } from '../lib/speech';
+import { CheckCircle2, AlertTriangle, Volume2, Loader2, VolumeX } from 'lucide-react';
+import { useSpeechState, toggleSpeech } from '../lib/speech';
 
 interface SentenceBlockProps {
   sentence: Sentence;
@@ -38,28 +38,12 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
   selectedTokenIndex = null,
   onSelectToken,
 }) => {
-  const [isSpeaking, setIsSpeaking] = useState(false);
-
-  useEffect(() => {
-    return () => {
-      if (isSpeaking) {
-        stopSpeech();
-      }
-    };
-  }, [isSpeaking]);
+  const speechId = `sentence-${sentence.id}`;
+  const speechState = useSpeechState(speechId);
 
   const handlePlayVoice = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
-    if (isSpeaking) {
-      stopSpeech();
-      setIsSpeaking(false);
-    } else {
-      speakJapanese(
-        sentence,
-        () => setIsSpeaking(true),
-        () => setIsSpeaking(false)
-      );
-    }
+    toggleSpeech(speechId, sentence);
   };
 
   // Determine text to render based on scriptMode
@@ -199,15 +183,33 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
           type="button"
           tabIndex={-1}
           onClick={handlePlayVoice}
-          title="Pronounce sentence"
+          title={
+            speechState === 'loading'
+              ? 'Synthesizing with Qwen3-TTS... (click to cancel)'
+              : speechState === 'playing'
+              ? 'Speaking with Qwen3-TTS (click to stop)'
+              : speechState === 'error'
+              ? 'Speech generation failed'
+              : 'Pronounce sentence (Qwen3-TTS)'
+          }
           aria-label="Pronounce sentence"
-          className={`shrink-0 p-2 rounded-lg transition-all duration-200 focus:outline-none cursor-pointer ${
-            isSpeaking
-              ? 'text-amber-400 bg-amber-400/15 ring-1 ring-amber-400/40 animate-pulse'
+          className={`shrink-0 p-2 rounded-lg transition-all duration-200 focus:outline-none cursor-pointer flex items-center justify-center ${
+            speechState === 'loading'
+              ? 'text-amber-400 bg-amber-400/20 ring-1 ring-amber-400/50'
+              : speechState === 'playing'
+              ? 'text-emerald-400 bg-emerald-400/20 ring-1 ring-emerald-400/50 animate-pulse'
+              : speechState === 'error'
+              ? 'text-rose-400 bg-rose-400/20 ring-1 ring-rose-400/50'
               : 'text-slate-500 hover:text-slate-200 hover:bg-slate-800/60 active:scale-95'
           }`}
         >
-          <Volume2 className="w-5 h-5" />
+          {speechState === 'loading' ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : speechState === 'error' ? (
+            <VolumeX className="w-5 h-5" />
+          ) : (
+            <Volume2 className="w-5 h-5" />
+          )}
         </button>
       </div>
 

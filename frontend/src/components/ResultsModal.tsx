@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Trophy, RotateCcw, PlusCircle, AlertCircle, Clock, Zap, Target } from 'lucide-react';
+import { Trophy, RotateCcw, PlusCircle, AlertCircle, Clock, Zap, Target, Flame } from 'lucide-react';
 import { TypingStats } from '../lib/types';
 import { getRankedWeaknesses } from '../lib/stats';
 
@@ -11,6 +11,7 @@ interface ResultsModalProps {
   onClose: () => void;
   onReset: () => void;
   onNewPassage: () => void;
+  onOpenWeakModal: () => void;
   stats: TypingStats;
 }
 
@@ -19,6 +20,7 @@ export const ResultsModal: React.FC<ResultsModalProps> = ({
   onClose,
   onReset,
   onNewPassage,
+  onOpenWeakModal,
   stats,
 }) => {
   useEffect(() => {
@@ -149,21 +151,34 @@ export const ResultsModal: React.FC<ResultsModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-8 flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="mt-8 flex items-center justify-between gap-3 pt-4 border-t border-slate-800">
           <button
-            onClick={onNewPassage}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all"
+            onClick={() => {
+              onClose();
+              onOpenWeakModal();
+            }}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-semibold transition-all"
           >
-            <PlusCircle className="w-4 h-4 text-red-400" />
-            <span>Load New Passage</span>
+            <Flame className="w-4 h-4 text-amber-400" />
+            <span>Review Weak Items</span>
           </button>
-          <button
-            onClick={onReset}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold transition-all shadow-lg shadow-red-900/40"
-          >
-            <RotateCcw className="w-4 h-4" />
-            <span>Practice Again</span>
-          </button>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onNewPassage}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all"
+            >
+              <PlusCircle className="w-4 h-4 text-red-400" />
+              <span>Load New Passage</span>
+            </button>
+            <button
+              onClick={onReset}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-semibold transition-all shadow-lg shadow-red-900/40"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Practice Again</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

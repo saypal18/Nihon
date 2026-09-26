@@ -60,3 +60,16 @@ class GlossaryResponse(BaseModel):
     context_explanation: Optional[str] = None
     source: str = "jisho+ollama"
 
+class TTSRequest(BaseModel):
+    text: str = Field(..., description="Japanese text to synthesize")
+    speaker: Optional[str] = Field(default=None, description="Speaker name or preset")
+    instruction: Optional[str] = Field(default=None, description="Optional style or tone instruction")
+    speed: Optional[float] = Field(default=1.0, description="Speech playback speed")
+    model_size: Optional[str] = Field(default="large", description="Model size: 'large' (1.7B) or 'small' (0.6B)")
+
+class TTSStatusResponse(BaseModel):
+    available: bool
+    model: str
+    device: str
+    error: Optional[str] = None
+

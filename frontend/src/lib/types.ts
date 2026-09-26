@@ -2,12 +2,15 @@ export type ScriptMode = 'original' | 'hiragana' | 'katakana';
 
 export type SoundProfile = 'blue' | 'brown' | 'thock';
 
+export type TTSEngine = 'qwen-large' | 'qwen-small' | 'browser';
+
 export interface AudioSettings {
   enabled: boolean;
   profile: SoundProfile;
   keyVolume: number;    // 0.0 - 1.0
   errorVolume: number;  // 0.0 - 1.0
   chimeVolume: number;  // 0.0 - 1.0
+  ttsEngine: TTSEngine; // 'qwen-large' | 'qwen-small' | 'browser'
 }
 
 export interface TokenReading {
@@ -83,3 +86,12 @@ export interface TypingStats {
   elapsedSeconds: number;
   kanaErrors: Record<string, KanaStat>;
 }
+
+export type {
+  WeakCategory,
+  WeakStatus,
+  WeakItem,
+  WeakItemsSettings,
+  WeakItemsState,
+} from './weakItemsManager';
+

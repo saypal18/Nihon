@@ -7,6 +7,7 @@ export const DEFAULT_AUDIO_SETTINGS: AudioSettings = {
   keyVolume: 0.7,
   errorVolume: 0.6,
   chimeVolume: 0.7,
+  ttsEngine: 'qwen-large',
 };
 
 class HowlerAudioEngine {

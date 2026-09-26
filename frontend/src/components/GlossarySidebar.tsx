@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { SelectedWordInfo, GlossaryData } from '../lib/types';
-import { speakJapanese, stopSpeech } from '../lib/speech';
-import { X, BookOpen, Volume2, Sparkles, Loader2, Tag, ExternalLink } from 'lucide-react';
+import { useSpeechState, toggleSpeech, stopSpeech } from '../lib/speech';
+import { X, BookOpen, Volume2, Sparkles, Loader2, Tag, ExternalLink, VolumeX } from 'lucide-react';
 
 interface GlossarySidebarProps {
   selectedWord: SelectedWordInfo | null;
@@ -17,13 +17,16 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
   const [data, setData] = useState<GlossaryData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const speechId = selectedWord
+    ? `glossary-${selectedWord.sentenceId}-${selectedWord.tokenIndex}`
+    : 'glossary-idle';
+  const speechState = useSpeechState(speechId);
 
   // Stop speech when closing or unmounting
   useEffect(() => {
     return () => {
       stopSpeech();
-      setIsSpeaking(false);
     };
   }, []);
 
@@ -100,18 +103,9 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
 
   const handlePronounce = () => {
     if (!selectedWord) return;
-    if (isSpeaking) {
-      stopSpeech();
-      setIsSpeaking(false);
-    } else {
-      const textToPronounce =
-        data?.reading || selectedWord.token.hiragana || selectedWord.token.surface;
-      speakJapanese(
-        textToPronounce,
-        () => setIsSpeaking(true),
-        () => setIsSpeaking(false)
-      );
-    }
+    const textToPronounce =
+      data?.reading || selectedWord.token.hiragana || selectedWord.token.surface;
+    toggleSpeech(speechId, textToPronounce);
   };
 
   const isOpen = Boolean(selectedWord);
@@ -169,15 +163,33 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                 <button
                   type="button"
                   onClick={handlePronounce}
-                  title="Pronounce word"
+                  title={
+                    speechState === 'loading'
+                      ? 'Synthesizing with Qwen3-TTS... (click to cancel)'
+                      : speechState === 'playing'
+                      ? 'Speaking with Qwen3-TTS (click to stop)'
+                      : speechState === 'error'
+                      ? 'Speech generation failed'
+                      : 'Pronounce word (Qwen3-TTS)'
+                  }
                   aria-label="Pronounce word"
-                  className={`p-2 rounded-lg transition-all ${
-                    isSpeaking
-                      ? 'text-amber-400 bg-amber-400/20 ring-1 ring-amber-400/50 animate-pulse'
+                  className={`p-2 rounded-lg transition-all flex items-center justify-center ${
+                    speechState === 'loading'
+                      ? 'text-amber-400 bg-amber-400/20 ring-1 ring-amber-400/50'
+                      : speechState === 'playing'
+                      ? 'text-emerald-400 bg-emerald-400/20 ring-1 ring-emerald-400/50 animate-pulse'
+                      : speechState === 'error'
+                      ? 'text-rose-400 bg-rose-400/20 ring-1 ring-rose-400/50'
                       : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800'
                   }`}
                 >
-                  <Volume2 className="w-5 h-5" />
+                  {speechState === 'loading' ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : speechState === 'error' ? (
+                    <VolumeX className="w-5 h-5" />
+                  ) : (
+                    <Volume2 className="w-5 h-5" />
+                  )}
                 </button>
               </div>
 

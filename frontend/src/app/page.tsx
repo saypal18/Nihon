@@ -7,6 +7,7 @@ import { InputModal } from '../components/InputModal';
 import { AudioSettingsModal } from '../components/AudioSettingsModal';
 import { ResultsModal } from '../components/ResultsModal';
 import { GlossarySidebar } from '../components/GlossarySidebar';
+import { WeakItemsModal } from '../components/WeakItemsModal';
 import {
   Sentence,
   ScriptMode,
@@ -92,6 +93,7 @@ export default function Home() {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isAudioSettingsOpen, setIsAudioSettingsOpen] = useState(false);
   const [isResultsModalOpen, setIsResultsModalOpen] = useState(false);
+  const [isWeakModalOpen, setIsWeakModalOpen] = useState(false);
   const [isLoadingPassage, setIsLoadingPassage] = useState(false);
   const [selectedWord, setSelectedWord] = useState<SelectedWordInfo | null>(null);
 
@@ -157,7 +159,7 @@ export default function Home() {
   );
 
   const isOverlayOpen =
-    isInputModalOpen || isAudioSettingsOpen || isResultsModalOpen;
+    isInputModalOpen || isAudioSettingsOpen || isResultsModalOpen || isWeakModalOpen;
 
   // Escape key closes the glossary sidebar if open
   useEffect(() => {
@@ -250,6 +252,7 @@ export default function Home() {
         soundEnabled={audioSettings.enabled}
         onOpenAudioSettings={() => setIsAudioSettingsOpen(true)}
         onOpenInputModal={() => setIsInputModalOpen(true)}
+        onOpenWeakModal={() => setIsWeakModalOpen(true)}
         onReset={handleReset}
         stats={stats}
         sentenceIndex={0}
@@ -319,7 +322,13 @@ export default function Home() {
           setIsResultsModalOpen(false);
           setIsInputModalOpen(true);
         }}
+        onOpenWeakModal={() => setIsWeakModalOpen(true)}
         stats={stats}
+      />
+
+      <WeakItemsModal
+        isOpen={isWeakModalOpen}
+        onClose={() => setIsWeakModalOpen(false)}
       />
     </div>
   );

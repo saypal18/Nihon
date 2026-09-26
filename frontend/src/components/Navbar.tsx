@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Volume2,
   VolumeX,
@@ -11,8 +11,10 @@ import {
   Activity,
   Sparkles,
   Sliders,
+  Flame,
 } from 'lucide-react';
 import { ScriptMode, TypingStats } from '../lib/types';
+import { weakItemsManager } from '../lib/weakItemsManager';
 
 interface NavbarProps {
   scriptMode: ScriptMode;
@@ -22,6 +24,7 @@ interface NavbarProps {
   soundEnabled: boolean;
   onOpenAudioSettings: () => void;
   onOpenInputModal: () => void;
+  onOpenWeakModal: () => void;
   onReset: () => void;
   stats: TypingStats;
   sentenceIndex: number;
@@ -36,11 +39,21 @@ export const Navbar: React.FC<NavbarProps> = ({
   soundEnabled,
   onOpenAudioSettings,
   onOpenInputModal,
+  onOpenWeakModal,
   onReset,
   stats,
   sentenceIndex,
   totalSentences,
 }) => {
+  const [weakCount, setWeakCount] = useState<number>(0);
+
+  useEffect(() => {
+    setWeakCount(weakItemsManager.getTotalWeakCount());
+    const unsub = weakItemsManager.subscribe(() => {
+      setWeakCount(weakItemsManager.getTotalWeakCount());
+    });
+    return () => unsub();
+  }, []);
   return (
     <header className="w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40 px-4 lg:px-8 py-3 transition-colors">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
@@ -171,6 +184,25 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Restart current passage (Tab + Enter)"
           >
             <RotateCcw className="w-4 h-4" />
+          </button>
+
+          {/* Weak Items Detector */}
+          <button
+            onClick={onOpenWeakModal}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+              weakCount > 0
+                ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 shadow-sm'
+                : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+            }`}
+            title="Inspect weak words, kanji, and kana lists"
+          >
+            <Flame className={`w-3.5 h-3.5 ${weakCount > 0 ? 'text-amber-400 fill-amber-400/20' : 'text-slate-400'}`} />
+            <span className="hidden sm:inline">Weak Items</span>
+            {weakCount > 0 && (
+              <span className="px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-mono text-[10px] font-bold">
+                {weakCount}
+              </span>
+            )}
           </button>
 
           {/* New Passage */}

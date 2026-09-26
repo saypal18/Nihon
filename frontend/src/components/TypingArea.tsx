@@ -5,6 +5,7 @@ import { Sentence, ScriptMode, TypingStats, KanaStat, TokenReading } from '../li
 import { EmielTypingSession, bindEmielKeyboard } from '../lib/emielAdapter';
 import { howlerAudio } from '../lib/howlerAudio';
 import { calculateLiveStats } from '../lib/stats';
+import { weakItemsManager } from '../lib/weakItemsManager';
 import { SentenceBlock } from './SentenceBlock';
 import { Keyboard } from 'lucide-react';
 
@@ -49,6 +50,13 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
     kanaErrors: {} as Record<string, KanaStat>,
   });
 
+  // Track flagged mistake positions to prevent multi-counting at the same passage point
+  const passageFlaggedMistakesRef = useRef({
+    tokens: new Set<string>(),
+    kanji: new Set<string>(),
+    kana: new Set<string>(),
+  });
+
   // Reference to current active Emiel session instance
   const sessionRef = useRef<EmielTypingSession | null>(null);
   const activeBlockRef = useRef<HTMLDivElement | null>(null);
@@ -83,6 +91,11 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
       totalKeystrokes: 0,
       completedKana: 0,
       kanaErrors: {},
+    };
+    passageFlaggedMistakesRef.current = {
+      tokens: new Set<string>(),
+      kanji: new Set<string>(),
+      kana: new Set<string>(),
     };
     initializeSession(0);
   }, [resetTrigger, sentences, initializeSession]);
@@ -198,6 +211,12 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
           } else {
             // Entire passage complete!
             howlerAudio.playPassageVictory();
+            weakItemsManager.processCleanPassageEncounters(
+              sentences,
+              passageFlaggedMistakesRef.current.tokens,
+              passageFlaggedMistakesRef.current.kanji,
+              passageFlaggedMistakesRef.current.kana
+            );
             const now = Date.now();
             const finalStats = calculateLiveStats(
               accumStatsRef.current.correctKeystrokes,
@@ -215,6 +234,13 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
       } else if (result.type === 'FAILED') {
         howlerAudio.playError();
         setMistakeCount(result.mistakeCount);
+        const currentKanaIdx = session.getCurrentKanaIndex();
+        weakItemsManager.processPassageMistake(
+          session.sentence,
+          currentKanaIdx,
+          scriptMode,
+          passageFlaggedMistakesRef.current
+        );
       } else if (result.type === 'BACK') {
         setMistakeCount(result.mistakeCount);
         setHiraganaCursor(result.finishedKanaLength);
@@ -230,6 +256,7 @@ export const TypingArea: React.FC<TypingAreaProps> = ({
     onStatsUpdate,
     onPassageComplete,
     isOverlayOpen,
+    scriptMode,
   ]);
 
   if (sentences.length === 0) {

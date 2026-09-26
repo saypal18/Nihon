@@ -1,13 +1,17 @@
 import logging
 from typing import List
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from .schemas import PassageRequest, PassageResponse, HealthResponse, GlossaryRequest, GlossaryResponse
+from .schemas import (
+    PassageRequest, PassageResponse, HealthResponse,
+    GlossaryRequest, GlossaryResponse, TTSRequest, TTSStatusResponse
+)
 from .parser import parse_japanese_text, get_tokenizer
 from .translator import translate_sentences, get_translator
 from .disambiguator import detect_available_model
 from .glossary import resolve_glossary
+from .tts import synthesize_speech, get_tts_status
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nihon-backend")
@@ -39,6 +43,19 @@ async def startup_event():
         logger.info(f"Ollama LLM Disambiguator ready with model: {model}")
     else:
         logger.info("Ollama not currently detected. Operating in SudachiPy standalone mode.")
+    
+    # Pre-warm Qwen3-TTS on GPU in background thread so startup isn't blocked
+    import threading
+    def _preload_tts():
+        try:
+            logger.info("Pre-loading Qwen3-TTS on GPU in background...")
+            from .tts import load_model
+            load_model()
+            logger.info("Qwen3-TTS pre-loaded and ready.")
+        except Exception as e:
+            logger.warning(f"Qwen3-TTS background preload warning: {e}")
+    threading.Thread(target=_preload_tts, daemon=True).start()
+
     logger.info("Nihon backend ready.")
 
 @app.get("/api/health", response_model=HealthResponse)
@@ -109,4 +126,26 @@ async def get_glossary(request: GlossaryRequest):
     except Exception as e:
         logger.error(f"Error resolving glossary for '{word}': {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Glossary lookup error: {str(e)}")
+
+@app.get("/api/tts/status", response_model=TTSStatusResponse)
+async def tts_status():
+    status = get_tts_status()
+    return TTSStatusResponse(**status)
+
+@app.post("/api/tts")
+async def text_to_speech(request: TTSRequest):
+    text = request.text.strip()
+    if not text:
+        raise HTTPException(status_code=400, detail="Text cannot be empty.")
+    try:
+        wav_bytes = synthesize_speech(
+            text=text,
+            speaker=request.speaker,
+            instruction=request.instruction,
+            model_size=request.model_size or "large"
+        )
+        return Response(content=wav_bytes, media_type="audio/wav")
+    except Exception as e:
+        logger.error(f"TTS generation error for '{text[:20]}': {e}", exc_info=True)
+        raise HTTPException(status_code=503, detail=f"TTS service unavailable: {str(e)}")
 

@@ -278,6 +278,10 @@ export class EmielTypingSession {
   getCurrentCursor(): number {
     return this.automaton.currentView().finishedWord.length;
   }
+
+  getCurrentKanaIndex(): number {
+    return this.getCurrentCursor();
+  }
 }
 
 /**
