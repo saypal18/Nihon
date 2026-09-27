@@ -86,7 +86,7 @@ class GlossaryRequest(BaseModel):
     sentence: Optional[str] = Field(default=None, description="Full raw original sentence")
     clicked_start: Optional[int] = Field(default=None, description="Clicked start character offset")
     clicked_end: Optional[int] = Field(default=None, description="Clicked end character offset")
-    selection_scope: Literal["sentence", "component"] = Field(default="sentence", description="Whether the span came from a sentence token or a component token")
+    selection_scope: Literal["sentence", "component", "exact"] = Field(default="sentence", description="Whether the span came from a sentence token, a component option, or an exact token selection")
     sentence_id: Optional[int] = None
     frontend_token_index: Optional[int] = None
 

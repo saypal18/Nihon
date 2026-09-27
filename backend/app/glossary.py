@@ -100,7 +100,7 @@ async def resolve_glossary(req: GlossaryRequest) -> GlossaryResponse:
                 sentence_text,
                 clicked_start,
                 clicked_end,
-                expand_context=req.selection_scope != "component",
+                expand_context=req.selection_scope == "sentence",
             )
             if valid_click
             else None
@@ -209,7 +209,14 @@ async def _build_response_from_candidate(
 ) -> GlossaryResponse:
     """Helper to assemble rich GlossaryResponse from CandidateExpression."""
     entry = None
-    if cand.surface:
+    if cand.dict_entry and (
+        cand.inflection is not None
+        or (cand.category == "word" and cand.lemma != cand.surface)
+    ):
+        # An inflected component can share its written form with an unrelated
+        # dictionary headword; the resolver's morphological lemma identifies it.
+        entry = cand.dict_entry
+    if entry is None and cand.surface:
         entries = get_dictionary_service().lookup_term(cand.surface, reading=cand.reading)
         if entries:
             entry = entries[0]

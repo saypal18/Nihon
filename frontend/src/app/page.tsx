@@ -130,6 +130,7 @@ export default function Home() {
 
   // Multi-token resolved span for active sentence
   const [activeResolvedSpan, setActiveResolvedSpan] = useState<[number, number] | null>(null);
+  const [activeResolvedIsCompound, setActiveResolvedIsCompound] = useState<boolean | null>(null);
 
   // Quick reset handler
   const handleReset = useCallback(() => {
@@ -138,6 +139,7 @@ export default function Home() {
     setIsResultsModalOpen(false);
     setSelectedWord(null);
     setActiveResolvedSpan(null);
+    setActiveResolvedIsCompound(null);
   }, []);
 
   // Word selection handler
@@ -150,18 +152,46 @@ export default function Home() {
       clickedEnd?: number
     ) => {
       setSelectedWord((prev) => {
-        if (
+        const isSameSentenceSelection = Boolean(
           prev &&
           prev.sentenceId === sentence.id &&
           prev.tokenIndex === tokenIndex &&
-          prev.selectionScope !== 'component' &&
           prev.clickedStart === clickedStart &&
           prev.clickedEnd === clickedEnd
-        ) {
+        );
+        if (isSameSentenceSelection && activeResolvedIsCompound === false) {
           setActiveResolvedSpan(null);
-          return null; // Toggle off if clicked again
+          setActiveResolvedIsCompound(null);
+          return null;
         }
+        if (isSameSentenceSelection && activeResolvedIsCompound === true) {
+          setActiveResolvedSpan(null);
+          setActiveResolvedIsCompound(null);
+          return {
+            sentenceId: sentence.id,
+            tokenIndex,
+            token,
+            sentence,
+            clickedStart,
+            clickedEnd,
+            selectionScope: 'exact',
+          };
+        }
+        if (isSameSentenceSelection) {
+          return prev;
+        }
+        const clickedWithinActiveResolution = Boolean(
+          prev &&
+          prev.sentenceId === sentence.id &&
+          activeResolvedIsCompound === true &&
+          activeResolvedSpan &&
+          clickedStart !== undefined &&
+          clickedEnd !== undefined &&
+          clickedStart >= activeResolvedSpan[0] &&
+          clickedEnd <= activeResolvedSpan[1]
+        );
         setActiveResolvedSpan(null);
+        setActiveResolvedIsCompound(null);
         return {
           sentenceId: sentence.id,
           tokenIndex,
@@ -169,11 +199,11 @@ export default function Home() {
           sentence,
           clickedStart,
           clickedEnd,
-          selectionScope: 'sentence',
+          selectionScope: clickedWithinActiveResolution ? 'exact' : 'sentence',
         };
       });
     },
-    []
+    [activeResolvedIsCompound, activeResolvedSpan]
   );
 
   const isOverlayOpen =
@@ -319,8 +349,10 @@ export default function Home() {
         onClose={() => {
           setSelectedWord(null);
           setActiveResolvedSpan(null);
+          setActiveResolvedIsCompound(null);
         }}
         onResolvedSpanChange={setActiveResolvedSpan}
+        onResolvedCompoundChange={setActiveResolvedIsCompound}
         onSelectSubToken={(subToken) => {
           if (!selectedWord) return;
           setSelectedWord({
@@ -339,6 +371,7 @@ export default function Home() {
             clickedEnd: subToken.end_char,
             selectionScope: 'component',
           });
+          setActiveResolvedIsCompound(null);
         }}
       />
 

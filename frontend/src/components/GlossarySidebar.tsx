@@ -21,6 +21,7 @@ interface GlossarySidebarProps {
   selectedWord: SelectedWordInfo | null;
   onClose: () => void;
   onResolvedSpanChange?: (span: [number, number] | null) => void;
+  onResolvedCompoundChange?: (isCompound: boolean) => void;
   onSelectSubToken?: (subToken: SubTokenInfo) => void;
 }
 
@@ -28,6 +29,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
   selectedWord,
   onClose,
   onResolvedSpanChange,
+  onResolvedCompoundChange,
   onSelectSubToken,
 }) => {
   const [glossaryResult, setGlossaryResult] = useState<{
@@ -117,6 +119,19 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
           if (json.resolved_span && onResolvedSpanChange) {
             onResolvedSpanChange(json.resolved_span);
           }
+          const resolvedSpan = json.resolved_span;
+          const expandedBeyondClick = Boolean(
+            resolvedSpan &&
+            clickedStart !== undefined &&
+            clickedEnd !== undefined &&
+            (resolvedSpan[0] !== clickedStart || resolvedSpan[1] !== clickedEnd)
+          );
+          onResolvedCompoundChange?.(
+            Boolean(
+              (json.sub_tokens?.length ?? 0) > 1 ||
+              expandedBeyondClick
+            )
+          );
         }
       } catch (err: unknown) {
         if (!isCancelled) {
@@ -139,6 +154,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
             },
             error: 'Could not reach backend glossary API.',
           });
+          onResolvedCompoundChange?.(false);
         }
       }
     };
@@ -148,7 +164,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
     return () => {
       isCancelled = true;
     };
-  }, [selectedWord, selectionKey, clickedSurface, onResolvedSpanChange]);
+  }, [selectedWord, selectionKey, clickedSurface, onResolvedSpanChange, onResolvedCompoundChange]);
 
   const handlePronounce = () => {
     if (!data || isLoading) return;
@@ -392,6 +408,7 @@ export const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
                       type="button"
                       onClick={() => {
                         onResolvedSpanChange?.(null);
+                        onResolvedCompoundChange?.(false);
                         onSelectSubToken?.(st);
                       }}
                       className="px-2.5 py-1 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 transition-all text-xs font-mono text-slate-300 flex items-center gap-1.5 cursor-pointer shadow-sm group"

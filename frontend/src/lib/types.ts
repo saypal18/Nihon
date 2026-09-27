@@ -101,7 +101,7 @@ export interface SelectedWordInfo {
   sentence: Sentence;
   clickedStart?: number;
   clickedEnd?: number;
-  selectionScope?: 'sentence' | 'component';
+  selectionScope?: 'sentence' | 'component' | 'exact';
 }
 
 export interface Sentence {

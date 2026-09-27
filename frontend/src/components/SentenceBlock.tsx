@@ -155,7 +155,7 @@ export const SentenceBlock: React.FC<SentenceBlockProps> = ({
                         <span
                           key={cIdx}
                           className={`transition-colors duration-150 ${
-                            isSelected
+                            isSelected || isInSpan
                               ? 'text-amber-300'
                               : isCharCompleted
                               ? 'text-emerald-400'

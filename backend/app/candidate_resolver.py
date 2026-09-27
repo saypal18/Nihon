@@ -36,6 +36,115 @@ class ResolutionResult(BaseModel):
     alternatives: List[CandidateExpression] = []
     sentence_analyzed: AnalyzedSentence
 
+
+def _canonical_expression_category(candidate: CandidateExpression) -> str:
+    """Classify lexical expressions consistently across resolver discovery paths."""
+    if candidate.category not in {"idiom", "compound"}:
+        return candidate.category
+
+    entry = candidate.dict_entry
+    if entry and entry.is_name:
+        return "name"
+
+    # JMdict's expression POS tag is explicit evidence that this is a phrase.
+    if entry and any(
+        pos.strip().casefold() in {"exp", "expression"}
+        for sense in entry.senses
+        for pos in sense.parts_of_speech
+    ):
+        return "idiom"
+
+    # A lexical compound is nominal throughout. Mixed grammatical/lexical
+    # spans remain expressions regardless of whether Mode C grouped them.
+    if len(candidate.sub_tokens) > 1 and all(
+        "名詞" in token.pos or "名詞的" in token.pos
+        for token in candidate.sub_tokens
+    ):
+        return "compound"
+
+    return "idiom"
+
+
+def _normalize_expression_candidates(
+    candidates: List[CandidateExpression],
+) -> List[CandidateExpression]:
+    """Normalize overlapping discovery routes into one candidate per expression entry."""
+    unique: Dict[Tuple[Tuple[int, int], str, Optional[int], str], CandidateExpression] = {}
+    for candidate in candidates:
+        category = _canonical_expression_category(candidate)
+        normalized = candidate.model_copy(update={"category": category})
+        entry_id = normalized.dict_entry.id if normalized.dict_entry else None
+        key = (normalized.span, normalized.surface, entry_id, category)
+        current = unique.get(key)
+        if current is None or (normalized.priority, -normalized.confidence) < (
+            current.priority,
+            -current.confidence,
+        ):
+            unique[key] = normalized
+    return list(unique.values())
+
+
+def _reading_match_agrees_with_morphology(
+    entry: DictionaryEntry, morphemes: List[AnalyzedMorpheme]
+) -> bool:
+    """Reject reading homographs whose dictionary POS conflicts with the span."""
+    dictionary_pos = {
+        pos.strip().casefold()
+        for sense in entry.senses
+        for pos in sense.parts_of_speech
+    }
+    if any(
+        pos in {"exp", "expression"} or pos == "adv" or pos.startswith("adv-")
+        for pos in dictionary_pos
+    ):
+        return True
+
+    is_nominal_span = bool(morphemes) and all(
+        "名詞" in morpheme.pos or "名詞的" in morpheme.pos
+        for morpheme in morphemes
+    )
+    has_nominal_sense = any(pos == "n" or pos.startswith("n-") for pos in dictionary_pos)
+    return has_nominal_sense and is_nominal_span
+
+
+def _predicate_chain_at_index(
+    morphemes: List[AnalyzedMorpheme], clicked_index: int
+) -> List[AnalyzedMorpheme]:
+    """Return the contiguous predicate and auxiliary chain containing a clicked morpheme."""
+    clicked = morphemes[clicked_index]
+    clicked_pos = clicked.pos[0] if clicked.pos else ""
+    predicate_pos = {"動詞", "形容詞"}
+    inflection_pos = {"助動詞", "接尾辞"}
+
+    if clicked_pos in predicate_pos:
+        head_index = clicked_index
+    elif clicked_pos in inflection_pos:
+        head_index = clicked_index - 1
+        while head_index >= 0:
+            previous = morphemes[head_index]
+            previous_pos = previous.pos[0] if previous.pos else ""
+            if previous_pos not in inflection_pos:
+                break
+            if previous.end_char != morphemes[head_index + 1].start_char:
+                return [clicked]
+            head_index -= 1
+        if head_index < 0:
+            return [clicked]
+        head = morphemes[head_index]
+        head_pos = head.pos[0] if head.pos else ""
+        if head_pos not in predicate_pos or head.end_char != morphemes[head_index + 1].start_char:
+            return [clicked]
+    else:
+        return [clicked]
+
+    chain = [morphemes[head_index]]
+    for next_morpheme in morphemes[head_index + 1:]:
+        next_pos = next_morpheme.pos[0] if next_morpheme.pos else ""
+        if next_pos not in inflection_pos or chain[-1].end_char != next_morpheme.start_char:
+            break
+        chain.append(next_morpheme)
+    return chain if clicked_index < head_index + len(chain) else [clicked]
+
 def resolve_candidates_at_span(
     sentence: str,
     clicked_start: int,
@@ -111,16 +220,24 @@ def resolve_candidates_at_span(
 
             if entries:
                 entry = entries[0]
-                # A reading-only hit is weak evidence that adjacent morphemes form
-                # one expression. Keep it only when the same span is recognized as
-                # a compound by Sudachi, or when the matched spelling is the entry's
-                # own written form (which also supports kana-only dictionary words).
+                # A reading-only hit is weak evidence unless the tokenized span
+                # independently forms a Mode C compound or exactly matches the
+                # entry's written form, primary reading, or matched form.
                 has_morphological_span = (span_start, span_end) in mode_c_spans
                 has_written_form_match = (
                     not entry.matched_form_is_reading
                     or entry.primary_kanji == span_surf
                 )
-                if not has_morphological_span and not has_written_form_match:
+                has_compatible_reading_match = (
+                    entry.matched_form_is_reading
+                    and (entry.primary_reading == span_surf or entry.matched_form == span_surf)
+                    and _reading_match_agrees_with_morphology(entry, span_morphemes)
+                )
+                if not (
+                    has_morphological_span
+                    or has_written_form_match
+                    or has_compatible_reading_match
+                ):
                     continue
 
                 sub_toks = [
@@ -238,9 +355,18 @@ def resolve_candidates_at_span(
 
     # 5. Check Single Mode A Morphemes
     for c_idx in clicked_indices:
-        m = morphemes[c_idx]
-        if not expand_context and (m.start_char < clicked_start or m.end_char > clicked_end):
+        clicked_morpheme = morphemes[c_idx]
+        if not expand_context and (
+            clicked_morpheme.start_char < clicked_start
+            or clicked_morpheme.end_char > clicked_end
+        ):
             continue
+        pred_morphemes = (
+            _predicate_chain_at_index(morphemes, c_idx)
+            if expand_context
+            else [clicked_morpheme]
+        )
+        m = pred_morphemes[0]
         pos0 = m.pos[0] if m.pos else ""
 
         # Check if Particle
@@ -267,18 +393,6 @@ def resolve_candidates_at_span(
 
             entry = entries[0] if entries else None
             is_name = entry.is_name if entry else False
-
-            # Check if this morpheme is a verb with inflections attached
-            # (e.g. 食べさせられた or 食べた or 行かなかった)
-            pred_morphemes = [m]
-            if expand_context:
-                for j in range(c_idx + 1, min(c_idx + 5, n_morphemes)):
-                    next_m = morphemes[j]
-                    next_pos = next_m.pos[0] if next_m.pos else ""
-                    if next_pos in ["助動詞", "接尾辞"] or next_m.lemma in ["ない", "た", "ます", "れる", "られる", "せる", "させる"]:
-                        pred_morphemes.append(next_m)
-                    else:
-                        break
 
             has_single_morpheme_inflection = bool(m.inflection_form)
             inflection = (
@@ -317,6 +431,8 @@ def resolve_candidates_at_span(
 
     if not candidates:
         return None
+
+    candidates = _normalize_expression_candidates(candidates)
 
     # Sort candidates: lower priority number first, then larger span, then higher confidence
     candidates.sort(key=lambda c: (c.priority, -(c.span[1] - c.span[0]), -c.confidence))
